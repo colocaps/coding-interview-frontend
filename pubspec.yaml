@@ -21,6 +21,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.1.4
+  flutter_gen_runner:
   flutter_test:
     sdk: flutter
   freezed: 
@@ -32,6 +33,30 @@ dev_dependencies:
   retrofit:
   retrofit_generator:
 
+flutter_gen:
+  integrations:
+    flutter_svg: true
+    lottie: true
+    rive: true
+
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/
+    - assets/fiat_currencies/
+    - assets/cripto_currencies/
+   
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Black.ttf
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+        - asset: assets/fonts/poppins/Poppins-ExtraBold.ttf
+        - asset: assets/fonts/poppins/Poppins-ExtraLight.ttf
+        - asset: assets/fonts/poppins/Poppins-Light.ttf
+        - asset: assets/fonts/poppins/Poppins-LightItalic.ttf
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
