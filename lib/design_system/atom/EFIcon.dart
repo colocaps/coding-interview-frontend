@@ -38,5 +38,5 @@ enum Currency {
     }
   }
 
-  Widget icon({double size = 24}) => asset.image(width: size, height: size);
+  Widget icon({double size = 30}) => asset.image(width: size, height: size);
 }

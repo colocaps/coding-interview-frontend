@@ -4,6 +4,8 @@ import 'package:exchange_caclculator/design_system/molecule/EFButton.dart';
 import 'package:exchange_caclculator/design_system/molecule/EFComposed_text.dart';
 import 'package:exchange_caclculator/design_system/molecule/EFDescription_icon.dart';
 import 'package:exchange_caclculator/design_system/molecule/EFEchange_Input.dart';
+import 'package:exchange_caclculator/design_system/organism/EFBottom_sheet.dart';
+import 'package:exchange_caclculator/design_system/organism/EFCurrency_echange_selector.dart';
 import 'package:exchange_caclculator/design_system/organism/EFDescription_text.dart';
 import 'package:exchange_caclculator/design_system/organism/EFIcon_radio_selector.dart';
 import 'package:exchange_caclculator/design_system/organism/EFIcon_selector.dart';
@@ -51,13 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
             currencyImage: Currency.cop,
             subtitle: 'Bolivares (Bs)',
           ),
-          EfIconSelector(
-            currencyDescriptionIcon: EFCurrencyDescriptionIcon(
-              title: 'VES',
-              currencyImage: Currency.cop,
-            ),
-            onTap: () {},
-          ),
           EFIconRadioSelector<String>(
             currencyDescriptionIcon: EFCurrencyDescriptionIcon(
               title: 'VES',
@@ -67,6 +62,88 @@ class _HomeScreenState extends State<HomeScreen> {
             value: 'item',
             groupValue: selectedValue ?? '',
             onChanged: (val) {},
+          ),
+          EFCurrencyDescriptionIcon(
+            title: 'VES',
+            currencyImage: Currency.cop,
+          ),
+          EFCurrencyExchangeSelector(
+            leftCurrencySelector: EfIconSelector(
+              currencyDescriptionIcon: EFCurrencyDescriptionIcon(
+                title: 'VES',
+                currencyImage: Currency.cop,
+                maxFontSize: 18,
+              ),
+              onTap: () {
+                showEFBottomSheet<EFIconRadioSelector>(
+                  isSearchInputVisible: false,
+                  title: 'FIAT',
+                  context: context,
+                  items: [
+                    EFIconRadioSelector<String>(
+                      currencyDescriptionIcon: EFCurrencyDescriptionIcon(
+                        title: 'VES',
+                        subtitle: 'Bolivares (Bs)',
+                        currencyImage: Currency.cop,
+                      ),
+                      value: 'item',
+                      groupValue: selectedValue ?? '',
+                      onChanged: (val) {},
+                    ),
+                    EFIconRadioSelector<String>(
+                      currencyDescriptionIcon: EFCurrencyDescriptionIcon(
+                        title: 'VES',
+                        subtitle: 'Bolivares (Bs)',
+                        currencyImage: Currency.cop,
+                      ),
+                      value: 'item',
+                      groupValue: selectedValue ?? '',
+                      onChanged: (val) {},
+                    )
+                  ],
+                  itemWidgetBuilder: (value) => value,
+                  onItemSelected: (value) {},
+                );
+              },
+            ),
+            rightCurrencySelector: EfIconSelector(
+              currencyDescriptionIcon: EFCurrencyDescriptionIcon(
+                title: 'VES',
+                currencyImage: Currency.cop,
+                maxFontSize: 18,
+              ),
+              onTap: () {
+                showEFBottomSheet<EFIconRadioSelector>(
+                  isSearchInputVisible: false,
+                  title: 'FIAT',
+                  context: context,
+                  items: [
+                    EFIconRadioSelector<String>(
+                      currencyDescriptionIcon: EFCurrencyDescriptionIcon(
+                        title: 'VES',
+                        subtitle: 'Bolivares (Bs)',
+                        currencyImage: Currency.cop,
+                      ),
+                      value: 'item',
+                      groupValue: selectedValue ?? '',
+                      onChanged: (val) {},
+                    ),
+                    EFIconRadioSelector<String>(
+                      currencyDescriptionIcon: EFCurrencyDescriptionIcon(
+                        title: 'VES',
+                        subtitle: 'Bolivares (Bs)',
+                        currencyImage: Currency.cop,
+                      ),
+                      value: 'item',
+                      groupValue: selectedValue ?? '',
+                      onChanged: (val) {},
+                    )
+                  ],
+                  itemWidgetBuilder: (value) => value,
+                  onItemSelected: (value) {},
+                );
+              },
+            ),
           )
         ],
       ),

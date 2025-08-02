@@ -8,11 +8,13 @@ class EFCurrencyDescriptionIcon extends StatelessWidget {
     required this.currencyImage,
     required this.title,
     this.subtitle,
+    this.maxFontSize = 12,
   });
 
   final Currency currencyImage;
   final String title;
   final String? subtitle;
+  final double maxFontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class EFCurrencyDescriptionIcon extends StatelessWidget {
                   EFText(
                     text: title,
                     color: Colors.black,
-                    maxFontSize: 12,
+                    maxFontSize: maxFontSize,
                   ),
                   if (subtitle != null)
                     EFText(

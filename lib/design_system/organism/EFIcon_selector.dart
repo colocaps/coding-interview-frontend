@@ -18,7 +18,7 @@ class EfIconSelector extends StatelessWidget {
         currencyDescriptionIcon,
         GestureDetector(
           onTap: onTap,
-          child: const Icon(Icons.keyboard_arrow_down_sharp),
+          child: const Icon(Icons.keyboard_arrow_down_sharp, size: 25),
         ),
       ],
     );
