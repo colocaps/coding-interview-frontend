@@ -4,7 +4,7 @@ part 'error_response_model.freezed.dart';
 part 'error_response_model.g.dart';
 
 @freezed
-class ErrorResponseModel with _$ErrorResponseModel {
+abstract class ErrorResponseModel with _$ErrorResponseModel {
   const factory ErrorResponseModel({
     required ErrorContent error,
   }) = _ErrorResponseModel;
@@ -14,7 +14,7 @@ class ErrorResponseModel with _$ErrorResponseModel {
 }
 
 @freezed
-class ErrorContent with _$ErrorContent {
+abstract class ErrorContent with _$ErrorContent {
   const factory ErrorContent({
     required String message,
     required int code,

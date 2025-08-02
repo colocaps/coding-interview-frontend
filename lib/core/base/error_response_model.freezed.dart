@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,30 +9,47 @@ part of 'error_response_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ErrorResponseModel _$ErrorResponseModelFromJson(Map<String, dynamic> json) {
-  return _ErrorResponseModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ErrorResponseModel {
-  ErrorContent get error => throw _privateConstructorUsedError;
+  ErrorContent get error;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  /// Create a copy of ErrorResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ErrorResponseModelCopyWith<ErrorResponseModel> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ErrorResponseModelCopyWithImpl<ErrorResponseModel>(
+          this as ErrorResponseModel, _$identity);
+
+  /// Serializes this ErrorResponseModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ErrorResponseModel &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @override
+  String toString() {
+    return 'ErrorResponseModel(error: $error)';
+  }
 }
 
 /// @nodoc
-abstract class $ErrorResponseModelCopyWith<$Res> {
+abstract mixin class $ErrorResponseModelCopyWith<$Res> {
   factory $ErrorResponseModelCopyWith(
-          ErrorResponseModel value, $Res Function(ErrorResponseModel) then) =
-      _$ErrorResponseModelCopyWithImpl<$Res, ErrorResponseModel>;
+          ErrorResponseModel value, $Res Function(ErrorResponseModel) _then) =
+      _$ErrorResponseModelCopyWithImpl;
   @useResult
   $Res call({ErrorContent error});
 
@@ -40,209 +57,342 @@ abstract class $ErrorResponseModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ErrorResponseModelCopyWithImpl<$Res, $Val extends ErrorResponseModel>
+class _$ErrorResponseModelCopyWithImpl<$Res>
     implements $ErrorResponseModelCopyWith<$Res> {
-  _$ErrorResponseModelCopyWithImpl(this._value, this._then);
+  _$ErrorResponseModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ErrorResponseModel _self;
+  final $Res Function(ErrorResponseModel) _then;
 
+  /// Create a copy of ErrorResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       error: null == error
-          ? _value.error
+          ? _self.error
           : error // ignore: cast_nullable_to_non_nullable
               as ErrorContent,
-    ) as $Val);
+    ));
   }
 
+  /// Create a copy of ErrorResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ErrorContentCopyWith<$Res> get error {
-    return $ErrorContentCopyWith<$Res>(_value.error, (value) {
-      return _then(_value.copyWith(error: value) as $Val);
+    return $ErrorContentCopyWith<$Res>(_self.error, (value) {
+      return _then(_self.copyWith(error: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$ErrorResponseModelImplCopyWith<$Res>
-    implements $ErrorResponseModelCopyWith<$Res> {
-  factory _$$ErrorResponseModelImplCopyWith(_$ErrorResponseModelImpl value,
-          $Res Function(_$ErrorResponseModelImpl) then) =
-      __$$ErrorResponseModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ErrorContent error});
+/// Adds pattern-matching-related methods to [ErrorResponseModel].
+extension ErrorResponseModelPatterns on ErrorResponseModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $ErrorContentCopyWith<$Res> get error;
-}
-
-/// @nodoc
-class __$$ErrorResponseModelImplCopyWithImpl<$Res>
-    extends _$ErrorResponseModelCopyWithImpl<$Res, _$ErrorResponseModelImpl>
-    implements _$$ErrorResponseModelImplCopyWith<$Res> {
-  __$$ErrorResponseModelImplCopyWithImpl(_$ErrorResponseModelImpl _value,
-      $Res Function(_$ErrorResponseModelImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ErrorResponseModel value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$ErrorResponseModelImpl(
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorContent,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _ErrorResponseModel() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ErrorResponseModel value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorResponseModel():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ErrorResponseModel value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorResponseModel() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ErrorContent error)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorResponseModel() when $default != null:
+        return $default(_that.error);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ErrorContent error) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorResponseModel():
+        return $default(_that.error);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ErrorContent error)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorResponseModel() when $default != null:
+        return $default(_that.error);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ErrorResponseModelImpl implements _ErrorResponseModel {
-  const _$ErrorResponseModelImpl({required this.error});
-
-  factory _$ErrorResponseModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorResponseModelImplFromJson(json);
+class _ErrorResponseModel implements ErrorResponseModel {
+  const _ErrorResponseModel({required this.error});
+  factory _ErrorResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$ErrorResponseModelFromJson(json);
 
   @override
   final ErrorContent error;
 
+  /// Create a copy of ErrorResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ErrorResponseModel(error: $error)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorResponseModelCopyWith<_ErrorResponseModel> get copyWith =>
+      __$ErrorResponseModelCopyWithImpl<_ErrorResponseModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ErrorResponseModelToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorResponseModelImpl &&
+            other is _ErrorResponseModel &&
             (identical(other.error, error) || other.error == error));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorResponseModelImplCopyWith<_$ErrorResponseModelImpl> get copyWith =>
-      __$$ErrorResponseModelImplCopyWithImpl<_$ErrorResponseModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ErrorResponseModelImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ErrorResponseModel(error: $error)';
   }
 }
 
-abstract class _ErrorResponseModel implements ErrorResponseModel {
-  const factory _ErrorResponseModel({required final ErrorContent error}) =
-      _$ErrorResponseModelImpl;
-
-  factory _ErrorResponseModel.fromJson(Map<String, dynamic> json) =
-      _$ErrorResponseModelImpl.fromJson;
+/// @nodoc
+abstract mixin class _$ErrorResponseModelCopyWith<$Res>
+    implements $ErrorResponseModelCopyWith<$Res> {
+  factory _$ErrorResponseModelCopyWith(
+          _ErrorResponseModel value, $Res Function(_ErrorResponseModel) _then) =
+      __$ErrorResponseModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({ErrorContent error});
 
   @override
-  ErrorContent get error;
-  @override
-  @JsonKey(ignore: true)
-  _$$ErrorResponseModelImplCopyWith<_$ErrorResponseModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ErrorContentCopyWith<$Res> get error;
 }
 
-ErrorContent _$ErrorContentFromJson(Map<String, dynamic> json) {
-  return _ErrorContent.fromJson(json);
+/// @nodoc
+class __$ErrorResponseModelCopyWithImpl<$Res>
+    implements _$ErrorResponseModelCopyWith<$Res> {
+  __$ErrorResponseModelCopyWithImpl(this._self, this._then);
+
+  final _ErrorResponseModel _self;
+  final $Res Function(_ErrorResponseModel) _then;
+
+  /// Create a copy of ErrorResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_ErrorResponseModel(
+      error: null == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorContent,
+    ));
+  }
+
+  /// Create a copy of ErrorResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ErrorContentCopyWith<$Res> get error {
+    return $ErrorContentCopyWith<$Res>(_self.error, (value) {
+      return _then(_self.copyWith(error: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$ErrorContent {
-  String get message => throw _privateConstructorUsedError;
-  int get code => throw _privateConstructorUsedError;
-  String? get stack => throw _privateConstructorUsedError;
+  String get message;
+  int get code;
+  String? get stack;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ErrorContentCopyWith<ErrorContent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ErrorContentCopyWith<$Res> {
-  factory $ErrorContentCopyWith(
-          ErrorContent value, $Res Function(ErrorContent) then) =
-      _$ErrorContentCopyWithImpl<$Res, ErrorContent>;
-  @useResult
-  $Res call({String message, int code, String? stack});
-}
-
-/// @nodoc
-class _$ErrorContentCopyWithImpl<$Res, $Val extends ErrorContent>
-    implements $ErrorContentCopyWith<$Res> {
-  _$ErrorContentCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of ErrorContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $ErrorContentCopyWith<ErrorContent> get copyWith =>
+      _$ErrorContentCopyWithImpl<ErrorContent>(
+          this as ErrorContent, _$identity);
+
+  /// Serializes this ErrorContent to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? message = null,
-    Object? code = null,
-    Object? stack = freezed,
-  }) {
-    return _then(_value.copyWith(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int,
-      stack: freezed == stack
-          ? _value.stack
-          : stack // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ErrorContent &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.stack, stack) || other.stack == stack));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message, code, stack);
+
+  @override
+  String toString() {
+    return 'ErrorContent(message: $message, code: $code, stack: $stack)';
   }
 }
 
 /// @nodoc
-abstract class _$$ErrorContentImplCopyWith<$Res>
-    implements $ErrorContentCopyWith<$Res> {
-  factory _$$ErrorContentImplCopyWith(
-          _$ErrorContentImpl value, $Res Function(_$ErrorContentImpl) then) =
-      __$$ErrorContentImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ErrorContentCopyWith<$Res> {
+  factory $ErrorContentCopyWith(
+          ErrorContent value, $Res Function(ErrorContent) _then) =
+      _$ErrorContentCopyWithImpl;
   @useResult
   $Res call({String message, int code, String? stack});
 }
 
 /// @nodoc
-class __$$ErrorContentImplCopyWithImpl<$Res>
-    extends _$ErrorContentCopyWithImpl<$Res, _$ErrorContentImpl>
-    implements _$$ErrorContentImplCopyWith<$Res> {
-  __$$ErrorContentImplCopyWithImpl(
-      _$ErrorContentImpl _value, $Res Function(_$ErrorContentImpl) _then)
-      : super(_value, _then);
+class _$ErrorContentCopyWithImpl<$Res> implements $ErrorContentCopyWith<$Res> {
+  _$ErrorContentCopyWithImpl(this._self, this._then);
 
+  final ErrorContent _self;
+  final $Res Function(ErrorContent) _then;
+
+  /// Create a copy of ErrorContent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -250,31 +400,186 @@ class __$$ErrorContentImplCopyWithImpl<$Res>
     Object? code = null,
     Object? stack = freezed,
   }) {
-    return _then(_$ErrorContentImpl(
+    return _then(_self.copyWith(
       message: null == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
       code: null == code
-          ? _value.code
+          ? _self.code
           : code // ignore: cast_nullable_to_non_nullable
               as int,
       stack: freezed == stack
-          ? _value.stack
+          ? _self.stack
           : stack // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [ErrorContent].
+extension ErrorContentPatterns on ErrorContent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ErrorContent value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorContent() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ErrorContent value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorContent():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ErrorContent value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorContent() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String message, int code, String? stack)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorContent() when $default != null:
+        return $default(_that.message, _that.code, _that.stack);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String message, int code, String? stack) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorContent():
+        return $default(_that.message, _that.code, _that.stack);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String message, int code, String? stack)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ErrorContent() when $default != null:
+        return $default(_that.message, _that.code, _that.stack);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
-class _$ErrorContentImpl implements _ErrorContent {
-  const _$ErrorContentImpl(
-      {required this.message, required this.code, this.stack});
-
-  factory _$ErrorContentImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorContentImplFromJson(json);
+class _ErrorContent implements ErrorContent {
+  const _ErrorContent({required this.message, required this.code, this.stack});
+  factory _ErrorContent.fromJson(Map<String, dynamic> json) =>
+      _$ErrorContentFromJson(json);
 
   @override
   final String message;
@@ -283,56 +588,84 @@ class _$ErrorContentImpl implements _ErrorContent {
   @override
   final String? stack;
 
+  /// Create a copy of ErrorContent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ErrorContent(message: $message, code: $code, stack: $stack)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorContentCopyWith<_ErrorContent> get copyWith =>
+      __$ErrorContentCopyWithImpl<_ErrorContent>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ErrorContentToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorContentImpl &&
+            other is _ErrorContent &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.stack, stack) || other.stack == stack));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, message, code, stack);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorContentImplCopyWith<_$ErrorContentImpl> get copyWith =>
-      __$$ErrorContentImplCopyWithImpl<_$ErrorContentImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ErrorContentImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ErrorContent(message: $message, code: $code, stack: $stack)';
   }
 }
 
-abstract class _ErrorContent implements ErrorContent {
-  const factory _ErrorContent(
-      {required final String message,
-      required final int code,
-      final String? stack}) = _$ErrorContentImpl;
-
-  factory _ErrorContent.fromJson(Map<String, dynamic> json) =
-      _$ErrorContentImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$ErrorContentCopyWith<$Res>
+    implements $ErrorContentCopyWith<$Res> {
+  factory _$ErrorContentCopyWith(
+          _ErrorContent value, $Res Function(_ErrorContent) _then) =
+      __$ErrorContentCopyWithImpl;
   @override
-  String get message;
-  @override
-  int get code;
-  @override
-  String? get stack;
-  @override
-  @JsonKey(ignore: true)
-  _$$ErrorContentImplCopyWith<_$ErrorContentImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call({String message, int code, String? stack});
 }
+
+/// @nodoc
+class __$ErrorContentCopyWithImpl<$Res>
+    implements _$ErrorContentCopyWith<$Res> {
+  __$ErrorContentCopyWithImpl(this._self, this._then);
+
+  final _ErrorContent _self;
+  final $Res Function(_ErrorContent) _then;
+
+  /// Create a copy of ErrorContent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = null,
+    Object? code = null,
+    Object? stack = freezed,
+  }) {
+    return _then(_ErrorContent(
+      message: null == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: null == code
+          ? _self.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
+      stack: freezed == stack
+          ? _self.stack
+          : stack // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+// dart format on
