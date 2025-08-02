@@ -23,7 +23,10 @@ class EFExchangeInput extends StatelessWidget {
       height: 50,
       child: Row(
         children: [
-          EFText(text: currency),
+          EFText(
+            text: currency,
+            color: EFColors.secondary,
+          ),
           const SizedBox(width: 6),
           Expanded(
             child: TextField(
@@ -31,8 +34,8 @@ class EFExchangeInput extends StatelessWidget {
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               style: const TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
                 color: Colors.black,
               ),
               decoration: const InputDecoration(
@@ -44,6 +47,11 @@ class EFExchangeInput extends StatelessWidget {
                 focusedErrorBorder: InputBorder.none,
                 isDense: true,
                 contentPadding: EdgeInsets.symmetric(vertical: 12),
+                hintStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
                 hintText: '0.00',
               ),
             ),

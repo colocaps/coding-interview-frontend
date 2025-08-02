@@ -2,16 +2,17 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:exchange_caclculator/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 
-class EFText extends StatefulWidget {
+class EFText extends StatelessWidget {
   const EFText({
     required this.text,
     this.style,
-    super.key,
     this.color,
     this.maxLines,
     this.textAlign = TextAlign.left,
     this.maxFontSize = double.infinity,
     this.minFontsize = 2,
+    this.labelTheme,
+    super.key,
   });
 
   final String text;
@@ -21,29 +22,26 @@ class EFText extends StatefulWidget {
   final TextAlign? textAlign;
   final double maxFontSize;
   final double minFontsize;
-
-  @override
-  EFTextState createState() => EFTextState();
-
-  String get labelText => text;
-}
-
-class EFTextState extends State<EFText> {
-  late TextStyle labelTheme;
+  final TextStyle? labelTheme;
 
   @override
   Widget build(BuildContext context) {
     return AutoSizeText.rich(
-      TextSpan(text: widget.text),
-      minFontSize: widget.minFontsize,
-      maxFontSize: widget.maxFontSize,
-      maxLines: widget.maxLines ?? 1,
-      textAlign: widget.textAlign,
+      TextSpan(text: text),
+      minFontSize: minFontsize,
+      maxFontSize: maxFontSize,
+      maxLines: maxLines ?? 1,
+      textAlign: textAlign,
       overflow: TextOverflow.ellipsis,
-      style: widget.style?.copyWith(
-        color: widget.color ?? Colors.black,
-        fontFamily: FontFamily.poppins,
-      ),
+      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                fontSize: 18,
+                color: color,
+                fontFamily: FontFamily.poppins,
+              ) ??
+          style?.copyWith(
+            color: color ?? Colors.black,
+            fontFamily: FontFamily.poppins,
+          ),
     );
   }
 }

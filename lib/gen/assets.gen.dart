@@ -14,12 +14,12 @@ import 'package:flutter/widgets.dart';
 class $AssetsCriptoCurrenciesGen {
   const $AssetsCriptoCurrenciesGen();
 
-  /// File path: assets/cripto_currencies/TATUM-TRON-USDT.png
-  AssetGenImage get tatumTronUsdt =>
-      const AssetGenImage('assets/cripto_currencies/TATUM-TRON-USDT.png');
+  /// File path: assets/cripto_currencies/teher_usdt.png
+  AssetGenImage get teherUsdt =>
+      const AssetGenImage('assets/cripto_currencies/teher_usdt.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [tatumTronUsdt];
+  List<AssetGenImage> get values => [teherUsdt];
 }
 
 class $AssetsFiatCurrenciesGen {

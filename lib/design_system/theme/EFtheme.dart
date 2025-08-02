@@ -190,7 +190,7 @@ abstract class EFTheme {
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
-        borderSide: BorderSide(color: EFColors.lightBlue),
+        borderSide: BorderSide(color: EFColors.secondary),
       ),
       iconColor: EFColors.inputLightIconColor,
     );
