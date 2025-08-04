@@ -1,0 +1,319 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'exchange_bloc.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+// dart format off
+T _$identity<T>(T value) => value;
+
+/// @nodoc
+mixin _$ExchangeState {
+  ExchangeStatus? get status;
+  DateTime? get dateTime;
+
+  /// Create a copy of ExchangeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ExchangeStateCopyWith<ExchangeState> get copyWith =>
+      _$ExchangeStateCopyWithImpl<ExchangeState>(
+          this as ExchangeState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ExchangeState &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status, dateTime);
+
+  @override
+  String toString() {
+    return 'ExchangeState(status: $status, dateTime: $dateTime)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ExchangeStateCopyWith<$Res> {
+  factory $ExchangeStateCopyWith(
+          ExchangeState value, $Res Function(ExchangeState) _then) =
+      _$ExchangeStateCopyWithImpl;
+  @useResult
+  $Res call({ExchangeStatus? status, DateTime? dateTime});
+}
+
+/// @nodoc
+class _$ExchangeStateCopyWithImpl<$Res>
+    implements $ExchangeStateCopyWith<$Res> {
+  _$ExchangeStateCopyWithImpl(this._self, this._then);
+
+  final ExchangeState _self;
+  final $Res Function(ExchangeState) _then;
+
+  /// Create a copy of ExchangeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? dateTime = freezed,
+  }) {
+    return _then(_self.copyWith(
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ExchangeStatus?,
+      dateTime: freezed == dateTime
+          ? _self.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [ExchangeState].
+extension ExchangeStatePatterns on ExchangeState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ExchangeState value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExchangeState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ExchangeState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ExchangeState():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ExchangeState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ExchangeState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ExchangeStatus? status, DateTime? dateTime)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExchangeState() when $default != null:
+        return $default(_that.status, _that.dateTime);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ExchangeStatus? status, DateTime? dateTime) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ExchangeState():
+        return $default(_that.status, _that.dateTime);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ExchangeStatus? status, DateTime? dateTime)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ExchangeState() when $default != null:
+        return $default(_that.status, _that.dateTime);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+
+class _ExchangeState implements ExchangeState {
+  const _ExchangeState({this.status, this.dateTime});
+
+  @override
+  final ExchangeStatus? status;
+  @override
+  final DateTime? dateTime;
+
+  /// Create a copy of ExchangeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ExchangeStateCopyWith<_ExchangeState> get copyWith =>
+      __$ExchangeStateCopyWithImpl<_ExchangeState>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ExchangeState &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status, dateTime);
+
+  @override
+  String toString() {
+    return 'ExchangeState(status: $status, dateTime: $dateTime)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ExchangeStateCopyWith<$Res>
+    implements $ExchangeStateCopyWith<$Res> {
+  factory _$ExchangeStateCopyWith(
+          _ExchangeState value, $Res Function(_ExchangeState) _then) =
+      __$ExchangeStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call({ExchangeStatus? status, DateTime? dateTime});
+}
+
+/// @nodoc
+class __$ExchangeStateCopyWithImpl<$Res>
+    implements _$ExchangeStateCopyWith<$Res> {
+  __$ExchangeStateCopyWithImpl(this._self, this._then);
+
+  final _ExchangeState _self;
+  final $Res Function(_ExchangeState) _then;
+
+  /// Create a copy of ExchangeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? status = freezed,
+    Object? dateTime = freezed,
+  }) {
+    return _then(_ExchangeState(
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ExchangeStatus?,
+      dateTime: freezed == dateTime
+          ? _self.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+// dart format on
