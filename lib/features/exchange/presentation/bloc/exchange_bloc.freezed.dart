@@ -16,6 +16,8 @@ T _$identity<T>(T value) => value;
 mixin _$ExchangeState {
   ExchangeStatus? get status;
   DateTime? get dateTime;
+  List<CurrencyEntity> get fiatCurrencyList;
+  List<CurrencyEntity> get cryptoCurrencyList;
 
   /// Create a copy of ExchangeState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,15 +34,24 @@ mixin _$ExchangeState {
             other is ExchangeState &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime));
+                other.dateTime == dateTime) &&
+            const DeepCollectionEquality()
+                .equals(other.fiatCurrencyList, fiatCurrencyList) &&
+            const DeepCollectionEquality()
+                .equals(other.cryptoCurrencyList, cryptoCurrencyList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, dateTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      dateTime,
+      const DeepCollectionEquality().hash(fiatCurrencyList),
+      const DeepCollectionEquality().hash(cryptoCurrencyList));
 
   @override
   String toString() {
-    return 'ExchangeState(status: $status, dateTime: $dateTime)';
+    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList)';
   }
 }
 
@@ -50,7 +61,11 @@ abstract mixin class $ExchangeStateCopyWith<$Res> {
           ExchangeState value, $Res Function(ExchangeState) _then) =
       _$ExchangeStateCopyWithImpl;
   @useResult
-  $Res call({ExchangeStatus? status, DateTime? dateTime});
+  $Res call(
+      {ExchangeStatus? status,
+      DateTime? dateTime,
+      List<CurrencyEntity> fiatCurrencyList,
+      List<CurrencyEntity> cryptoCurrencyList});
 }
 
 /// @nodoc
@@ -68,6 +83,8 @@ class _$ExchangeStateCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? dateTime = freezed,
+    Object? fiatCurrencyList = null,
+    Object? cryptoCurrencyList = null,
   }) {
     return _then(_self.copyWith(
       status: freezed == status
@@ -78,6 +95,14 @@ class _$ExchangeStateCopyWithImpl<$Res>
           ? _self.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      fiatCurrencyList: null == fiatCurrencyList
+          ? _self.fiatCurrencyList
+          : fiatCurrencyList // ignore: cast_nullable_to_non_nullable
+              as List<CurrencyEntity>,
+      cryptoCurrencyList: null == cryptoCurrencyList
+          ? _self.cryptoCurrencyList
+          : cryptoCurrencyList // ignore: cast_nullable_to_non_nullable
+              as List<CurrencyEntity>,
     ));
   }
 }
@@ -175,13 +200,19 @@ extension ExchangeStatePatterns on ExchangeState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ExchangeStatus? status, DateTime? dateTime)? $default, {
+    TResult Function(
+            ExchangeStatus? status,
+            DateTime? dateTime,
+            List<CurrencyEntity> fiatCurrencyList,
+            List<CurrencyEntity> cryptoCurrencyList)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _ExchangeState() when $default != null:
-        return $default(_that.status, _that.dateTime);
+        return $default(_that.status, _that.dateTime, _that.fiatCurrencyList,
+            _that.cryptoCurrencyList);
       case _:
         return orElse();
     }
@@ -202,12 +233,18 @@ extension ExchangeStatePatterns on ExchangeState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(ExchangeStatus? status, DateTime? dateTime) $default,
+    TResult Function(
+            ExchangeStatus? status,
+            DateTime? dateTime,
+            List<CurrencyEntity> fiatCurrencyList,
+            List<CurrencyEntity> cryptoCurrencyList)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ExchangeState():
-        return $default(_that.status, _that.dateTime);
+        return $default(_that.status, _that.dateTime, _that.fiatCurrencyList,
+            _that.cryptoCurrencyList);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -227,12 +264,18 @@ extension ExchangeStatePatterns on ExchangeState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ExchangeStatus? status, DateTime? dateTime)? $default,
+    TResult? Function(
+            ExchangeStatus? status,
+            DateTime? dateTime,
+            List<CurrencyEntity> fiatCurrencyList,
+            List<CurrencyEntity> cryptoCurrencyList)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ExchangeState() when $default != null:
-        return $default(_that.status, _that.dateTime);
+        return $default(_that.status, _that.dateTime, _that.fiatCurrencyList,
+            _that.cryptoCurrencyList);
       case _:
         return null;
     }
@@ -242,12 +285,37 @@ extension ExchangeStatePatterns on ExchangeState {
 /// @nodoc
 
 class _ExchangeState implements ExchangeState {
-  const _ExchangeState({this.status, this.dateTime});
+  const _ExchangeState(
+      {this.status,
+      this.dateTime,
+      final List<CurrencyEntity> fiatCurrencyList = const [],
+      final List<CurrencyEntity> cryptoCurrencyList = const []})
+      : _fiatCurrencyList = fiatCurrencyList,
+        _cryptoCurrencyList = cryptoCurrencyList;
 
   @override
   final ExchangeStatus? status;
   @override
   final DateTime? dateTime;
+  final List<CurrencyEntity> _fiatCurrencyList;
+  @override
+  @JsonKey()
+  List<CurrencyEntity> get fiatCurrencyList {
+    if (_fiatCurrencyList is EqualUnmodifiableListView)
+      return _fiatCurrencyList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fiatCurrencyList);
+  }
+
+  final List<CurrencyEntity> _cryptoCurrencyList;
+  @override
+  @JsonKey()
+  List<CurrencyEntity> get cryptoCurrencyList {
+    if (_cryptoCurrencyList is EqualUnmodifiableListView)
+      return _cryptoCurrencyList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cryptoCurrencyList);
+  }
 
   /// Create a copy of ExchangeState
   /// with the given fields replaced by the non-null parameter values.
@@ -264,15 +332,24 @@ class _ExchangeState implements ExchangeState {
             other is _ExchangeState &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime));
+                other.dateTime == dateTime) &&
+            const DeepCollectionEquality()
+                .equals(other._fiatCurrencyList, _fiatCurrencyList) &&
+            const DeepCollectionEquality()
+                .equals(other._cryptoCurrencyList, _cryptoCurrencyList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, dateTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      dateTime,
+      const DeepCollectionEquality().hash(_fiatCurrencyList),
+      const DeepCollectionEquality().hash(_cryptoCurrencyList));
 
   @override
   String toString() {
-    return 'ExchangeState(status: $status, dateTime: $dateTime)';
+    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList)';
   }
 }
 
@@ -284,7 +361,11 @@ abstract mixin class _$ExchangeStateCopyWith<$Res>
       __$ExchangeStateCopyWithImpl;
   @override
   @useResult
-  $Res call({ExchangeStatus? status, DateTime? dateTime});
+  $Res call(
+      {ExchangeStatus? status,
+      DateTime? dateTime,
+      List<CurrencyEntity> fiatCurrencyList,
+      List<CurrencyEntity> cryptoCurrencyList});
 }
 
 /// @nodoc
@@ -302,6 +383,8 @@ class __$ExchangeStateCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? dateTime = freezed,
+    Object? fiatCurrencyList = null,
+    Object? cryptoCurrencyList = null,
   }) {
     return _then(_ExchangeState(
       status: freezed == status
@@ -312,6 +395,14 @@ class __$ExchangeStateCopyWithImpl<$Res>
           ? _self.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      fiatCurrencyList: null == fiatCurrencyList
+          ? _self._fiatCurrencyList
+          : fiatCurrencyList // ignore: cast_nullable_to_non_nullable
+              as List<CurrencyEntity>,
+      cryptoCurrencyList: null == cryptoCurrencyList
+          ? _self._cryptoCurrencyList
+          : cryptoCurrencyList // ignore: cast_nullable_to_non_nullable
+              as List<CurrencyEntity>,
     ));
   }
 }

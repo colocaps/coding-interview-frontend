@@ -12,5 +12,7 @@ abstract class ExchangeState with _$ExchangeState {
   const factory ExchangeState({
     ExchangeStatus? status,
     DateTime? dateTime,
+    @Default([]) List<CurrencyEntity> fiatCurrencyList,
+    @Default([]) List<CurrencyEntity> cryptoCurrencyList,
   }) = _ExchangeState;
 }
