@@ -68,10 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
             currencyImage: Currency.cop,
           ),
           EFCurrencyExchangeSelector(
-            leftCurrencySelector: EfIconSelector(
+            initialRightCurrencySelector: EfIconSelector(
               currencyDescriptionIcon: EFCurrencyDescriptionIcon(
-                title: 'VES',
-                currencyImage: Currency.cop,
+                title: 'BRL',
+                currencyImage: Currency.brl,
                 maxFontSize: 18,
               ),
               onTap: () {
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            rightCurrencySelector: EfIconSelector(
+            initialLeftCurrencySelector: EfIconSelector(
               currencyDescriptionIcon: EFCurrencyDescriptionIcon(
                 title: 'VES',
                 currencyImage: Currency.cop,

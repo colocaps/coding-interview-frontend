@@ -13,14 +13,14 @@ class EfIconSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        currencyDescriptionIcon,
-        GestureDetector(
-          onTap: onTap,
-          child: const Icon(Icons.keyboard_arrow_down_sharp, size: 25),
-        ),
-      ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [
+          currencyDescriptionIcon,
+          const Icon(Icons.keyboard_arrow_down_sharp, size: 25),
+        ],
+      ),
     );
   }
 }

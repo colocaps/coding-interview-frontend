@@ -85,7 +85,7 @@ android {
             applicationIdSuffix ""
             manifestPlaceholders = [appName: "Exchange Caclculator"]
         }
-        staging {
+        mock {
             dimension "default"
             applicationIdSuffix ".stg"
             manifestPlaceholders = [appName: "[STG] Exchange Caclculator"]

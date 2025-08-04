@@ -2,17 +2,42 @@ import 'package:exchange_caclculator/design_system/atom/EFRounded_button.dart';
 import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
 import 'package:flutter/material.dart';
 
-class EFCurrencyExchangeSelector extends StatelessWidget {
-  final Widget leftCurrencySelector; // Tu selector de USDT
-  final Widget rightCurrencySelector; // Tu selector de VES
-  final Widget? centerSwapButton; // Tu botón del medio
+class EFCurrencyExchangeSelector extends StatefulWidget {
+  final Widget initialLeftCurrencySelector;
+  final Widget initialRightCurrencySelector;
+  final Widget? centerSwapButton;
 
   const EFCurrencyExchangeSelector({
     Key? key,
-    required this.leftCurrencySelector,
-    required this.rightCurrencySelector,
+    required this.initialLeftCurrencySelector,
+    required this.initialRightCurrencySelector,
     this.centerSwapButton,
   }) : super(key: key);
+
+  @override
+  State<EFCurrencyExchangeSelector> createState() =>
+      _EFCurrencyExchangeSelectorState();
+}
+
+class _EFCurrencyExchangeSelectorState
+    extends State<EFCurrencyExchangeSelector> {
+  late Widget leftCurrencySelector;
+  late Widget rightCurrencySelector;
+
+  @override
+  void initState() {
+    super.initState();
+    leftCurrencySelector = widget.initialLeftCurrencySelector;
+    rightCurrencySelector = widget.initialRightCurrencySelector;
+  }
+
+  void _swapCurrencies() {
+    setState(() {
+      final temp = leftCurrencySelector;
+      leftCurrencySelector = rightCurrencySelector;
+      rightCurrencySelector = temp;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +113,10 @@ class EFCurrencyExchangeSelector extends StatelessWidget {
           right: 0,
           child: Align(
             alignment: Alignment.center,
-            child: centerSwapButton ?? EFRoundedButton(),
+            child: widget.centerSwapButton ??
+                EFRoundedButton(
+                  onTap: _swapCurrencies,
+                ),
           ),
         ),
       ],
