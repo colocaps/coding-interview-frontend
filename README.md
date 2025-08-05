@@ -93,7 +93,7 @@ flutter gen-l10n
 dart run build_runner build --delete-conflicting-outputs
 ```
 
-4 - Crear una carpeta en la razi del proyecto llamada .env con el siguiente contenido:
+### 2. Crear una carpeta en la raiz del proyecto llamada .env con el siguiente contenido:
 
 ![Imagen](image.png)
 
@@ -124,7 +124,7 @@ appProd.json
 }
 ```
 
-5 - Copiar lo siguiente en el launch.json :
+### 3. Copiar lo siguiente en el launch.json :
 
 ```json
 {
@@ -175,3 +175,5 @@ appProd.json
   ]
 }
 ```
+
+### 4. Dale play.
