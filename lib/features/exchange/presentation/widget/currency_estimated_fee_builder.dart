@@ -15,6 +15,7 @@ class CurrencyEstimatedFeeBuilder extends StatelessWidget {
         return EFDescriptionText(
           text: 'Tasa estimada',
           composedText: EFComposedText(
+            isLoading: state.status == ExchangeStatus.loading,
             prefixText: '≈',
             middleText:
                 state.exchangeRate != null ? '${state.exchangeRate}' : '....',

@@ -33,6 +33,7 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
     GetExchangeRateEvent event,
     Emitter<ExchangeState> emit,
   ) async {
+    emit(state.copyWith(status: ExchangeStatus.loading));
     final response = await getExchangeRateUsecase(request: event.request);
 
     response.fold((failure) {
@@ -50,6 +51,7 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
       emit(state.copyWith(
         exchangeRate: result.exchangeRate,
         calculatedAmount: calculatedAmount,
+        status: ExchangeStatus.success,
         dateTime: DateTime.now(),
       ));
     });
@@ -127,11 +129,6 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
     InitialExchangeEvent event,
     Emitter<ExchangeState> emit,
   ) async {
-    emit(state.copyWith(
-      status: ExchangeStatus.loading,
-      dateTime: DateTime.now(),
-    ));
-
     add(GetCurrencyListEvent(request: CurrencyType.crypto));
     add(GetCurrencyListEvent(request: CurrencyType.fiat));
   }

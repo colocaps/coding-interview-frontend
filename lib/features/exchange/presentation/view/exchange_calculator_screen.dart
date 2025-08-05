@@ -12,6 +12,8 @@ import 'package:exchange_caclculator/features/exchange/presentation/view/exchang
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class ExchangeCalculatorScreen extends StatelessWidget {
   const ExchangeCalculatorScreen({super.key});
@@ -43,6 +45,13 @@ class ExchangeCalculatorScreen extends StatelessWidget {
               items: state.cryptoCurrencyList,
               selected: state.selectedCryptoCurrency,
               type: CurrencyType.crypto,
+            );
+          } else if (state.status == ExchangeStatus.failure) {
+            showTopSnackBar(
+              Overlay.of(context, rootOverlay: true),
+              const CustomSnackBar.error(
+                message: 'Lo sentimos hubo un error al consultar las tasas',
+              ),
             );
           }
         },
