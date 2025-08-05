@@ -20,7 +20,7 @@ class ExchangeDatasourceImpl extends BaseDataSource
   }) async {
     return executeRequest(
       function: () async {
-        return service.getExchanges(
+        return service.getExchangesRate(
           request.type,
           request.cryptoCurrencyId,
           request.fiatCurrencyId,

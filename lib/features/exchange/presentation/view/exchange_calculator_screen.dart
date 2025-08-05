@@ -6,7 +6,7 @@ import 'package:exchange_caclculator/di/injection.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/domain/entity/currency_entity.dart';
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_currencies.dart';
-import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_usecase.dart';
+import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_rate_usecase.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/bloc/exchange_bloc.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/view/exchange_calculator_page.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class ExchangeCalculatorScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => ExchangeBloc(
         getCurrenciesUsecase: getIt<GetCurrenciesUsecase>(),
-        getExchangeUsecase: getIt<GetExchangeUsecase>(),
+        getExchangeRateUsecase: getIt<GetExchangeRateUsecase>(),
       )..add(InitialExchangeEvent()),
       child: BlocListener<ExchangeBloc, ExchangeState>(
         listener: (context, state) async {

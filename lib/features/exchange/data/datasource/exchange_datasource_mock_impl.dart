@@ -17,7 +17,7 @@ class ExchangeDatasourceMockImpl extends BaseDataSource
       function: () async {
         return ExchangeResponse(
             data: ExchangeData(
-                byPrice: CurrencyPrice(fiatToCryptoExchangeRate: '1000')));
+                byPrice: CurrencyPrice(fiatToCryptoExchangeRate: 1000)));
       },
     );
   }

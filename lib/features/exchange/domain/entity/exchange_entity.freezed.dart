@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$ExchangeEntity {
-  String get exchangeRate;
+  num get exchangeRate;
 
   /// Create a copy of ExchangeEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -52,7 +52,7 @@ abstract mixin class $ExchangeEntityCopyWith<$Res> {
           ExchangeEntity value, $Res Function(ExchangeEntity) _then) =
       _$ExchangeEntityCopyWithImpl;
   @useResult
-  $Res call({String exchangeRate});
+  $Res call({num exchangeRate});
 }
 
 /// @nodoc
@@ -74,7 +74,7 @@ class _$ExchangeEntityCopyWithImpl<$Res>
       exchangeRate: null == exchangeRate
           ? _self.exchangeRate
           : exchangeRate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
     ));
   }
 }
@@ -172,7 +172,7 @@ extension ExchangeEntityPatterns on ExchangeEntity {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String exchangeRate)? $default, {
+    TResult Function(num exchangeRate)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -199,7 +199,7 @@ extension ExchangeEntityPatterns on ExchangeEntity {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String exchangeRate) $default,
+    TResult Function(num exchangeRate) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -224,7 +224,7 @@ extension ExchangeEntityPatterns on ExchangeEntity {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String exchangeRate)? $default,
+    TResult? Function(num exchangeRate)? $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -244,7 +244,7 @@ class _ExchangeEntity implements ExchangeEntity {
       _$ExchangeEntityFromJson(json);
 
   @override
-  final String exchangeRate;
+  final num exchangeRate;
 
   /// Create a copy of ExchangeEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -288,7 +288,7 @@ abstract mixin class _$ExchangeEntityCopyWith<$Res>
       __$ExchangeEntityCopyWithImpl;
   @override
   @useResult
-  $Res call({String exchangeRate});
+  $Res call({num exchangeRate});
 }
 
 /// @nodoc
@@ -310,7 +310,7 @@ class __$ExchangeEntityCopyWithImpl<$Res>
       exchangeRate: null == exchangeRate
           ? _self.exchangeRate
           : exchangeRate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
     ));
   }
 }

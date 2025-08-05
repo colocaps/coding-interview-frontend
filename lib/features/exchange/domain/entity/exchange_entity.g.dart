@@ -8,7 +8,7 @@ part of 'exchange_entity.dart';
 
 _ExchangeEntity _$ExchangeEntityFromJson(Map<String, dynamic> json) =>
     _ExchangeEntity(
-      exchangeRate: json['exchangeRate'] as String,
+      exchangeRate: json['exchangeRate'] as num,
     );
 
 Map<String, dynamic> _$ExchangeEntityToJson(_ExchangeEntity instance) =>

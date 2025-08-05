@@ -6,14 +6,14 @@ import 'package:exchange_caclculator/features/exchange/domain/repository/exchang
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetExchangeUsecase {
-  GetExchangeUsecase(this._repository);
+class GetExchangeRateUsecase {
+  GetExchangeRateUsecase(this._repository);
 
   final ExchangeRepository _repository;
 
   Future<Either<CustomException, ExchangeEntity>> call(
       {required ExchangeRequest request}) async {
-    final result = await _repository.getExchange(request: request);
+    final result = await _repository.getExchangesRate(request: request);
 
     return result.map((response) => response.toEntity());
   }

@@ -6,7 +6,7 @@ import 'package:exchange_caclculator/features/exchange/data/model/response/curre
 import 'package:exchange_caclculator/features/exchange/data/model/response/exchange_response.dart';
 
 abstract class ExchangeRepository {
-  Future<Either<CustomException, ExchangeResponse>> getExchange({
+  Future<Either<CustomException, ExchangeResponse>> getExchangesRate({
     required ExchangeRequest request,
   });
 

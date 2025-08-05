@@ -18,7 +18,7 @@ class _ExchangeService implements ExchangeService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ExchangeResponse> getExchanges(
+  Future<ExchangeResponse> getExchangesRate(
     String type,
     String cryptoCurrencyId,
     String fiatCurrencyId,

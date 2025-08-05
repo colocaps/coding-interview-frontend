@@ -22,6 +22,8 @@ mixin _$ExchangeState {
   CurrencyEntity? get selectedCryptoCurrency;
   CurrencyType? get currencyType;
   num? get exhangeAmount;
+  num? get exchangeRate;
+  num? get calculatedAmount;
 
   /// Create a copy of ExchangeState
   /// with the given fields replaced by the non-null parameter values.
@@ -50,7 +52,11 @@ mixin _$ExchangeState {
             (identical(other.currencyType, currencyType) ||
                 other.currencyType == currencyType) &&
             (identical(other.exhangeAmount, exhangeAmount) ||
-                other.exhangeAmount == exhangeAmount));
+                other.exhangeAmount == exhangeAmount) &&
+            (identical(other.exchangeRate, exchangeRate) ||
+                other.exchangeRate == exchangeRate) &&
+            (identical(other.calculatedAmount, calculatedAmount) ||
+                other.calculatedAmount == calculatedAmount));
   }
 
   @override
@@ -63,11 +69,13 @@ mixin _$ExchangeState {
       selectedFiatCurrency,
       selectedCryptoCurrency,
       currencyType,
-      exhangeAmount);
+      exhangeAmount,
+      exchangeRate,
+      calculatedAmount);
 
   @override
   String toString() {
-    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList, selectedFiatCurrency: $selectedFiatCurrency, selectedCryptoCurrency: $selectedCryptoCurrency, currencyType: $currencyType, exhangeAmount: $exhangeAmount)';
+    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList, selectedFiatCurrency: $selectedFiatCurrency, selectedCryptoCurrency: $selectedCryptoCurrency, currencyType: $currencyType, exhangeAmount: $exhangeAmount, exchangeRate: $exchangeRate, calculatedAmount: $calculatedAmount)';
   }
 }
 
@@ -85,7 +93,9 @@ abstract mixin class $ExchangeStateCopyWith<$Res> {
       CurrencyEntity? selectedFiatCurrency,
       CurrencyEntity? selectedCryptoCurrency,
       CurrencyType? currencyType,
-      num? exhangeAmount});
+      num? exhangeAmount,
+      num? exchangeRate,
+      num? calculatedAmount});
 
   $CurrencyEntityCopyWith<$Res>? get selectedFiatCurrency;
   $CurrencyEntityCopyWith<$Res>? get selectedCryptoCurrency;
@@ -112,6 +122,8 @@ class _$ExchangeStateCopyWithImpl<$Res>
     Object? selectedCryptoCurrency = freezed,
     Object? currencyType = freezed,
     Object? exhangeAmount = freezed,
+    Object? exchangeRate = freezed,
+    Object? calculatedAmount = freezed,
   }) {
     return _then(_self.copyWith(
       status: freezed == status
@@ -145,6 +157,14 @@ class _$ExchangeStateCopyWithImpl<$Res>
       exhangeAmount: freezed == exhangeAmount
           ? _self.exhangeAmount
           : exhangeAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      exchangeRate: freezed == exchangeRate
+          ? _self.exchangeRate
+          : exchangeRate // ignore: cast_nullable_to_non_nullable
+              as num?,
+      calculatedAmount: freezed == calculatedAmount
+          ? _self.calculatedAmount
+          : calculatedAmount // ignore: cast_nullable_to_non_nullable
               as num?,
     ));
   }
@@ -280,7 +300,9 @@ extension ExchangeStatePatterns on ExchangeState {
             CurrencyEntity? selectedFiatCurrency,
             CurrencyEntity? selectedCryptoCurrency,
             CurrencyType? currencyType,
-            num? exhangeAmount)?
+            num? exhangeAmount,
+            num? exchangeRate,
+            num? calculatedAmount)?
         $default, {
     required TResult orElse(),
   }) {
@@ -295,7 +317,9 @@ extension ExchangeStatePatterns on ExchangeState {
             _that.selectedFiatCurrency,
             _that.selectedCryptoCurrency,
             _that.currencyType,
-            _that.exhangeAmount);
+            _that.exhangeAmount,
+            _that.exchangeRate,
+            _that.calculatedAmount);
       case _:
         return orElse();
     }
@@ -324,7 +348,9 @@ extension ExchangeStatePatterns on ExchangeState {
             CurrencyEntity? selectedFiatCurrency,
             CurrencyEntity? selectedCryptoCurrency,
             CurrencyType? currencyType,
-            num? exhangeAmount)
+            num? exhangeAmount,
+            num? exchangeRate,
+            num? calculatedAmount)
         $default,
   ) {
     final _that = this;
@@ -338,7 +364,9 @@ extension ExchangeStatePatterns on ExchangeState {
             _that.selectedFiatCurrency,
             _that.selectedCryptoCurrency,
             _that.currencyType,
-            _that.exhangeAmount);
+            _that.exhangeAmount,
+            _that.exchangeRate,
+            _that.calculatedAmount);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -366,7 +394,9 @@ extension ExchangeStatePatterns on ExchangeState {
             CurrencyEntity? selectedFiatCurrency,
             CurrencyEntity? selectedCryptoCurrency,
             CurrencyType? currencyType,
-            num? exhangeAmount)?
+            num? exhangeAmount,
+            num? exchangeRate,
+            num? calculatedAmount)?
         $default,
   ) {
     final _that = this;
@@ -380,7 +410,9 @@ extension ExchangeStatePatterns on ExchangeState {
             _that.selectedFiatCurrency,
             _that.selectedCryptoCurrency,
             _that.currencyType,
-            _that.exhangeAmount);
+            _that.exhangeAmount,
+            _that.exchangeRate,
+            _that.calculatedAmount);
       case _:
         return null;
     }
@@ -398,7 +430,9 @@ class _ExchangeState implements ExchangeState {
       this.selectedFiatCurrency,
       this.selectedCryptoCurrency,
       this.currencyType,
-      this.exhangeAmount})
+      this.exhangeAmount,
+      this.exchangeRate,
+      this.calculatedAmount})
       : _fiatCurrencyList = fiatCurrencyList,
         _cryptoCurrencyList = cryptoCurrencyList;
 
@@ -434,6 +468,10 @@ class _ExchangeState implements ExchangeState {
   final CurrencyType? currencyType;
   @override
   final num? exhangeAmount;
+  @override
+  final num? exchangeRate;
+  @override
+  final num? calculatedAmount;
 
   /// Create a copy of ExchangeState
   /// with the given fields replaced by the non-null parameter values.
@@ -462,7 +500,11 @@ class _ExchangeState implements ExchangeState {
             (identical(other.currencyType, currencyType) ||
                 other.currencyType == currencyType) &&
             (identical(other.exhangeAmount, exhangeAmount) ||
-                other.exhangeAmount == exhangeAmount));
+                other.exhangeAmount == exhangeAmount) &&
+            (identical(other.exchangeRate, exchangeRate) ||
+                other.exchangeRate == exchangeRate) &&
+            (identical(other.calculatedAmount, calculatedAmount) ||
+                other.calculatedAmount == calculatedAmount));
   }
 
   @override
@@ -475,11 +517,13 @@ class _ExchangeState implements ExchangeState {
       selectedFiatCurrency,
       selectedCryptoCurrency,
       currencyType,
-      exhangeAmount);
+      exhangeAmount,
+      exchangeRate,
+      calculatedAmount);
 
   @override
   String toString() {
-    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList, selectedFiatCurrency: $selectedFiatCurrency, selectedCryptoCurrency: $selectedCryptoCurrency, currencyType: $currencyType, exhangeAmount: $exhangeAmount)';
+    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList, selectedFiatCurrency: $selectedFiatCurrency, selectedCryptoCurrency: $selectedCryptoCurrency, currencyType: $currencyType, exhangeAmount: $exhangeAmount, exchangeRate: $exchangeRate, calculatedAmount: $calculatedAmount)';
   }
 }
 
@@ -499,7 +543,9 @@ abstract mixin class _$ExchangeStateCopyWith<$Res>
       CurrencyEntity? selectedFiatCurrency,
       CurrencyEntity? selectedCryptoCurrency,
       CurrencyType? currencyType,
-      num? exhangeAmount});
+      num? exhangeAmount,
+      num? exchangeRate,
+      num? calculatedAmount});
 
   @override
   $CurrencyEntityCopyWith<$Res>? get selectedFiatCurrency;
@@ -528,6 +574,8 @@ class __$ExchangeStateCopyWithImpl<$Res>
     Object? selectedCryptoCurrency = freezed,
     Object? currencyType = freezed,
     Object? exhangeAmount = freezed,
+    Object? exchangeRate = freezed,
+    Object? calculatedAmount = freezed,
   }) {
     return _then(_ExchangeState(
       status: freezed == status
@@ -561,6 +609,14 @@ class __$ExchangeStateCopyWithImpl<$Res>
       exhangeAmount: freezed == exhangeAmount
           ? _self.exhangeAmount
           : exhangeAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      exchangeRate: freezed == exchangeRate
+          ? _self.exchangeRate
+          : exchangeRate // ignore: cast_nullable_to_non_nullable
+              as num?,
+      calculatedAmount: freezed == calculatedAmount
+          ? _self.calculatedAmount
+          : calculatedAmount // ignore: cast_nullable_to_non_nullable
               as num?,
     ));
   }

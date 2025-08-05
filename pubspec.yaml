@@ -10,6 +10,7 @@ dependencies:
   auto_size_text: ^3.0.0
   dartz:
   dio:
+  easy_debounce: ^2.0.3
   get_it:
   go_router:
   injectable:
@@ -20,6 +21,8 @@ dependencies:
     sdk: flutter
   intl: ^0.19.0
   logger:
+  shimmer:
+  top_snackbar_flutter:
 
 dev_dependencies:
   bloc_test: ^10.0.0

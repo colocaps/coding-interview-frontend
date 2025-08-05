@@ -14,7 +14,7 @@ abstract class ExchangeService {
   factory ExchangeService(Dio dio) = _ExchangeService;
 
   @GET('stage/orderbook/public/recommendations')
-  Future<ExchangeResponse> getExchanges(
+  Future<ExchangeResponse> getExchangesRate(
     @Query('type') String type,
     @Query('cryptoCurrencyId') String cryptoCurrencyId,
     @Query('fiatCurrencyId') String fiatCurrencyId,

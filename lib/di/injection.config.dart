@@ -30,8 +30,8 @@ import 'package:exchange_caclculator/features/exchange/domain/repository/exchang
     as _i851;
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_currencies.dart'
     as _i743;
-import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_usecase.dart'
-    as _i198;
+import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_rate_usecase.dart'
+    as _i90;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
@@ -54,8 +54,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final loggerModule = _$LoggerModule();
     final networkModule = _$NetworkModule();
-    gh.factory<_i528.PrettyDioLogger>(() => loggerModule.prettyDioLogger);
     gh.factory<_i870.EFInterceptor>(() => _i870.EFInterceptor());
+    gh.factory<_i528.PrettyDioLogger>(() => loggerModule.prettyDioLogger);
     gh.lazySingleton<_i974.Logger>(() => loggerModule.logger);
     gh.singleton<_i655.ExchangeDatasource>(
       () => _i579.ExchangeDatasourceMockImpl(),
@@ -67,10 +67,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i851.ExchangeRepository>(() => _i815.ExchangeRepositoryImpl(
         datasource: gh<_i655.ExchangeDatasource>()));
-    gh.factory<_i198.GetExchangeUsecase>(
-        () => _i198.GetExchangeUsecase(gh<_i851.ExchangeRepository>()));
     gh.factory<_i743.GetCurrenciesUsecase>(
         () => _i743.GetCurrenciesUsecase(gh<_i851.ExchangeRepository>()));
+    gh.factory<_i90.GetExchangeRateUsecase>(
+        () => _i90.GetExchangeRateUsecase(gh<_i851.ExchangeRepository>()));
     gh.singleton<_i129.ExchangeService>(
         () => _i129.ExchangeService(gh<_i361.Dio>()));
     gh.singleton<_i655.ExchangeDatasource>(

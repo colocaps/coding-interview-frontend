@@ -1,7 +1,8 @@
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
+import 'package:exchange_caclculator/features/exchange/data/model/request/exchange_request.dart';
 import 'package:exchange_caclculator/features/exchange/domain/entity/currency_entity.dart';
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_currencies.dart';
-import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_usecase.dart';
+import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_rate_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +14,7 @@ part 'exchange_bloc.freezed.dart';
 class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
   ExchangeBloc({
     required this.getCurrenciesUsecase,
-    required this.getExchangeUsecase,
+    required this.getExchangeRateUsecase,
   }) : super(ExchangeState()) {
     on<InitialExchangeEvent>(_onInitialExchange);
     on<GetCurrencyListEvent>(_onGetCurrencyList);
@@ -21,10 +22,38 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
     on<SelectCurrencyEvent>(_selectCurrency);
     on<ExchangeValueChangedEvent>(_setCurrencyValue);
     on<SelectExchangeTypeEvent>(_setCurrencyType);
+
+    on<GetExchangeRateEvent>(_getExchangeRate);
   }
 
   final GetCurrenciesUsecase getCurrenciesUsecase;
-  final GetExchangeUsecase getExchangeUsecase;
+  final GetExchangeRateUsecase getExchangeRateUsecase;
+
+  Future<void> _getExchangeRate(
+    GetExchangeRateEvent event,
+    Emitter<ExchangeState> emit,
+  ) async {
+    final response = await getExchangeRateUsecase(request: event.request);
+
+    response.fold((failure) {
+      emit(
+        state.copyWith(
+          status: ExchangeStatus.failure,
+          dateTime: DateTime.now(),
+        ),
+      );
+    }, (result) {
+      final isCrypto = state.currencyType == CurrencyType.crypto;
+      final calculatedAmount = isCrypto
+          ? (state.exhangeAmount! * result.exchangeRate)
+          : (state.exhangeAmount! / result.exchangeRate);
+      emit(state.copyWith(
+        exchangeRate: result.exchangeRate,
+        calculatedAmount: calculatedAmount,
+        dateTime: DateTime.now(),
+      ));
+    });
+  }
 
   Future<void> _setCurrencyType(
     SelectExchangeTypeEvent event,
@@ -44,6 +73,20 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
       exhangeAmount: event.currencyValue,
       dateTime: DateTime.now(),
     ));
+
+    add(
+      GetExchangeRateEvent(
+        request: ExchangeRequest(
+          type: state.currencyType == CurrencyType.crypto ? '0' : '1',
+          cryptoCurrencyId: state.selectedCryptoCurrency!.currencyName,
+          fiatCurrencyId: state.selectedFiatCurrency!.currencyName,
+          amount: state.exhangeAmount!,
+          amountCurrencyId: state.currencyType == CurrencyType.crypto
+              ? state.selectedCryptoCurrency?.currencyName ?? ''
+              : state.selectedFiatCurrency?.currencyName ?? '',
+        ),
+      ),
+    );
   }
 
   Future<void> _selectCurrencyList(

@@ -16,7 +16,7 @@ class ExchangeRepositoryImpl extends BaseRepository
   final ExchangeDatasource _datasource;
 
   @override
-  Future<Either<CustomException, ExchangeResponse>> getExchange(
+  Future<Either<CustomException, ExchangeResponse>> getExchangesRate(
       {required ExchangeRequest request}) async {
     return executeDataSource(
       function: () => _datasource.getExchanges(request: request),

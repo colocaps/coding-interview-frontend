@@ -38,3 +38,9 @@ class ExchangeValueChangedEvent extends ExchangeEvent {
 
   ExchangeValueChangedEvent({required this.currencyValue});
 }
+
+class GetExchangeRateEvent extends ExchangeEvent {
+  final ExchangeRequest request;
+
+  GetExchangeRateEvent({required this.request});
+}

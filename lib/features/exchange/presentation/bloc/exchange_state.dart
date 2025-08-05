@@ -21,5 +21,7 @@ abstract class ExchangeState with _$ExchangeState {
     CurrencyEntity? selectedCryptoCurrency,
     CurrencyType? currencyType,
     num? exhangeAmount,
+    num? exchangeRate,
+    num? calculatedAmount,
   }) = _ExchangeState;
 }

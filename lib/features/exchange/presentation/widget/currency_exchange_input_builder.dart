@@ -1,3 +1,4 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:exchange_caclculator/design_system/molecule/EFEchange_Input.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/bloc/exchange_bloc.dart';
@@ -34,9 +35,12 @@ class _CurrencyExchangeInputBuilderState
     final text = exchangeController.text.trim();
     final value = num.tryParse(text);
     if (value != null) {
-      context.read<ExchangeBloc>().add(
-            ExchangeValueChangedEvent(currencyValue: value),
-          );
+      EasyDebounce.debounce(
+          'currencyExchange', const Duration(milliseconds: 500), () async {
+        context.read<ExchangeBloc>().add(
+              ExchangeValueChangedEvent(currencyValue: value),
+            );
+      });
     } else {
       // TODO manejar excepcion con un toast
     }
