@@ -19,10 +19,32 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
     on<GetCurrencyListEvent>(_onGetCurrencyList);
     on<SelectCurrencyListEvent>(_selectCurrencyList);
     on<SelectCurrencyEvent>(_selectCurrency);
+    on<ExchangeValueChangedEvent>(_setCurrencyValue);
+    on<SelectExchangeTypeEvent>(_setCurrencyType);
   }
 
   final GetCurrenciesUsecase getCurrenciesUsecase;
   final GetExchangeUsecase getExchangeUsecase;
+
+  Future<void> _setCurrencyType(
+    SelectExchangeTypeEvent event,
+    Emitter<ExchangeState> emit,
+  ) async {
+    emit(state.copyWith(
+      currencyType: event.type,
+      dateTime: DateTime.now(),
+    ));
+  }
+
+  Future<void> _setCurrencyValue(
+    ExchangeValueChangedEvent event,
+    Emitter<ExchangeState> emit,
+  ) async {
+    emit(state.copyWith(
+      exhangeAmount: event.currencyValue,
+      dateTime: DateTime.now(),
+    ));
+  }
 
   Future<void> _selectCurrencyList(
     SelectCurrencyListEvent event,
@@ -46,7 +68,6 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
         status: ExchangeStatus.currencySelected,
         dateTime: DateTime.now(),
       ));
-      print('selectedCurrency:${event.currency}');
       return;
     }
     if (event.type == CurrencyType.fiat) {
@@ -55,7 +76,6 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
         status: ExchangeStatus.currencySelected,
         dateTime: DateTime.now(),
       ));
-      print('selectedCurrency:${event.currency}');
       return;
     }
   }
@@ -89,14 +109,13 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
     }, (list) {
       if (event.request == CurrencyType.crypto) {
         emit(state.copyWith(
-          status: ExchangeStatus.success,
           dateTime: DateTime.now(),
           cryptoCurrencyList: list,
           selectedCryptoCurrency: list.first,
+          currencyType: CurrencyType.crypto,
         ));
       } else if (event.request == CurrencyType.fiat) {
         emit(state.copyWith(
-          status: ExchangeStatus.success,
           dateTime: DateTime.now(),
           fiatCurrencyList: list,
           selectedFiatCurrency: list.first,

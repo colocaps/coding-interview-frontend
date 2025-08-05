@@ -5,7 +5,7 @@ import 'package:exchange_caclculator/design_system/molecule/EFComposed_text.dart
 import 'package:exchange_caclculator/design_system/molecule/EFDescription_icon.dart';
 import 'package:exchange_caclculator/design_system/molecule/EFEchange_Input.dart';
 import 'package:exchange_caclculator/design_system/organism/EFBottom_sheet.dart';
-import 'package:exchange_caclculator/design_system/organism/EFCurrency_echange_selector.dart';
+import 'package:exchange_caclculator/design_system/organism/EFCurrency_exchange_selector.dart';
 import 'package:exchange_caclculator/design_system/organism/EFDescription_text.dart';
 import 'package:exchange_caclculator/design_system/organism/EFIcon_radio_selector.dart';
 import 'package:exchange_caclculator/design_system/organism/EFIcon_selector.dart';

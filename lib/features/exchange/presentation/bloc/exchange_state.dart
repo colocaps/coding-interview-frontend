@@ -19,5 +19,7 @@ abstract class ExchangeState with _$ExchangeState {
     @Default([]) List<CurrencyEntity> cryptoCurrencyList,
     CurrencyEntity? selectedFiatCurrency,
     CurrencyEntity? selectedCryptoCurrency,
+    CurrencyType? currencyType,
+    num? exhangeAmount,
   }) = _ExchangeState;
 }

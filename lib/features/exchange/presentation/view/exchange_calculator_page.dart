@@ -4,12 +4,14 @@ import 'package:exchange_caclculator/design_system/molecule/EFComposed_text.dart
 import 'package:exchange_caclculator/design_system/molecule/EFDescription_icon.dart';
 import 'package:exchange_caclculator/design_system/molecule/EFEchange_Input.dart';
 import 'package:exchange_caclculator/design_system/organism/EFBackground.dart';
-import 'package:exchange_caclculator/design_system/organism/EFCurrency_echange_selector.dart';
+import 'package:exchange_caclculator/design_system/organism/EFCurrency_exchange_selector.dart';
 import 'package:exchange_caclculator/design_system/organism/EFDescription_text.dart';
 import 'package:exchange_caclculator/design_system/organism/EFIcon_selector.dart';
 import 'package:exchange_caclculator/design_system/organism/EFScaffold.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/bloc/exchange_bloc.dart';
+import 'package:exchange_caclculator/features/exchange/presentation/widget/currency_exchange_builder.dart';
+import 'package:exchange_caclculator/features/exchange/presentation/widget/currency_exchange_input_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,59 +33,9 @@ class ExchangeCalculatorPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    BlocBuilder<ExchangeBloc, ExchangeState>(
-                      builder: (context, state) {
-                        if (state.selectedCryptoCurrency != null &&
-                            state.selectedFiatCurrency != null) {
-                          print(
-                              'selectedCurrency state:${state.selectedFiatCurrency}');
-                          return EFCurrencyExchangeSelector(
-                            onTap: () {
-                              //TODO : evento para cambiar el type
-                            },
-                            initialLeftCurrencySelector: EFIconSelector(
-                              currencyDescriptionIcon:
-                                  EFCurrencyDescriptionIcon(
-                                title:
-                                    state.selectedCryptoCurrency!.currencyName,
-                                currencyImage: Currency.fromString(
-                                    state.selectedCryptoCurrency!.currencyName),
-                                maxFontSize: 18,
-                              ),
-                              onTap: () {
-                                context.read<ExchangeBloc>().add(
-                                      SelectCurrencyListEvent(
-                                        type: CurrencyType.crypto,
-                                      ),
-                                    );
-                              },
-                            ),
-                            initialRightCurrencySelector: EFIconSelector(
-                              currencyDescriptionIcon:
-                                  EFCurrencyDescriptionIcon(
-                                title: state.selectedFiatCurrency!.currencyName,
-                                currencyImage: Currency.fromString(
-                                    state.selectedFiatCurrency!.currencyName),
-                                maxFontSize: 18,
-                              ),
-                              onTap: () {
-                                context.read<ExchangeBloc>().add(
-                                      SelectCurrencyListEvent(
-                                        type: CurrencyType.fiat,
-                                      ),
-                                    );
-                              },
-                            ),
-                          );
-                        }
-                        return SizedBox.shrink();
-                      },
-                    ),
+                    CurrencyExchangeBuilder(),
                     SizedBox(height: 10),
-                    EFExchangeInput(
-                      controller: TextEditingController(),
-                      currency: 'USDT',
-                    ),
+                    CurrencyExchangeInputBuilder(),
                     SizedBox(height: 20),
                     EFDescriptionText(
                       text: 'Tasa estimada',

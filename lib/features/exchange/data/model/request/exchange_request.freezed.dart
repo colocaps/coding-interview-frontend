@@ -17,7 +17,7 @@ mixin _$ExchangeRequest {
   String get type;
   String get cryptoCurrencyId;
   String get fiatCurrencyId;
-  String get amount;
+  num get amount;
   String get amountCurrencyId;
 
   /// Create a copy of ExchangeRequest
@@ -67,7 +67,7 @@ abstract mixin class $ExchangeRequestCopyWith<$Res> {
       {String type,
       String cryptoCurrencyId,
       String fiatCurrencyId,
-      String amount,
+      num amount,
       String amountCurrencyId});
 }
 
@@ -106,7 +106,7 @@ class _$ExchangeRequestCopyWithImpl<$Res>
       amount: null == amount
           ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
       amountCurrencyId: null == amountCurrencyId
           ? _self.amountCurrencyId
           : amountCurrencyId // ignore: cast_nullable_to_non_nullable
@@ -209,7 +209,7 @@ extension ExchangeRequestPatterns on ExchangeRequest {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String type, String cryptoCurrencyId,
-            String fiatCurrencyId, String amount, String amountCurrencyId)?
+            String fiatCurrencyId, num amount, String amountCurrencyId)?
         $default, {
     required TResult orElse(),
   }) {
@@ -239,7 +239,7 @@ extension ExchangeRequestPatterns on ExchangeRequest {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String type, String cryptoCurrencyId,
-            String fiatCurrencyId, String amount, String amountCurrencyId)
+            String fiatCurrencyId, num amount, String amountCurrencyId)
         $default,
   ) {
     final _that = this;
@@ -267,7 +267,7 @@ extension ExchangeRequestPatterns on ExchangeRequest {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String type, String cryptoCurrencyId,
-            String fiatCurrencyId, String amount, String amountCurrencyId)?
+            String fiatCurrencyId, num amount, String amountCurrencyId)?
         $default,
   ) {
     final _that = this;
@@ -300,7 +300,7 @@ class _ExchangeRequest implements ExchangeRequest {
   @override
   final String fiatCurrencyId;
   @override
-  final String amount;
+  final num amount;
   @override
   final String amountCurrencyId;
 
@@ -357,7 +357,7 @@ abstract mixin class _$ExchangeRequestCopyWith<$Res>
       {String type,
       String cryptoCurrencyId,
       String fiatCurrencyId,
-      String amount,
+      num amount,
       String amountCurrencyId});
 }
 
@@ -396,7 +396,7 @@ class __$ExchangeRequestCopyWithImpl<$Res>
       amount: null == amount
           ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
       amountCurrencyId: null == amountCurrencyId
           ? _self.amountCurrencyId
           : amountCurrencyId // ignore: cast_nullable_to_non_nullable

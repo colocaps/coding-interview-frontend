@@ -22,7 +22,7 @@ class _ExchangeService implements ExchangeService {
     String type,
     String cryptoCurrencyId,
     String fiatCurrencyId,
-    String amount,
+    num amount,
     String amountCurrencyId,
   ) async {
     final _extra = <String, dynamic>{};

@@ -9,7 +9,7 @@ abstract class ExchangeRequest with _$ExchangeRequest {
     required String type,
     required String cryptoCurrencyId,
     required String fiatCurrencyId,
-    required String amount,
+    required num amount,
     required String amountCurrencyId,
   }) = _ExchangeRequest;
 

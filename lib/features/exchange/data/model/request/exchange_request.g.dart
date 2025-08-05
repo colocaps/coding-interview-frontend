@@ -11,7 +11,7 @@ _ExchangeRequest _$ExchangeRequestFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String,
       cryptoCurrencyId: json['cryptoCurrencyId'] as String,
       fiatCurrencyId: json['fiatCurrencyId'] as String,
-      amount: json['amount'] as String,
+      amount: json['amount'] as num,
       amountCurrencyId: json['amountCurrencyId'] as String,
     );
 

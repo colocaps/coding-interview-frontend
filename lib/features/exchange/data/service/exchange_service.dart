@@ -18,7 +18,7 @@ abstract class ExchangeService {
     @Query('type') String type,
     @Query('cryptoCurrencyId') String cryptoCurrencyId,
     @Query('fiatCurrencyId') String fiatCurrencyId,
-    @Query('amount') String amount,
+    @Query('amount') num amount,
     @Query('amountCurrencyId') String amountCurrencyId,
   );
 }

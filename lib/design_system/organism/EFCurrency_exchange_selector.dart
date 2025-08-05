@@ -1,4 +1,5 @@
 import 'package:exchange_caclculator/design_system/atom/EFRounded_button.dart';
+import 'package:exchange_caclculator/design_system/atom/EFText.dart';
 import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class EFCurrencyExchangeSelector extends StatefulWidget {
   final Widget initialLeftCurrencySelector;
   final Widget initialRightCurrencySelector;
   final Widget? centerSwapButton;
-  final void Function()? onTap;
+  final void Function(bool)? onTap;
 
   @override
   State<EFCurrencyExchangeSelector> createState() =>
@@ -25,6 +26,7 @@ class _EFCurrencyExchangeSelectorState
     extends State<EFCurrencyExchangeSelector> {
   late Widget leftCurrencySelector;
   late Widget rightCurrencySelector;
+  bool isSwapped = false;
 
   @override
   void initState() {
@@ -37,14 +39,15 @@ class _EFCurrencyExchangeSelectorState
   void didUpdateWidget(covariant EFCurrencyExchangeSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (oldWidget.initialLeftCurrencySelector !=
-        widget.initialLeftCurrencySelector) {
-      leftCurrencySelector = widget.initialLeftCurrencySelector;
-    }
+    final newLeft = widget.initialLeftCurrencySelector;
+    final newRight = widget.initialRightCurrencySelector;
 
-    if (oldWidget.initialRightCurrencySelector !=
-        widget.initialRightCurrencySelector) {
-      rightCurrencySelector = widget.initialRightCurrencySelector;
+    if (!isSwapped) {
+      leftCurrencySelector = newLeft;
+      rightCurrencySelector = newRight;
+    } else {
+      leftCurrencySelector = newRight;
+      rightCurrencySelector = newLeft;
     }
   }
 
@@ -53,6 +56,7 @@ class _EFCurrencyExchangeSelectorState
       final temp = leftCurrencySelector;
       leftCurrencySelector = rightCurrencySelector;
       rightCurrencySelector = temp;
+      isSwapped = !isSwapped;
     });
   }
 
@@ -93,14 +97,10 @@ class _EFCurrencyExchangeSelectorState
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: const Text(
-              'TENGO',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-                letterSpacing: 1,
-              ),
+            child: EFText(
+              text: 'TENGO',
+              color: Colors.grey,
+              maxFontSize: 12,
             ),
           ),
         ),
@@ -113,14 +113,10 @@ class _EFCurrencyExchangeSelectorState
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Text(
-              'QUIERO',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-                letterSpacing: 1,
-              ),
+            child: EFText(
+              text: 'QIUERO',
+              color: Colors.grey,
+              maxFontSize: 12,
             ),
           ),
         ),
@@ -134,7 +130,7 @@ class _EFCurrencyExchangeSelectorState
                 EFRoundedButton(
                   onTap: () {
                     _swapCurrencies();
-                    widget.onTap?.call();
+                    widget.onTap?.call(isSwapped);
                   },
                 ),
           ),

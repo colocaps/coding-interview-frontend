@@ -26,3 +26,15 @@ class SelectCurrencyEvent extends ExchangeEvent {
     required this.currency,
   });
 }
+
+class SelectExchangeTypeEvent extends ExchangeEvent {
+  final CurrencyType type;
+
+  SelectExchangeTypeEvent({required this.type});
+}
+
+class ExchangeValueChangedEvent extends ExchangeEvent {
+  final num currencyValue;
+
+  ExchangeValueChangedEvent({required this.currencyValue});
+}
