@@ -176,4 +176,4 @@ appProd.json
 }
 ```
 
-### 4. Dale play.
+### 4. Elegi el ambiente y dale play.
