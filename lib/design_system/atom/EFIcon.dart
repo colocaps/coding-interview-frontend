@@ -2,13 +2,13 @@ import 'package:exchange_caclculator/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class EFIcon extends StatelessWidget {
-  const EFIcon({super.key, required this.currencyImage});
+  const EFIcon({super.key, this.currencyImage});
 
-  final Currency currencyImage;
+  final Currency? currencyImage;
 
   @override
   Widget build(BuildContext context) {
-    return currencyImage.icon();
+    return currencyImage?.icon() ?? SizedBox(width: 30);
   }
 }
 
@@ -22,6 +22,16 @@ enum Currency {
   final String label;
 
   const Currency(this.label);
+
+  static Currency? fromString(String value) {
+    try {
+      return Currency.values.firstWhere(
+        (currency) => currency.label.toLowerCase() == value.toLowerCase(),
+      );
+    } catch (e) {
+      return null;
+    }
+  }
 
   AssetGenImage get asset {
     switch (this) {

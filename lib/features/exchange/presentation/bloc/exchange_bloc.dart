@@ -1,7 +1,7 @@
+import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/domain/entity/currency_entity.dart';
-import 'package:exchange_caclculator/features/exchange/domain/usecase/get_crypto_currencies.dart';
+import 'package:exchange_caclculator/features/exchange/domain/usecase/get_currencies.dart';
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_usecase.dart';
-import 'package:exchange_caclculator/features/exchange/domain/usecase/get_fiat_currencies_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,67 +12,96 @@ part 'exchange_bloc.freezed.dart';
 
 class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
   ExchangeBloc({
-    required this.getCryptoCurrenciesUsecase,
+    required this.getCurrenciesUsecase,
     required this.getExchangeUsecase,
-    required this.getFiatCurrenciesUsecase,
   }) : super(ExchangeState()) {
     on<InitialExchangeEvent>(_onInitialExchange);
-    on<GetFiatCurrencyList>(_onGetFiatCurrencyList);
-    on<GetCryptoCurrencyList>(_onGetCryptoCurrencyList);
+    on<GetCurrencyListEvent>(_onGetCurrencyList);
+    on<SelectCurrencyListEvent>(_selectCurrencyList);
+    on<SelectCurrencyEvent>(_selectCurrency);
   }
 
-  final GetCryptoCurrenciesUsecase getCryptoCurrenciesUsecase;
-  final GetFiatCurrenciesUsecase getFiatCurrenciesUsecase;
+  final GetCurrenciesUsecase getCurrenciesUsecase;
   final GetExchangeUsecase getExchangeUsecase;
 
-  void _onInitialExchange(
+  Future<void> _selectCurrencyList(
+    SelectCurrencyListEvent event,
+    Emitter<ExchangeState> emit,
+  ) async {
+    emit(state.copyWith(
+      status: event.type == CurrencyType.crypto
+          ? ExchangeStatus.showCryptoCurrencies
+          : ExchangeStatus.showFiatCurrencies,
+      dateTime: DateTime.now(),
+    ));
+  }
+
+  Future<void> _selectCurrency(
+    SelectCurrencyEvent event,
+    Emitter<ExchangeState> emit,
+  ) async {
+    if (event.type == CurrencyType.crypto) {
+      emit(state.copyWith(
+        selectedCryptoCurrency: event.currency,
+        status: ExchangeStatus.currencySelected,
+        dateTime: DateTime.now(),
+      ));
+      print('selectedCurrency:${event.currency}');
+      return;
+    }
+    if (event.type == CurrencyType.fiat) {
+      emit(state.copyWith(
+        selectedFiatCurrency: event.currency,
+        status: ExchangeStatus.currencySelected,
+        dateTime: DateTime.now(),
+      ));
+      print('selectedCurrency:${event.currency}');
+      return;
+    }
+  }
+
+  Future<void> _onInitialExchange(
     InitialExchangeEvent event,
     Emitter<ExchangeState> emit,
-  ) {
+  ) async {
     emit(state.copyWith(
       status: ExchangeStatus.loading,
       dateTime: DateTime.now(),
     ));
 
-    add(GetFiatCurrencyList());
-    add(GetCryptoCurrencyList());
+    add(GetCurrencyListEvent(request: CurrencyType.crypto));
+    add(GetCurrencyListEvent(request: CurrencyType.fiat));
   }
 
-  Future<void> _onGetFiatCurrencyList(
-    GetFiatCurrencyList event,
+  Future<void> _onGetCurrencyList(
+    GetCurrencyListEvent event,
     Emitter<ExchangeState> emit,
   ) async {
-    final response = await getFiatCurrenciesUsecase();
+    final response = await getCurrenciesUsecase(request: event.request);
 
-    response.fold(
-      (failure) => emit(state.copyWith(
-        status: ExchangeStatus.failure,
-        dateTime: DateTime.now(),
-      )),
-      (list) => emit(state.copyWith(
-        status: ExchangeStatus.success,
-        dateTime: DateTime.now(),
-        fiatCurrencyList: list,
-      )),
-    );
-  }
-
-  Future<void> _onGetCryptoCurrencyList(
-    GetCryptoCurrencyList event,
-    Emitter<ExchangeState> emit,
-  ) async {
-    final response = await getCryptoCurrenciesUsecase();
-
-    response.fold(
-      (failure) => emit(state.copyWith(
-        status: ExchangeStatus.failure,
-        dateTime: DateTime.now(),
-      )),
-      (modelList) => emit(state.copyWith(
-        status: ExchangeStatus.success,
-        dateTime: DateTime.now(),
-        cryptoCurrencyList: modelList,
-      )),
-    );
+    response.fold((failure) {
+      emit(
+        state.copyWith(
+          status: ExchangeStatus.failure,
+          dateTime: DateTime.now(),
+        ),
+      );
+    }, (list) {
+      if (event.request == CurrencyType.crypto) {
+        emit(state.copyWith(
+          status: ExchangeStatus.success,
+          dateTime: DateTime.now(),
+          cryptoCurrencyList: list,
+          selectedCryptoCurrency: list.first,
+        ));
+      } else if (event.request == CurrencyType.fiat) {
+        emit(state.copyWith(
+          status: ExchangeStatus.success,
+          dateTime: DateTime.now(),
+          fiatCurrencyList: list,
+          selectedFiatCurrency: list.first,
+        ));
+      }
+    });
   }
 }

@@ -3,16 +3,18 @@ import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
 import 'package:flutter/material.dart';
 
 class EFCurrencyExchangeSelector extends StatefulWidget {
-  final Widget initialLeftCurrencySelector;
-  final Widget initialRightCurrencySelector;
-  final Widget? centerSwapButton;
-
   const EFCurrencyExchangeSelector({
     Key? key,
     required this.initialLeftCurrencySelector,
     required this.initialRightCurrencySelector,
     this.centerSwapButton,
+    this.onTap,
   }) : super(key: key);
+
+  final Widget initialLeftCurrencySelector;
+  final Widget initialRightCurrencySelector;
+  final Widget? centerSwapButton;
+  final void Function()? onTap;
 
   @override
   State<EFCurrencyExchangeSelector> createState() =>
@@ -29,6 +31,21 @@ class _EFCurrencyExchangeSelectorState
     super.initState();
     leftCurrencySelector = widget.initialLeftCurrencySelector;
     rightCurrencySelector = widget.initialRightCurrencySelector;
+  }
+
+  @override
+  void didUpdateWidget(covariant EFCurrencyExchangeSelector oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.initialLeftCurrencySelector !=
+        widget.initialLeftCurrencySelector) {
+      leftCurrencySelector = widget.initialLeftCurrencySelector;
+    }
+
+    if (oldWidget.initialRightCurrencySelector !=
+        widget.initialRightCurrencySelector) {
+      rightCurrencySelector = widget.initialRightCurrencySelector;
+    }
   }
 
   void _swapCurrencies() {
@@ -115,7 +132,10 @@ class _EFCurrencyExchangeSelectorState
             alignment: Alignment.center,
             child: widget.centerSwapButton ??
                 EFRoundedButton(
-                  onTap: _swapCurrencies,
+                  onTap: () {
+                    _swapCurrencies();
+                    widget.onTap?.call();
+                  },
                 ),
           ),
         ),

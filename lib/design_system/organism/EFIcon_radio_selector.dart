@@ -12,7 +12,7 @@ class EFIconRadioSelector<T> extends StatelessWidget {
 
   final EFCurrencyDescriptionIcon currencyDescriptionIcon;
   final T value;
-  final T groupValue;
+  final T? groupValue;
   final ValueChanged<T?> onChanged;
 
   @override
@@ -23,7 +23,7 @@ class EFIconRadioSelector<T> extends StatelessWidget {
         children: [
           currencyDescriptionIcon,
           const Spacer(),
-          Radio<T>(
+          Radio<T?>(
             value: value,
             groupValue: groupValue,
             onChanged: onChanged,

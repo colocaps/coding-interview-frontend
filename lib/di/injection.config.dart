@@ -28,12 +28,10 @@ import 'package:exchange_caclculator/features/exchange/data/service/exchange_ser
     as _i129;
 import 'package:exchange_caclculator/features/exchange/domain/repository/exchange_repository.dart'
     as _i851;
-import 'package:exchange_caclculator/features/exchange/domain/usecase/get_crypto_currencies.dart'
-    as _i482;
+import 'package:exchange_caclculator/features/exchange/domain/usecase/get_currencies.dart'
+    as _i743;
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_usecase.dart'
     as _i198;
-import 'package:exchange_caclculator/features/exchange/domain/usecase/get_fiat_currencies_usecase.dart'
-    as _i831;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
@@ -71,10 +69,8 @@ extension GetItInjectableX on _i174.GetIt {
         datasource: gh<_i655.ExchangeDatasource>()));
     gh.factory<_i198.GetExchangeUsecase>(
         () => _i198.GetExchangeUsecase(gh<_i851.ExchangeRepository>()));
-    gh.factory<_i831.GetFiatCurrenciesUsecase>(
-        () => _i831.GetFiatCurrenciesUsecase(gh<_i851.ExchangeRepository>()));
-    gh.factory<_i482.GetCryptoCurrenciesUsecase>(
-        () => _i482.GetCryptoCurrenciesUsecase(gh<_i851.ExchangeRepository>()));
+    gh.factory<_i743.GetCurrenciesUsecase>(
+        () => _i743.GetCurrenciesUsecase(gh<_i851.ExchangeRepository>()));
     gh.singleton<_i129.ExchangeService>(
         () => _i129.ExchangeService(gh<_i361.Dio>()));
     gh.singleton<_i655.ExchangeDatasource>(

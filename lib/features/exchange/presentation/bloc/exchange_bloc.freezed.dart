@@ -18,6 +18,8 @@ mixin _$ExchangeState {
   DateTime? get dateTime;
   List<CurrencyEntity> get fiatCurrencyList;
   List<CurrencyEntity> get cryptoCurrencyList;
+  CurrencyEntity? get selectedFiatCurrency;
+  CurrencyEntity? get selectedCryptoCurrency;
 
   /// Create a copy of ExchangeState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +40,11 @@ mixin _$ExchangeState {
             const DeepCollectionEquality()
                 .equals(other.fiatCurrencyList, fiatCurrencyList) &&
             const DeepCollectionEquality()
-                .equals(other.cryptoCurrencyList, cryptoCurrencyList));
+                .equals(other.cryptoCurrencyList, cryptoCurrencyList) &&
+            (identical(other.selectedFiatCurrency, selectedFiatCurrency) ||
+                other.selectedFiatCurrency == selectedFiatCurrency) &&
+            (identical(other.selectedCryptoCurrency, selectedCryptoCurrency) ||
+                other.selectedCryptoCurrency == selectedCryptoCurrency));
   }
 
   @override
@@ -47,11 +53,13 @@ mixin _$ExchangeState {
       status,
       dateTime,
       const DeepCollectionEquality().hash(fiatCurrencyList),
-      const DeepCollectionEquality().hash(cryptoCurrencyList));
+      const DeepCollectionEquality().hash(cryptoCurrencyList),
+      selectedFiatCurrency,
+      selectedCryptoCurrency);
 
   @override
   String toString() {
-    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList)';
+    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList, selectedFiatCurrency: $selectedFiatCurrency, selectedCryptoCurrency: $selectedCryptoCurrency)';
   }
 }
 
@@ -65,7 +73,12 @@ abstract mixin class $ExchangeStateCopyWith<$Res> {
       {ExchangeStatus? status,
       DateTime? dateTime,
       List<CurrencyEntity> fiatCurrencyList,
-      List<CurrencyEntity> cryptoCurrencyList});
+      List<CurrencyEntity> cryptoCurrencyList,
+      CurrencyEntity? selectedFiatCurrency,
+      CurrencyEntity? selectedCryptoCurrency});
+
+  $CurrencyEntityCopyWith<$Res>? get selectedFiatCurrency;
+  $CurrencyEntityCopyWith<$Res>? get selectedCryptoCurrency;
 }
 
 /// @nodoc
@@ -85,6 +98,8 @@ class _$ExchangeStateCopyWithImpl<$Res>
     Object? dateTime = freezed,
     Object? fiatCurrencyList = null,
     Object? cryptoCurrencyList = null,
+    Object? selectedFiatCurrency = freezed,
+    Object? selectedCryptoCurrency = freezed,
   }) {
     return _then(_self.copyWith(
       status: freezed == status
@@ -103,7 +118,44 @@ class _$ExchangeStateCopyWithImpl<$Res>
           ? _self.cryptoCurrencyList
           : cryptoCurrencyList // ignore: cast_nullable_to_non_nullable
               as List<CurrencyEntity>,
+      selectedFiatCurrency: freezed == selectedFiatCurrency
+          ? _self.selectedFiatCurrency
+          : selectedFiatCurrency // ignore: cast_nullable_to_non_nullable
+              as CurrencyEntity?,
+      selectedCryptoCurrency: freezed == selectedCryptoCurrency
+          ? _self.selectedCryptoCurrency
+          : selectedCryptoCurrency // ignore: cast_nullable_to_non_nullable
+              as CurrencyEntity?,
     ));
+  }
+
+  /// Create a copy of ExchangeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrencyEntityCopyWith<$Res>? get selectedFiatCurrency {
+    if (_self.selectedFiatCurrency == null) {
+      return null;
+    }
+
+    return $CurrencyEntityCopyWith<$Res>(_self.selectedFiatCurrency!, (value) {
+      return _then(_self.copyWith(selectedFiatCurrency: value));
+    });
+  }
+
+  /// Create a copy of ExchangeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrencyEntityCopyWith<$Res>? get selectedCryptoCurrency {
+    if (_self.selectedCryptoCurrency == null) {
+      return null;
+    }
+
+    return $CurrencyEntityCopyWith<$Res>(_self.selectedCryptoCurrency!,
+        (value) {
+      return _then(_self.copyWith(selectedCryptoCurrency: value));
+    });
   }
 }
 
@@ -204,15 +256,22 @@ extension ExchangeStatePatterns on ExchangeState {
             ExchangeStatus? status,
             DateTime? dateTime,
             List<CurrencyEntity> fiatCurrencyList,
-            List<CurrencyEntity> cryptoCurrencyList)?
+            List<CurrencyEntity> cryptoCurrencyList,
+            CurrencyEntity? selectedFiatCurrency,
+            CurrencyEntity? selectedCryptoCurrency)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _ExchangeState() when $default != null:
-        return $default(_that.status, _that.dateTime, _that.fiatCurrencyList,
-            _that.cryptoCurrencyList);
+        return $default(
+            _that.status,
+            _that.dateTime,
+            _that.fiatCurrencyList,
+            _that.cryptoCurrencyList,
+            _that.selectedFiatCurrency,
+            _that.selectedCryptoCurrency);
       case _:
         return orElse();
     }
@@ -237,14 +296,21 @@ extension ExchangeStatePatterns on ExchangeState {
             ExchangeStatus? status,
             DateTime? dateTime,
             List<CurrencyEntity> fiatCurrencyList,
-            List<CurrencyEntity> cryptoCurrencyList)
+            List<CurrencyEntity> cryptoCurrencyList,
+            CurrencyEntity? selectedFiatCurrency,
+            CurrencyEntity? selectedCryptoCurrency)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ExchangeState():
-        return $default(_that.status, _that.dateTime, _that.fiatCurrencyList,
-            _that.cryptoCurrencyList);
+        return $default(
+            _that.status,
+            _that.dateTime,
+            _that.fiatCurrencyList,
+            _that.cryptoCurrencyList,
+            _that.selectedFiatCurrency,
+            _that.selectedCryptoCurrency);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -268,14 +334,21 @@ extension ExchangeStatePatterns on ExchangeState {
             ExchangeStatus? status,
             DateTime? dateTime,
             List<CurrencyEntity> fiatCurrencyList,
-            List<CurrencyEntity> cryptoCurrencyList)?
+            List<CurrencyEntity> cryptoCurrencyList,
+            CurrencyEntity? selectedFiatCurrency,
+            CurrencyEntity? selectedCryptoCurrency)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ExchangeState() when $default != null:
-        return $default(_that.status, _that.dateTime, _that.fiatCurrencyList,
-            _that.cryptoCurrencyList);
+        return $default(
+            _that.status,
+            _that.dateTime,
+            _that.fiatCurrencyList,
+            _that.cryptoCurrencyList,
+            _that.selectedFiatCurrency,
+            _that.selectedCryptoCurrency);
       case _:
         return null;
     }
@@ -289,7 +362,9 @@ class _ExchangeState implements ExchangeState {
       {this.status,
       this.dateTime,
       final List<CurrencyEntity> fiatCurrencyList = const [],
-      final List<CurrencyEntity> cryptoCurrencyList = const []})
+      final List<CurrencyEntity> cryptoCurrencyList = const [],
+      this.selectedFiatCurrency,
+      this.selectedCryptoCurrency})
       : _fiatCurrencyList = fiatCurrencyList,
         _cryptoCurrencyList = cryptoCurrencyList;
 
@@ -317,6 +392,11 @@ class _ExchangeState implements ExchangeState {
     return EqualUnmodifiableListView(_cryptoCurrencyList);
   }
 
+  @override
+  final CurrencyEntity? selectedFiatCurrency;
+  @override
+  final CurrencyEntity? selectedCryptoCurrency;
+
   /// Create a copy of ExchangeState
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -336,7 +416,11 @@ class _ExchangeState implements ExchangeState {
             const DeepCollectionEquality()
                 .equals(other._fiatCurrencyList, _fiatCurrencyList) &&
             const DeepCollectionEquality()
-                .equals(other._cryptoCurrencyList, _cryptoCurrencyList));
+                .equals(other._cryptoCurrencyList, _cryptoCurrencyList) &&
+            (identical(other.selectedFiatCurrency, selectedFiatCurrency) ||
+                other.selectedFiatCurrency == selectedFiatCurrency) &&
+            (identical(other.selectedCryptoCurrency, selectedCryptoCurrency) ||
+                other.selectedCryptoCurrency == selectedCryptoCurrency));
   }
 
   @override
@@ -345,11 +429,13 @@ class _ExchangeState implements ExchangeState {
       status,
       dateTime,
       const DeepCollectionEquality().hash(_fiatCurrencyList),
-      const DeepCollectionEquality().hash(_cryptoCurrencyList));
+      const DeepCollectionEquality().hash(_cryptoCurrencyList),
+      selectedFiatCurrency,
+      selectedCryptoCurrency);
 
   @override
   String toString() {
-    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList)';
+    return 'ExchangeState(status: $status, dateTime: $dateTime, fiatCurrencyList: $fiatCurrencyList, cryptoCurrencyList: $cryptoCurrencyList, selectedFiatCurrency: $selectedFiatCurrency, selectedCryptoCurrency: $selectedCryptoCurrency)';
   }
 }
 
@@ -365,7 +451,14 @@ abstract mixin class _$ExchangeStateCopyWith<$Res>
       {ExchangeStatus? status,
       DateTime? dateTime,
       List<CurrencyEntity> fiatCurrencyList,
-      List<CurrencyEntity> cryptoCurrencyList});
+      List<CurrencyEntity> cryptoCurrencyList,
+      CurrencyEntity? selectedFiatCurrency,
+      CurrencyEntity? selectedCryptoCurrency});
+
+  @override
+  $CurrencyEntityCopyWith<$Res>? get selectedFiatCurrency;
+  @override
+  $CurrencyEntityCopyWith<$Res>? get selectedCryptoCurrency;
 }
 
 /// @nodoc
@@ -385,6 +478,8 @@ class __$ExchangeStateCopyWithImpl<$Res>
     Object? dateTime = freezed,
     Object? fiatCurrencyList = null,
     Object? cryptoCurrencyList = null,
+    Object? selectedFiatCurrency = freezed,
+    Object? selectedCryptoCurrency = freezed,
   }) {
     return _then(_ExchangeState(
       status: freezed == status
@@ -403,7 +498,44 @@ class __$ExchangeStateCopyWithImpl<$Res>
           ? _self._cryptoCurrencyList
           : cryptoCurrencyList // ignore: cast_nullable_to_non_nullable
               as List<CurrencyEntity>,
+      selectedFiatCurrency: freezed == selectedFiatCurrency
+          ? _self.selectedFiatCurrency
+          : selectedFiatCurrency // ignore: cast_nullable_to_non_nullable
+              as CurrencyEntity?,
+      selectedCryptoCurrency: freezed == selectedCryptoCurrency
+          ? _self.selectedCryptoCurrency
+          : selectedCryptoCurrency // ignore: cast_nullable_to_non_nullable
+              as CurrencyEntity?,
     ));
+  }
+
+  /// Create a copy of ExchangeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrencyEntityCopyWith<$Res>? get selectedFiatCurrency {
+    if (_self.selectedFiatCurrency == null) {
+      return null;
+    }
+
+    return $CurrencyEntityCopyWith<$Res>(_self.selectedFiatCurrency!, (value) {
+      return _then(_self.copyWith(selectedFiatCurrency: value));
+    });
+  }
+
+  /// Create a copy of ExchangeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrencyEntityCopyWith<$Res>? get selectedCryptoCurrency {
+    if (_self.selectedCryptoCurrency == null) {
+      return null;
+    }
+
+    return $CurrencyEntityCopyWith<$Res>(_self.selectedCryptoCurrency!,
+        (value) {
+      return _then(_self.copyWith(selectedCryptoCurrency: value));
+    });
   }
 }
 

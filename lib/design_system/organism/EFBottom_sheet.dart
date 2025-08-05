@@ -5,7 +5,7 @@ Future<T?> showEFBottomSheet<T>({
   required BuildContext context,
   required List<T> items,
   required Widget Function(T) itemWidgetBuilder,
-  required void Function(T) onItemSelected,
+  void Function(T)? onItemSelected,
   String? title,
   bool isSearchInputVisible = true,
   String Function(T)? searchTextBuilder,
@@ -55,7 +55,7 @@ class BottomSheetBuilder<T> extends StatefulWidget {
   const BottomSheetBuilder({
     required this.items,
     required this.itemWidgetBuilder,
-    required this.onItemSelected,
+    this.onItemSelected,
     this.title,
     this.isSearchInputVisible = true,
     this.searchTextBuilder,
@@ -63,7 +63,7 @@ class BottomSheetBuilder<T> extends StatefulWidget {
 
   final List<T> items;
   final Widget Function(T) itemWidgetBuilder;
-  final void Function(T) onItemSelected;
+  final void Function(T)? onItemSelected;
   final String? title;
   final bool isSearchInputVisible;
   final String Function(T)? searchTextBuilder;
@@ -128,12 +128,15 @@ class _BottomSheetBuilderState<T> extends State<BottomSheetBuilder<T>> {
             ),
             const SizedBox(height: 10),
             Flexible(
-              child: ListView.builder(
+              child: ListView.separated(
                 shrinkWrap: true,
                 itemCount: _filteredItems.length,
                 itemBuilder: (_, index) {
                   final item = _filteredItems[index];
                   return widget.itemWidgetBuilder(item);
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(height: 25);
                 },
               ),
             ),

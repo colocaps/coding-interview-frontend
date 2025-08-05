@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class EFCurrencyDescriptionIcon extends StatelessWidget {
   const EFCurrencyDescriptionIcon({
     super.key,
-    required this.currencyImage,
     required this.title,
     this.subtitle,
+    this.currencyImage,
     this.maxFontSize = 12,
   });
 
-  final Currency currencyImage;
+  final Currency? currencyImage;
   final String title;
   final String? subtitle;
   final double maxFontSize;

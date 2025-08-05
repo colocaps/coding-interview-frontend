@@ -6,14 +6,14 @@ import 'package:exchange_caclculator/features/exchange/domain/repository/exchang
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetCryptoCurrenciesUsecase {
-  GetCryptoCurrenciesUsecase(this._repository);
+class GetCurrenciesUsecase {
+  GetCurrenciesUsecase(this._repository);
 
   final ExchangeRepository _repository;
 
-  Future<Either<CustomException, List<CurrencyEntity>>> call() async {
-    final result =
-        await _repository.getCurrencies(request: CurrencyType.crypto);
+  Future<Either<CustomException, List<CurrencyEntity>>> call(
+      {required CurrencyType request}) async {
+    final result = await _repository.getCurrencies(request: request);
 
     return result.map((response) => response.map((e) => e.toEntity()).toList());
   }

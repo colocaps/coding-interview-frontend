@@ -5,6 +5,9 @@ enum ExchangeStatus {
   success,
   failure,
   loading,
+  showCryptoCurrencies,
+  showFiatCurrencies,
+  currencySelected,
 }
 
 @freezed
@@ -14,5 +17,7 @@ abstract class ExchangeState with _$ExchangeState {
     DateTime? dateTime,
     @Default([]) List<CurrencyEntity> fiatCurrencyList,
     @Default([]) List<CurrencyEntity> cryptoCurrencyList,
+    CurrencyEntity? selectedFiatCurrency,
+    CurrencyEntity? selectedCryptoCurrency,
   }) = _ExchangeState;
 }

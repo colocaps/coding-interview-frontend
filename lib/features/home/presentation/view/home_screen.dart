@@ -68,45 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
             currencyImage: Currency.cop,
           ),
           EFCurrencyExchangeSelector(
-            initialRightCurrencySelector: EfIconSelector(
+            initialRightCurrencySelector: EFIconSelector(
               currencyDescriptionIcon: EFCurrencyDescriptionIcon(
                 title: 'BRL',
                 currencyImage: Currency.brl,
                 maxFontSize: 18,
               ),
-              onTap: () {
-                showEFBottomSheet<EFIconRadioSelector>(
-                  isSearchInputVisible: false,
-                  title: 'FIAT',
-                  context: context,
-                  items: [
-                    EFIconRadioSelector<String>(
-                      currencyDescriptionIcon: EFCurrencyDescriptionIcon(
-                        title: 'VES',
-                        subtitle: 'Bolivares (Bs)',
-                        currencyImage: Currency.cop,
-                      ),
-                      value: 'item',
-                      groupValue: selectedValue ?? '',
-                      onChanged: (val) {},
-                    ),
-                    EFIconRadioSelector<String>(
-                      currencyDescriptionIcon: EFCurrencyDescriptionIcon(
-                        title: 'VES',
-                        subtitle: 'Bolivares (Bs)',
-                        currencyImage: Currency.cop,
-                      ),
-                      value: 'item',
-                      groupValue: selectedValue ?? '',
-                      onChanged: (val) {},
-                    )
-                  ],
-                  itemWidgetBuilder: (value) => value,
-                  onItemSelected: (value) {},
-                );
-              },
+              onTap: () {},
             ),
-            initialLeftCurrencySelector: EfIconSelector(
+            initialLeftCurrencySelector: EFIconSelector(
               currencyDescriptionIcon: EFCurrencyDescriptionIcon(
                 title: 'VES',
                 currencyImage: Currency.cop,
