@@ -2,6 +2,13 @@ import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
 import 'package:flutter/material.dart';
 
 class EFBackgound extends StatelessWidget {
+  final Widget? child;
+
+  const EFBackgound({
+    Key? key,
+    this.child,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,6 +26,7 @@ class EFBackgound extends StatelessWidget {
               painter: CurvedShapePainter(),
             ),
           ),
+          child ?? SizedBox.shrink(),
         ],
       ),
     );
@@ -35,7 +43,6 @@ class CurvedShapePainter extends CustomPainter {
     final path = Path();
 
     path.moveTo(size.width, 0);
-
     path.quadraticBezierTo(
       size.width * 0.25,
       size.height * 0.6,

@@ -20,7 +20,7 @@ class ExchangeCalculatorScreen extends StatelessWidget {
         getCryptoCurrenciesUsecase: getIt<GetCryptoCurrenciesUsecase>(),
         getExchangeUsecase: getIt<GetExchangeUsecase>(),
         getFiatCurrenciesUsecase: getIt<GetFiatCurrenciesUsecase>(),
-      ),
+      )..add(InitialExchangeEvent()),
       child: BlocListener<ExchangeBloc, ExchangeState>(
         listener: (context, state) {
           // TODO: implement listener
