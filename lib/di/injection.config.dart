@@ -10,8 +10,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
-import 'package:exchange_caclculator/core/networking/interceptors/base_interceptor.dart'
-    as _i1057;
+import 'package:exchange_caclculator/core/networking/interceptors/ef_interceptor.dart'
+    as _i870;
 import 'package:exchange_caclculator/core/networking/modules/logger_module.dart'
     as _i970;
 import 'package:exchange_caclculator/core/networking/modules/network_module.dart'
@@ -57,13 +57,14 @@ extension GetItInjectableX on _i174.GetIt {
     final loggerModule = _$LoggerModule();
     final networkModule = _$NetworkModule();
     gh.factory<_i528.PrettyDioLogger>(() => loggerModule.prettyDioLogger);
+    gh.factory<_i870.EFInterceptor>(() => _i870.EFInterceptor());
     gh.lazySingleton<_i974.Logger>(() => loggerModule.logger);
     gh.singleton<_i655.ExchangeDatasource>(
       () => _i579.ExchangeDatasourceMockImpl(),
       registerFor: {_mock},
     );
-    gh.lazySingleton<_i361.Dio>(() => networkModule.balanzaDio(
-          gh<_i1057.BaseInterceptor>(),
+    gh.lazySingleton<_i361.Dio>(() => networkModule.efDio(
+          gh<_i870.EFInterceptor>(),
           gh<_i528.PrettyDioLogger>(),
         ));
     gh.factory<_i851.ExchangeRepository>(() => _i815.ExchangeRepositoryImpl(

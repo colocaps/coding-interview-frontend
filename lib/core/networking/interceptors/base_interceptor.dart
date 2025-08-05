@@ -14,10 +14,6 @@ abstract class BaseInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    options
-      ..connectTimeout = const Duration(seconds: 30)
-      ..receiveTimeout = const Duration(seconds: 30);
-    options.headers['Accept'] = 'application/json';
     return super.onRequest(options, handler);
   }
 

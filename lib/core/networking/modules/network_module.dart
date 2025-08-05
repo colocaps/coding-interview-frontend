@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exchange_caclculator/core/env/env.dart';
-import 'package:exchange_caclculator/core/networking/interceptors/base_interceptor.dart';
+import 'package:exchange_caclculator/core/networking/interceptors/ef_interceptor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -19,7 +19,7 @@ abstract class NetworkModule {
   }
 
   @lazySingleton
-  Dio balanzaDio(BaseInterceptor baseInterceptor, PrettyDioLogger logger) {
-    return _baseDio(baseInterceptor, logger);
+  Dio efDio(EFInterceptor interceptor, PrettyDioLogger logger) {
+    return _baseDio(interceptor, logger);
   }
 }

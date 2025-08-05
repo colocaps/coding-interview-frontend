@@ -1,3 +1,5 @@
+import 'package:exchange_caclculator/design_system/organism/EFBackground.dart';
+import 'package:exchange_caclculator/design_system/organism/EFScaffold.dart';
 import 'package:flutter/material.dart';
 
 class ExchangeCalculatorPage extends StatelessWidget {
@@ -5,6 +7,8 @@ class ExchangeCalculatorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return EFScaffold(
+      body: EFBackgound(),
+    );
   }
 }
