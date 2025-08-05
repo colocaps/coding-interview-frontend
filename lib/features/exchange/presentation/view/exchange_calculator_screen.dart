@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:exchange_caclculator/design_system/atom/EFIcon.dart';
 import 'package:exchange_caclculator/design_system/molecule/EFDescription_icon.dart';
 import 'package:exchange_caclculator/design_system/organism/EFBottom_sheet.dart';
