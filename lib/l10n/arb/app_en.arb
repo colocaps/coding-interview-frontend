@@ -1,7 +1,15 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+    "youWillReceive": "You will receive",
+    "estimatedFee": "Estimated fee",
+    "equalSign": "≈",
+    "crypto": "Crypto",
+    "fiat": "FIAT",
+    "estimatedTime": "Estimated time",
+    "change": "Change",
+    "min": "Min",
+    "ten": "10",
+    "wereSorryWeEncounterAnErrorTryingToGetTheFees": "We're sorry, we encounter an error when we try to get the currency fee"
+
+   
 }

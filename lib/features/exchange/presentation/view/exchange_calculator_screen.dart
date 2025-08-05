@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:exchange_caclculator/design_system/atom/EFIcon.dart';
 import 'package:exchange_caclculator/design_system/molecule/EFDescription_icon.dart';
 import 'package:exchange_caclculator/design_system/organism/EFBottom_sheet.dart';
@@ -9,6 +11,7 @@ import 'package:exchange_caclculator/features/exchange/domain/usecase/get_curren
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_rate_usecase.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/bloc/exchange_bloc.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/view/exchange_calculator_page.dart';
+import 'package:exchange_caclculator/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -33,7 +36,7 @@ class ExchangeCalculatorScreen extends StatelessWidget {
           if (state.status == ExchangeStatus.showFiatCurrencies) {
             await _showCurrencyBottomSheet(
               context: context,
-              title: 'FIAT',
+              title: context.l10n.fiat,
               items: state.fiatCurrencyList,
               selected: state.selectedFiatCurrency,
               type: CurrencyType.fiat,
@@ -41,7 +44,7 @@ class ExchangeCalculatorScreen extends StatelessWidget {
           } else if (state.status == ExchangeStatus.showCryptoCurrencies) {
             await _showCurrencyBottomSheet(
               context: context,
-              title: 'Crypto',
+              title: context.l10n.crypto,
               items: state.cryptoCurrencyList,
               selected: state.selectedCryptoCurrency,
               type: CurrencyType.crypto,
@@ -49,8 +52,9 @@ class ExchangeCalculatorScreen extends StatelessWidget {
           } else if (state.status == ExchangeStatus.failure) {
             showTopSnackBar(
               Overlay.of(context, rootOverlay: true),
-              const CustomSnackBar.error(
-                message: 'Lo sentimos hubo un error al consultar las tasas',
+              CustomSnackBar.error(
+                message:
+                    context.l10n.wereSorryWeEncounterAnErrorTryingToGetTheFees,
               ),
             );
           }

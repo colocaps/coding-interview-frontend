@@ -95,11 +95,65 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
-  /// Text shown in the AppBar of the Counter Page
+  /// No description provided for @youWillReceive.
   ///
   /// In en, this message translates to:
-  /// **'Counter'**
-  String get counterAppBarTitle;
+  /// **'You will receive'**
+  String get youWillReceive;
+
+  /// No description provided for @estimatedFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated fee'**
+  String get estimatedFee;
+
+  /// No description provided for @equalSign.
+  ///
+  /// In en, this message translates to:
+  /// **'≈'**
+  String get equalSign;
+
+  /// No description provided for @crypto.
+  ///
+  /// In en, this message translates to:
+  /// **'Crypto'**
+  String get crypto;
+
+  /// No description provided for @fiat.
+  ///
+  /// In en, this message translates to:
+  /// **'FIAT'**
+  String get fiat;
+
+  /// No description provided for @estimatedTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated time'**
+  String get estimatedTime;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @min.
+  ///
+  /// In en, this message translates to:
+  /// **'Min'**
+  String get min;
+
+  /// No description provided for @ten.
+  ///
+  /// In en, this message translates to:
+  /// **'10'**
+  String get ten;
+
+  /// No description provided for @wereSorryWeEncounterAnErrorTryingToGetTheFees.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re sorry, we encounter an error when we try to get the currency fee'**
+  String get wereSorryWeEncounterAnErrorTryingToGetTheFees;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

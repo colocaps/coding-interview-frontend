@@ -41,8 +41,6 @@ class _CurrencyExchangeInputBuilderState
               ExchangeValueChangedEvent(currencyValue: value),
             );
       });
-    } else {
-      // TODO manejar excepcion con un toast
     }
   }
 

@@ -1,7 +1,13 @@
 {
     "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+    "youWillReceive": "Recibiras",
+    "estimatedFee": "Tasa estimada",
+    "equalSign": "≈",
+    "crypto": "Crypto",
+    "fiat": "FIAT",
+    "estimatedTime": "Tiempo estimado",
+    "change": "Cambio",
+    "min": "Min",
+    "ten": "10",
+    "wereSorryWeEncounterAnErrorTryingToGetTheFees": "Lo sentimos hubo un error al consultar las tasas"
 }

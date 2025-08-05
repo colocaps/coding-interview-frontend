@@ -2,6 +2,7 @@ import 'package:exchange_caclculator/design_system/molecule/EFComposed_text.dart
 import 'package:exchange_caclculator/design_system/organism/EFDescription_text.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/bloc/exchange_bloc.dart';
+import 'package:exchange_caclculator/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,10 +14,10 @@ class CurrencyEstimatedFeeBuilder extends StatelessWidget {
     return BlocBuilder<ExchangeBloc, ExchangeState>(
       builder: (context, state) {
         return EFDescriptionText(
-          text: 'Tasa estimada',
+          text: context.l10n.estimatedFee,
           composedText: EFComposedText(
             isLoading: state.status == ExchangeStatus.loading,
-            prefixText: '≈',
+            prefixText: context.l10n.equalSign,
             middleText:
                 state.exchangeRate != null ? '${state.exchangeRate}' : '....',
             suffixText: state.currencyType == CurrencyType.crypto
