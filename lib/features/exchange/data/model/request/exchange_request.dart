@@ -7,10 +7,10 @@ part 'exchange_request.g.dart';
 abstract class ExchangeRequest with _$ExchangeRequest {
   const factory ExchangeRequest({
     required String type,
-    required String cryptoCurrencyId,
     required String fiatCurrencyId,
     required num amount,
     required String amountCurrencyId,
+    @Default('TATUM-TRON-USDT') String cryptoCurrencyId,
   }) = _ExchangeRequest;
 
   factory ExchangeRequest.fromJson(Map<String, dynamic> json) =>

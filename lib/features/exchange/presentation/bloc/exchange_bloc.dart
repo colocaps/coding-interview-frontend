@@ -1,7 +1,7 @@
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/data/model/request/exchange_request.dart';
 import 'package:exchange_caclculator/features/exchange/domain/entity/currency_entity.dart';
-import 'package:exchange_caclculator/features/exchange/domain/usecase/get_currencies.dart';
+import 'package:exchange_caclculator/features/exchange/domain/usecase/get_currencies_usecase.dart';
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_rate_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -44,13 +44,15 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
         ),
       );
     }, (result) {
+      final exchangeRate = num.tryParse(result.exchangeRate) ?? 0;
+
       final isCrypto = state.currencyType == CurrencyType.crypto;
       final calculatedAmount = isCrypto
-          ? (state.exhangeAmount! * result.exchangeRate)
-          : (state.exhangeAmount! / result.exchangeRate);
+          ? (state.exhangeAmount! * exchangeRate)
+          : (state.exhangeAmount! / exchangeRate);
       emit(
         state.copyWith(
-          exchangeRate: result.exchangeRate,
+          exchangeRate: exchangeRate,
           calculatedAmount: calculatedAmount,
           status: ExchangeStatus.success,
           dateTime: DateTime.now(),
@@ -86,7 +88,6 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
       GetExchangeRateEvent(
         request: ExchangeRequest(
           type: state.currencyType == CurrencyType.crypto ? '0' : '1',
-          cryptoCurrencyId: state.selectedCryptoCurrency!.currencyName,
           fiatCurrencyId: state.selectedFiatCurrency!.currencyName,
           amount: state.exhangeAmount!,
           amountCurrencyId: state.currencyType == CurrencyType.crypto

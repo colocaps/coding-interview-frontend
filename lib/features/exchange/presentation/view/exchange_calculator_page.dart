@@ -1,8 +1,8 @@
 import 'package:exchange_caclculator/design_system/molecule/ef_button.dart';
 import 'package:exchange_caclculator/design_system/molecule/ef_composed_text.dart';
-import 'package:exchange_caclculator/design_system/organism/EFBackground.dart';
-import 'package:exchange_caclculator/design_system/organism/EFDescription_text.dart';
-import 'package:exchange_caclculator/design_system/organism/EFScaffold.dart';
+import 'package:exchange_caclculator/design_system/organism/ef_background.dart';
+import 'package:exchange_caclculator/design_system/organism/ef_description_text.dart';
+import 'package:exchange_caclculator/design_system/organism/ef_scaffold.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/widget/currency_calculated_builder.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/widget/currency_estimated_fee_builder.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/widget/currency_exchange_builder.dart';

@@ -15,10 +15,10 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ExchangeRequest {
   String get type;
-  String get cryptoCurrencyId;
   String get fiatCurrencyId;
   num get amount;
   String get amountCurrencyId;
+  String get cryptoCurrencyId;
 
   /// Create a copy of ExchangeRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -37,23 +37,23 @@ mixin _$ExchangeRequest {
         (other.runtimeType == runtimeType &&
             other is ExchangeRequest &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.cryptoCurrencyId, cryptoCurrencyId) ||
-                other.cryptoCurrencyId == cryptoCurrencyId) &&
             (identical(other.fiatCurrencyId, fiatCurrencyId) ||
                 other.fiatCurrencyId == fiatCurrencyId) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.amountCurrencyId, amountCurrencyId) ||
-                other.amountCurrencyId == amountCurrencyId));
+                other.amountCurrencyId == amountCurrencyId) &&
+            (identical(other.cryptoCurrencyId, cryptoCurrencyId) ||
+                other.cryptoCurrencyId == cryptoCurrencyId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, type, cryptoCurrencyId,
-      fiatCurrencyId, amount, amountCurrencyId);
+  int get hashCode => Object.hash(runtimeType, type, fiatCurrencyId, amount,
+      amountCurrencyId, cryptoCurrencyId);
 
   @override
   String toString() {
-    return 'ExchangeRequest(type: $type, cryptoCurrencyId: $cryptoCurrencyId, fiatCurrencyId: $fiatCurrencyId, amount: $amount, amountCurrencyId: $amountCurrencyId)';
+    return 'ExchangeRequest(type: $type, fiatCurrencyId: $fiatCurrencyId, amount: $amount, amountCurrencyId: $amountCurrencyId, cryptoCurrencyId: $cryptoCurrencyId)';
   }
 }
 
@@ -65,10 +65,10 @@ abstract mixin class $ExchangeRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String type,
-      String cryptoCurrencyId,
       String fiatCurrencyId,
       num amount,
-      String amountCurrencyId});
+      String amountCurrencyId,
+      String cryptoCurrencyId});
 }
 
 /// @nodoc
@@ -85,19 +85,15 @@ class _$ExchangeRequestCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = null,
-    Object? cryptoCurrencyId = null,
     Object? fiatCurrencyId = null,
     Object? amount = null,
     Object? amountCurrencyId = null,
+    Object? cryptoCurrencyId = null,
   }) {
     return _then(_self.copyWith(
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      cryptoCurrencyId: null == cryptoCurrencyId
-          ? _self.cryptoCurrencyId
-          : cryptoCurrencyId // ignore: cast_nullable_to_non_nullable
               as String,
       fiatCurrencyId: null == fiatCurrencyId
           ? _self.fiatCurrencyId
@@ -110,6 +106,10 @@ class _$ExchangeRequestCopyWithImpl<$Res>
       amountCurrencyId: null == amountCurrencyId
           ? _self.amountCurrencyId
           : amountCurrencyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cryptoCurrencyId: null == cryptoCurrencyId
+          ? _self.cryptoCurrencyId
+          : cryptoCurrencyId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -208,16 +208,16 @@ extension ExchangeRequestPatterns on ExchangeRequest {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String type, String cryptoCurrencyId,
-            String fiatCurrencyId, num amount, String amountCurrencyId)?
+    TResult Function(String type, String fiatCurrencyId, num amount,
+            String amountCurrencyId, String cryptoCurrencyId)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _ExchangeRequest() when $default != null:
-        return $default(_that.type, _that.cryptoCurrencyId,
-            _that.fiatCurrencyId, _that.amount, _that.amountCurrencyId);
+        return $default(_that.type, _that.fiatCurrencyId, _that.amount,
+            _that.amountCurrencyId, _that.cryptoCurrencyId);
       case _:
         return orElse();
     }
@@ -238,15 +238,15 @@ extension ExchangeRequestPatterns on ExchangeRequest {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String type, String cryptoCurrencyId,
-            String fiatCurrencyId, num amount, String amountCurrencyId)
+    TResult Function(String type, String fiatCurrencyId, num amount,
+            String amountCurrencyId, String cryptoCurrencyId)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ExchangeRequest():
-        return $default(_that.type, _that.cryptoCurrencyId,
-            _that.fiatCurrencyId, _that.amount, _that.amountCurrencyId);
+        return $default(_that.type, _that.fiatCurrencyId, _that.amount,
+            _that.amountCurrencyId, _that.cryptoCurrencyId);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -266,15 +266,15 @@ extension ExchangeRequestPatterns on ExchangeRequest {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String type, String cryptoCurrencyId,
-            String fiatCurrencyId, num amount, String amountCurrencyId)?
+    TResult? Function(String type, String fiatCurrencyId, num amount,
+            String amountCurrencyId, String cryptoCurrencyId)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ExchangeRequest() when $default != null:
-        return $default(_that.type, _that.cryptoCurrencyId,
-            _that.fiatCurrencyId, _that.amount, _that.amountCurrencyId);
+        return $default(_that.type, _that.fiatCurrencyId, _that.amount,
+            _that.amountCurrencyId, _that.cryptoCurrencyId);
       case _:
         return null;
     }
@@ -286,23 +286,24 @@ extension ExchangeRequestPatterns on ExchangeRequest {
 class _ExchangeRequest implements ExchangeRequest {
   const _ExchangeRequest(
       {required this.type,
-      required this.cryptoCurrencyId,
       required this.fiatCurrencyId,
       required this.amount,
-      required this.amountCurrencyId});
+      required this.amountCurrencyId,
+      this.cryptoCurrencyId = 'TATUM-TRON-USDT'});
   factory _ExchangeRequest.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRequestFromJson(json);
 
   @override
   final String type;
   @override
-  final String cryptoCurrencyId;
-  @override
   final String fiatCurrencyId;
   @override
   final num amount;
   @override
   final String amountCurrencyId;
+  @override
+  @JsonKey()
+  final String cryptoCurrencyId;
 
   /// Create a copy of ExchangeRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -325,23 +326,23 @@ class _ExchangeRequest implements ExchangeRequest {
         (other.runtimeType == runtimeType &&
             other is _ExchangeRequest &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.cryptoCurrencyId, cryptoCurrencyId) ||
-                other.cryptoCurrencyId == cryptoCurrencyId) &&
             (identical(other.fiatCurrencyId, fiatCurrencyId) ||
                 other.fiatCurrencyId == fiatCurrencyId) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.amountCurrencyId, amountCurrencyId) ||
-                other.amountCurrencyId == amountCurrencyId));
+                other.amountCurrencyId == amountCurrencyId) &&
+            (identical(other.cryptoCurrencyId, cryptoCurrencyId) ||
+                other.cryptoCurrencyId == cryptoCurrencyId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, type, cryptoCurrencyId,
-      fiatCurrencyId, amount, amountCurrencyId);
+  int get hashCode => Object.hash(runtimeType, type, fiatCurrencyId, amount,
+      amountCurrencyId, cryptoCurrencyId);
 
   @override
   String toString() {
-    return 'ExchangeRequest(type: $type, cryptoCurrencyId: $cryptoCurrencyId, fiatCurrencyId: $fiatCurrencyId, amount: $amount, amountCurrencyId: $amountCurrencyId)';
+    return 'ExchangeRequest(type: $type, fiatCurrencyId: $fiatCurrencyId, amount: $amount, amountCurrencyId: $amountCurrencyId, cryptoCurrencyId: $cryptoCurrencyId)';
   }
 }
 
@@ -355,10 +356,10 @@ abstract mixin class _$ExchangeRequestCopyWith<$Res>
   @useResult
   $Res call(
       {String type,
-      String cryptoCurrencyId,
       String fiatCurrencyId,
       num amount,
-      String amountCurrencyId});
+      String amountCurrencyId,
+      String cryptoCurrencyId});
 }
 
 /// @nodoc
@@ -375,19 +376,15 @@ class __$ExchangeRequestCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
-    Object? cryptoCurrencyId = null,
     Object? fiatCurrencyId = null,
     Object? amount = null,
     Object? amountCurrencyId = null,
+    Object? cryptoCurrencyId = null,
   }) {
     return _then(_ExchangeRequest(
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      cryptoCurrencyId: null == cryptoCurrencyId
-          ? _self.cryptoCurrencyId
-          : cryptoCurrencyId // ignore: cast_nullable_to_non_nullable
               as String,
       fiatCurrencyId: null == fiatCurrencyId
           ? _self.fiatCurrencyId
@@ -400,6 +397,10 @@ class __$ExchangeRequestCopyWithImpl<$Res>
       amountCurrencyId: null == amountCurrencyId
           ? _self.amountCurrencyId
           : amountCurrencyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cryptoCurrencyId: null == cryptoCurrencyId
+          ? _self.cryptoCurrencyId
+          : cryptoCurrencyId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }

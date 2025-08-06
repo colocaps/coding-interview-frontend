@@ -26,7 +26,7 @@ abstract class ExchangeData with _$ExchangeData {
 @freezed
 abstract class CurrencyPrice with _$CurrencyPrice {
   const factory CurrencyPrice({
-    required num fiatToCryptoExchangeRate,
+    required String fiatToCryptoExchangeRate,
   }) = _CurrencyPrice;
 
   factory CurrencyPrice.fromJson(Map<String, dynamic> json) =>

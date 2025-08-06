@@ -7,7 +7,7 @@ part 'exchange_entity.g.dart';
 @freezed
 abstract class ExchangeEntity with _$ExchangeEntity {
   const factory ExchangeEntity({
-    required num exchangeRate,
+    required String exchangeRate,
   }) = _ExchangeEntity;
 
   factory ExchangeEntity.fromJson(Map<String, dynamic> json) =>

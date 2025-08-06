@@ -1,5 +1,5 @@
 import 'package:exchange_caclculator/design_system/molecule/ef_composed_text.dart';
-import 'package:exchange_caclculator/design_system/organism/EFDescription_text.dart';
+import 'package:exchange_caclculator/design_system/organism/ef_description_text.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/bloc/exchange_bloc.dart';
 import 'package:exchange_caclculator/l10n/l10n.dart';
@@ -19,7 +19,7 @@ class CurrencyCalculatedFeeBuilder extends StatelessWidget {
             isLoading: state.status == ExchangeStatus.loading,
             prefixText: context.l10n.equalSign,
             middleText: state.calculatedAmount != null
-                ? '${state.calculatedAmount}'
+                ? state.calculatedAmount!.toStringAsFixed(4)
                 : '....',
             suffixText: state.currencyType == CurrencyType.crypto
                 ? state.selectedFiatCurrency?.currencyName ?? ''

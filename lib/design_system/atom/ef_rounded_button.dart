@@ -1,4 +1,4 @@
-import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
+import 'package:exchange_caclculator/design_system/theme/ef_colors.dart';
 import 'package:flutter/material.dart';
 
 class EFRoundedButton extends StatelessWidget {

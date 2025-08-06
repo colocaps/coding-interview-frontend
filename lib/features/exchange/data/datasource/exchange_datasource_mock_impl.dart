@@ -18,7 +18,7 @@ class ExchangeDatasourceMockImpl extends BaseDataSource
         await Future.delayed(const Duration(seconds: 2), () {});
         return const ExchangeResponse(
           data: ExchangeData(
-            byPrice: CurrencyPrice(fiatToCryptoExchangeRate: 1000),
+            byPrice: CurrencyPrice(fiatToCryptoExchangeRate: '1000'),
           ),
         );
       },

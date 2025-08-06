@@ -28,7 +28,7 @@ Map<String, dynamic> _$ExchangeDataToJson(_ExchangeData instance) =>
 
 _CurrencyPrice _$CurrencyPriceFromJson(Map<String, dynamic> json) =>
     _CurrencyPrice(
-      fiatToCryptoExchangeRate: json['fiatToCryptoExchangeRate'] as num,
+      fiatToCryptoExchangeRate: json['fiatToCryptoExchangeRate'] as String,
     );
 
 Map<String, dynamic> _$CurrencyPriceToJson(_CurrencyPrice instance) =>

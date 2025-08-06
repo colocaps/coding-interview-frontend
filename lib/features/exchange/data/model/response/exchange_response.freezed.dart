@@ -665,7 +665,7 @@ class __$ExchangeDataCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$CurrencyPrice {
-  num get fiatToCryptoExchangeRate;
+  String get fiatToCryptoExchangeRate;
 
   /// Create a copy of CurrencyPrice
   /// with the given fields replaced by the non-null parameter values.
@@ -704,7 +704,7 @@ abstract mixin class $CurrencyPriceCopyWith<$Res> {
           CurrencyPrice value, $Res Function(CurrencyPrice) _then) =
       _$CurrencyPriceCopyWithImpl;
   @useResult
-  $Res call({num fiatToCryptoExchangeRate});
+  $Res call({String fiatToCryptoExchangeRate});
 }
 
 /// @nodoc
@@ -726,7 +726,7 @@ class _$CurrencyPriceCopyWithImpl<$Res>
       fiatToCryptoExchangeRate: null == fiatToCryptoExchangeRate
           ? _self.fiatToCryptoExchangeRate
           : fiatToCryptoExchangeRate // ignore: cast_nullable_to_non_nullable
-              as num,
+              as String,
     ));
   }
 }
@@ -824,7 +824,7 @@ extension CurrencyPricePatterns on CurrencyPrice {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(num fiatToCryptoExchangeRate)? $default, {
+    TResult Function(String fiatToCryptoExchangeRate)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -851,7 +851,7 @@ extension CurrencyPricePatterns on CurrencyPrice {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(num fiatToCryptoExchangeRate) $default,
+    TResult Function(String fiatToCryptoExchangeRate) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -876,7 +876,7 @@ extension CurrencyPricePatterns on CurrencyPrice {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(num fiatToCryptoExchangeRate)? $default,
+    TResult? Function(String fiatToCryptoExchangeRate)? $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -896,7 +896,7 @@ class _CurrencyPrice implements CurrencyPrice {
       _$CurrencyPriceFromJson(json);
 
   @override
-  final num fiatToCryptoExchangeRate;
+  final String fiatToCryptoExchangeRate;
 
   /// Create a copy of CurrencyPrice
   /// with the given fields replaced by the non-null parameter values.
@@ -941,7 +941,7 @@ abstract mixin class _$CurrencyPriceCopyWith<$Res>
       __$CurrencyPriceCopyWithImpl;
   @override
   @useResult
-  $Res call({num fiatToCryptoExchangeRate});
+  $Res call({String fiatToCryptoExchangeRate});
 }
 
 /// @nodoc
@@ -963,7 +963,7 @@ class __$CurrencyPriceCopyWithImpl<$Res>
       fiatToCryptoExchangeRate: null == fiatToCryptoExchangeRate
           ? _self.fiatToCryptoExchangeRate
           : fiatToCryptoExchangeRate // ignore: cast_nullable_to_non_nullable
-              as num,
+              as String,
     ));
   }
 }
