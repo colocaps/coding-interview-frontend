@@ -6,41 +6,35 @@ sealed class ExchangeEvent {}
 class InitialExchangeEvent extends ExchangeEvent {}
 
 class GetCurrencyListEvent extends ExchangeEvent {
-  final CurrencyType request;
-
   GetCurrencyListEvent({required this.request});
+  final CurrencyType request;
 }
 
 class SelectCurrencyListEvent extends ExchangeEvent {
-  final CurrencyType type;
-
   SelectCurrencyListEvent({required this.type});
+  final CurrencyType type;
 }
 
 class SelectCurrencyEvent extends ExchangeEvent {
-  final CurrencyType type;
-  final CurrencyEntity currency;
-
   SelectCurrencyEvent({
     required this.type,
     required this.currency,
   });
+  final CurrencyType type;
+  final CurrencyEntity currency;
 }
 
 class SelectExchangeTypeEvent extends ExchangeEvent {
-  final CurrencyType type;
-
   SelectExchangeTypeEvent({required this.type});
+  final CurrencyType type;
 }
 
 class ExchangeValueChangedEvent extends ExchangeEvent {
-  final num currencyValue;
-
   ExchangeValueChangedEvent({required this.currencyValue});
+  final num currencyValue;
 }
 
 class GetExchangeRateEvent extends ExchangeEvent {
-  final ExchangeRequest request;
-
   GetExchangeRateEvent({required this.request});
+  final ExchangeRequest request;
 }

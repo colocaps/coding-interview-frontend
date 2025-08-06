@@ -1,21 +1,21 @@
-import 'package:exchange_caclculator/design_system/atom/EFRounded_button.dart';
-import 'package:exchange_caclculator/design_system/atom/EFText.dart';
-import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_rounded_button.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_text.dart';
+import 'package:exchange_caclculator/design_system/theme/ef_colors.dart';
 import 'package:flutter/material.dart';
 
 class EFCurrencyExchangeSelector extends StatefulWidget {
   const EFCurrencyExchangeSelector({
-    Key? key,
     required this.initialLeftCurrencySelector,
     required this.initialRightCurrencySelector,
+    super.key,
     this.centerSwapButton,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final Widget initialLeftCurrencySelector;
   final Widget initialRightCurrencySelector;
   final Widget? centerSwapButton;
-  final void Function(bool)? onTap;
+  final void Function({required bool isSwapped})? onTap;
 
   @override
   State<EFCurrencyExchangeSelector> createState() =>
@@ -92,12 +92,12 @@ class _EFCurrencyExchangeSelectorState
           top: 0,
           left: 50,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: EFText(
+            child: const EFText(
               text: 'TENGO',
               color: Colors.grey,
               maxFontSize: 12,
@@ -108,12 +108,12 @@ class _EFCurrencyExchangeSelectorState
           top: 0,
           right: 50,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: EFText(
+            child: const EFText(
               text: 'QIUERO',
               color: Colors.grey,
               maxFontSize: 12,
@@ -125,12 +125,11 @@ class _EFCurrencyExchangeSelectorState
           left: 0,
           right: 0,
           child: Align(
-            alignment: Alignment.center,
             child: widget.centerSwapButton ??
                 EFRoundedButton(
                   onTap: () {
                     _swapCurrencies();
-                    widget.onTap?.call(isSwapped);
+                    widget.onTap?.call(isSwapped: isSwapped);
                   },
                 ),
           ),

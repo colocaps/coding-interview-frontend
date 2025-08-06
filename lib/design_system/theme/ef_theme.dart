@@ -1,5 +1,7 @@
-import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
-import 'package:exchange_caclculator/design_system/theme/EFFont_sizes.dart';
+// ignore_for_file: deprecated_member_use
+
+import 'package:exchange_caclculator/design_system/theme/ef_colors.dart';
+import 'package:exchange_caclculator/design_system/theme/ef_font_sizes.dart';
 import 'package:exchange_caclculator/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 

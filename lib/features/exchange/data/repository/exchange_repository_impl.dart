@@ -16,16 +16,18 @@ class ExchangeRepositoryImpl extends BaseRepository
   final ExchangeDatasource _datasource;
 
   @override
-  Future<Either<CustomException, ExchangeResponse>> getExchangesRate(
-      {required ExchangeRequest request}) async {
+  Future<Either<CustomException, ExchangeResponse>> getExchangesRate({
+    required ExchangeRequest request,
+  }) async {
     return executeDataSource(
       function: () => _datasource.getExchanges(request: request),
     );
   }
 
   @override
-  Future<Either<CustomException, List<CurrencyResponse>>> getCurrencies(
-      {required CurrencyType request}) async {
+  Future<Either<CustomException, List<CurrencyResponse>>> getCurrencies({
+    required CurrencyType request,
+  }) async {
     return executeDataSource(
       function: () => _datasource.getCurrencies(request: request),
     );

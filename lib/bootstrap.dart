@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:exchange_caclculator/core/env/env.dart';
 import 'package:exchange_caclculator/di/injection.config.dart';
 import 'package:exchange_caclculator/di/injection.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -30,7 +30,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   Bloc.observer = const AppBlocObserver();
 
-  await getIt.init(
+  getIt.init(
     environment: Env.environment,
   );
   runApp(await builder());

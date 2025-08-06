@@ -1,11 +1,11 @@
-import 'package:exchange_caclculator/design_system/atom/EFIcon.dart';
-import 'package:exchange_caclculator/design_system/atom/EFText.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_icon.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_text.dart';
 import 'package:flutter/material.dart';
 
 class EFCurrencyDescriptionIcon extends StatelessWidget {
   const EFCurrencyDescriptionIcon({
-    super.key,
     required this.title,
+    super.key,
     this.subtitle,
     this.currencyImage,
     this.maxFontSize = 12,

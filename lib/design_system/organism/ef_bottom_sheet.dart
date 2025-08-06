@@ -1,4 +1,4 @@
-import 'package:exchange_caclculator/design_system/atom/EFText.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_text.dart';
 import 'package:flutter/material.dart';
 
 Future<T?> showEFBottomSheet<T>({
@@ -55,6 +55,7 @@ class BottomSheetBuilder<T> extends StatefulWidget {
   const BottomSheetBuilder({
     required this.items,
     required this.itemWidgetBuilder,
+    super.key,
     this.onItemSelected,
     this.title,
     this.isSearchInputVisible = true,
@@ -136,7 +137,7 @@ class _BottomSheetBuilderState<T> extends State<BottomSheetBuilder<T>> {
                   return widget.itemWidgetBuilder(item);
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 25);
+                  return const SizedBox(height: 25);
                 },
               ),
             ),

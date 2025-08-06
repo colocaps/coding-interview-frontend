@@ -32,27 +32,32 @@ class ExchangeDatasourceImpl extends BaseDataSource
   }
 
   @override
-  Future<ApiResult<List<CurrencyResponse>>> getCurrencies(
-      {required CurrencyType request}) {
+  Future<ApiResult<List<CurrencyResponse>>> getCurrencies({
+    required CurrencyType request,
+  }) {
     switch (request) {
       case CurrencyType.fiat:
         final list = [
-          CurrencyResponse(
-              currencyId: '1',
-              currencyName: 'VES',
-              currencyDescription: 'Bolivares (Bs)'),
-          CurrencyResponse(
-              currencyId: '2',
-              currencyName: 'COP',
-              currencyDescription: 'Pesos Colombianos (COL\$)'),
-          CurrencyResponse(
-              currencyId: '3',
-              currencyName: 'ARS',
-              currencyDescription: 'Pesos Argentinos (ARS\$)'),
-          CurrencyResponse(
-              currencyId: '4',
-              currencyName: 'BRL',
-              currencyDescription: 'Real Brasileño (R\$)'),
+          const CurrencyResponse(
+            currencyId: '1',
+            currencyName: 'VES',
+            currencyDescription: 'Bolivares (Bs)',
+          ),
+          const CurrencyResponse(
+            currencyId: '2',
+            currencyName: 'COP',
+            currencyDescription: r'Pesos Colombianos (COL$)',
+          ),
+          const CurrencyResponse(
+            currencyId: '3',
+            currencyName: 'ARS',
+            currencyDescription: r'Pesos Argentinos (ARS$)',
+          ),
+          const CurrencyResponse(
+            currencyId: '4',
+            currencyName: 'BRL',
+            currencyDescription: r'Real Brasileño (R$)',
+          ),
         ];
 
         return executeRequest(
@@ -62,14 +67,16 @@ class ExchangeDatasourceImpl extends BaseDataSource
         );
       case CurrencyType.crypto:
         final list = [
-          CurrencyResponse(
-              currencyId: '6',
-              currencyName: 'USDT',
-              currencyDescription: 'Teher (USDT)'),
-          CurrencyResponse(
-              currencyId: '7',
-              currencyName: 'USDC',
-              currencyDescription: 'USDC Coin (USDC)'),
+          const CurrencyResponse(
+            currencyId: '6',
+            currencyName: 'USDT',
+            currencyDescription: 'Teher (USDT)',
+          ),
+          const CurrencyResponse(
+            currencyId: '7',
+            currencyName: 'USDC',
+            currencyDescription: 'USDC Coin (USDC)',
+          ),
         ];
 
         return executeRequest(

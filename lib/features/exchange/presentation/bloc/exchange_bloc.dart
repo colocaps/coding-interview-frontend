@@ -15,7 +15,7 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
   ExchangeBloc({
     required this.getCurrenciesUsecase,
     required this.getExchangeRateUsecase,
-  }) : super(ExchangeState()) {
+  }) : super(const ExchangeState()) {
     on<InitialExchangeEvent>(_onInitialExchange);
     on<GetCurrencyListEvent>(_onGetCurrencyList);
     on<SelectCurrencyListEvent>(_selectCurrencyList);
@@ -48,12 +48,14 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
       final calculatedAmount = isCrypto
           ? (state.exhangeAmount! * result.exchangeRate)
           : (state.exhangeAmount! / result.exchangeRate);
-      emit(state.copyWith(
-        exchangeRate: result.exchangeRate,
-        calculatedAmount: calculatedAmount,
-        status: ExchangeStatus.success,
-        dateTime: DateTime.now(),
-      ));
+      emit(
+        state.copyWith(
+          exchangeRate: result.exchangeRate,
+          calculatedAmount: calculatedAmount,
+          status: ExchangeStatus.success,
+          dateTime: DateTime.now(),
+        ),
+      );
     });
   }
 
@@ -61,20 +63,24 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
     SelectExchangeTypeEvent event,
     Emitter<ExchangeState> emit,
   ) async {
-    emit(state.copyWith(
-      currencyType: event.type,
-      dateTime: DateTime.now(),
-    ));
+    emit(
+      state.copyWith(
+        currencyType: event.type,
+        dateTime: DateTime.now(),
+      ),
+    );
   }
 
   Future<void> _setCurrencyValue(
     ExchangeValueChangedEvent event,
     Emitter<ExchangeState> emit,
   ) async {
-    emit(state.copyWith(
-      exhangeAmount: event.currencyValue,
-      dateTime: DateTime.now(),
-    ));
+    emit(
+      state.copyWith(
+        exhangeAmount: event.currencyValue,
+        dateTime: DateTime.now(),
+      ),
+    );
 
     add(
       GetExchangeRateEvent(
@@ -95,12 +101,14 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
     SelectCurrencyListEvent event,
     Emitter<ExchangeState> emit,
   ) async {
-    emit(state.copyWith(
-      status: event.type == CurrencyType.crypto
-          ? ExchangeStatus.showCryptoCurrencies
-          : ExchangeStatus.showFiatCurrencies,
-      dateTime: DateTime.now(),
-    ));
+    emit(
+      state.copyWith(
+        status: event.type == CurrencyType.crypto
+            ? ExchangeStatus.showCryptoCurrencies
+            : ExchangeStatus.showFiatCurrencies,
+        dateTime: DateTime.now(),
+      ),
+    );
   }
 
   Future<void> _selectCurrency(
@@ -108,19 +116,23 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
     Emitter<ExchangeState> emit,
   ) async {
     if (event.type == CurrencyType.crypto) {
-      emit(state.copyWith(
-        selectedCryptoCurrency: event.currency,
-        status: ExchangeStatus.currencySelected,
-        dateTime: DateTime.now(),
-      ));
+      emit(
+        state.copyWith(
+          selectedCryptoCurrency: event.currency,
+          status: ExchangeStatus.currencySelected,
+          dateTime: DateTime.now(),
+        ),
+      );
       return;
     }
     if (event.type == CurrencyType.fiat) {
-      emit(state.copyWith(
-        selectedFiatCurrency: event.currency,
-        status: ExchangeStatus.currencySelected,
-        dateTime: DateTime.now(),
-      ));
+      emit(
+        state.copyWith(
+          selectedFiatCurrency: event.currency,
+          status: ExchangeStatus.currencySelected,
+          dateTime: DateTime.now(),
+        ),
+      );
       return;
     }
   }
@@ -148,18 +160,22 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
       );
     }, (list) {
       if (event.request == CurrencyType.crypto) {
-        emit(state.copyWith(
-          dateTime: DateTime.now(),
-          cryptoCurrencyList: list,
-          selectedCryptoCurrency: list.first,
-          currencyType: CurrencyType.crypto,
-        ));
+        emit(
+          state.copyWith(
+            dateTime: DateTime.now(),
+            cryptoCurrencyList: list,
+            selectedCryptoCurrency: list.first,
+            currencyType: CurrencyType.crypto,
+          ),
+        );
       } else if (event.request == CurrencyType.fiat) {
-        emit(state.copyWith(
-          dateTime: DateTime.now(),
-          fiatCurrencyList: list,
-          selectedFiatCurrency: list.first,
-        ));
+        emit(
+          state.copyWith(
+            dateTime: DateTime.now(),
+            fiatCurrencyList: list,
+            selectedFiatCurrency: list.first,
+          ),
+        );
       }
     });
   }

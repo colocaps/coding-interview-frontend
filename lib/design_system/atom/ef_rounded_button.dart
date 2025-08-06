@@ -2,9 +2,8 @@ import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
 import 'package:flutter/material.dart';
 
 class EFRoundedButton extends StatelessWidget {
-  final void Function()? onTap;
-
   const EFRoundedButton({super.key, this.onTap});
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +12,14 @@ class EFRoundedButton extends StatelessWidget {
       child: Container(
         width: 70,
         height: 70,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: EFColors.secondary,
           shape: BoxShape.circle,
         ),
-        child: Center(
+        child: const Center(
           child: Stack(
             alignment: Alignment.center,
-            children: const [
+            children: [
               Positioned(
                 top: 10,
                 right: 15,

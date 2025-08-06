@@ -1,12 +1,12 @@
 import 'package:exchange_caclculator/core/extensions/widget_extensions.dart';
-import 'package:exchange_caclculator/design_system/atom/EFText.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_text.dart';
 import 'package:flutter/material.dart';
 
 class EFComposedText extends StatelessWidget {
   const EFComposedText({
-    super.key,
     required this.suffixText,
     required this.middleText,
+    super.key,
     this.prefixText,
     this.isLoading = false,
   });
@@ -23,13 +23,14 @@ class EFComposedText extends StatelessWidget {
       child: Row(
         spacing: 6,
         children: [
-          prefixText != null
-              ? EFText(
-                  text: prefixText!,
-                  color: Colors.black,
-                  maxFontSize: 12,
-                )
-              : SizedBox.shrink(),
+          if (prefixText != null)
+            EFText(
+              text: prefixText!,
+              color: Colors.black,
+              maxFontSize: 12,
+            )
+          else
+            const SizedBox.shrink(),
           EFText(text: middleText, color: Colors.black),
           EFText(text: suffixText, color: Colors.black, maxFontSize: 14),
         ],

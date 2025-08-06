@@ -1,20 +1,19 @@
-import 'package:exchange_caclculator/design_system/theme/EFColors.dart';
+import 'package:exchange_caclculator/design_system/theme/ef_colors.dart';
 import 'package:flutter/material.dart';
 
 class EFBackgound extends StatelessWidget {
-  final Widget? child;
-
   const EFBackgound({
-    Key? key,
+    super.key,
     this.child,
-  }) : super(key: key);
+  });
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Color(0xFFE8F4F8),
+      color: const Color(0xFFE8F4F8),
       child: Stack(
         children: [
           Positioned(
@@ -26,7 +25,7 @@ class EFBackgound extends StatelessWidget {
               painter: CurvedShapePainter(),
             ),
           ),
-          child ?? SizedBox.shrink(),
+          child ?? const SizedBox.shrink(),
         ],
       ),
     );
@@ -40,19 +39,17 @@ class CurvedShapePainter extends CustomPainter {
       ..color = EFColors.secondary
       ..style = PaintingStyle.fill;
 
-    final path = Path();
-
-    path.moveTo(size.width, 0);
-    path.quadraticBezierTo(
-      size.width * 0.25,
-      size.height * 0.6,
-      size.width,
-      size.height,
-    );
-
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, 0);
-    path.close();
+    final path = Path()
+      ..moveTo(size.width, 0)
+      ..quadraticBezierTo(
+        size.width * 0.25,
+        size.height * 0.6,
+        size.width,
+        size.height,
+      )
+      ..lineTo(size.width, size.height)
+      ..lineTo(size.width, 0)
+      ..close();
 
     canvas.drawPath(path, paint);
   }

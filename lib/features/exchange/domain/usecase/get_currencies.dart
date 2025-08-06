@@ -11,8 +11,9 @@ class GetCurrenciesUsecase {
 
   final ExchangeRepository _repository;
 
-  Future<Either<CustomException, List<CurrencyEntity>>> call(
-      {required CurrencyType request}) async {
+  Future<Either<CustomException, List<CurrencyEntity>>> call({
+    required CurrencyType request,
+  }) async {
     final result = await _repository.getCurrencies(request: request);
 
     return result.map((response) => response.map((e) => e.toEntity()).toList());

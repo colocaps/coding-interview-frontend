@@ -1,11 +1,11 @@
-import 'package:exchange_caclculator/design_system/molecule/EFDescription_icon.dart';
+import 'package:exchange_caclculator/design_system/molecule/ef_description_icon.dart';
 import 'package:flutter/material.dart';
 
 class EFIconSelector extends StatelessWidget {
   const EFIconSelector({
-    super.key,
     required this.currencyDescriptionIcon,
     required this.onTap,
+    super.key,
   });
 
   final EFCurrencyDescriptionIcon currencyDescriptionIcon;

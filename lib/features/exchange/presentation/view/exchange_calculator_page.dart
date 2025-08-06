@@ -1,5 +1,5 @@
-import 'package:exchange_caclculator/design_system/molecule/EFButton.dart';
-import 'package:exchange_caclculator/design_system/molecule/EFComposed_text.dart';
+import 'package:exchange_caclculator/design_system/molecule/ef_button.dart';
+import 'package:exchange_caclculator/design_system/molecule/ef_composed_text.dart';
 import 'package:exchange_caclculator/design_system/organism/EFBackground.dart';
 import 'package:exchange_caclculator/design_system/organism/EFDescription_text.dart';
 import 'package:exchange_caclculator/design_system/organism/EFScaffold.dart';
@@ -27,15 +27,15 @@ class ExchangeCalculatorPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    CurrencyExchangeBuilder(),
-                    SizedBox(height: 10),
-                    CurrencyExchangeInputBuilder(),
-                    SizedBox(height: 20),
-                    CurrencyEstimatedFeeBuilder(),
-                    SizedBox(height: 10),
-                    CurrencyCalculatedFeeBuilder(),
-                    SizedBox(height: 10),
-                    EFDescriptionText(
+                    const CurrencyExchangeBuilder(),
+                    const SizedBox(height: 10),
+                    const CurrencyExchangeInputBuilder(),
+                    const SizedBox(height: 20),
+                    const CurrencyEstimatedFeeBuilder(),
+                    const SizedBox(height: 10),
+                    const CurrencyCalculatedFeeBuilder(),
+                    const SizedBox(height: 10),
+                    const EFDescriptionText(
                       text: 'Tiempo estimado',
                       composedText: EFComposedText(
                         prefixText: '≈',
@@ -43,7 +43,7 @@ class ExchangeCalculatorPage extends StatelessWidget {
                         suffixText: 'Min',
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     EFButton(onPressed: () {}, title: 'Cambiar'),
                   ],
                 ),

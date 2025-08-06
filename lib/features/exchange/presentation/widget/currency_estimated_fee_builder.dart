@@ -1,4 +1,4 @@
-import 'package:exchange_caclculator/design_system/molecule/EFComposed_text.dart';
+import 'package:exchange_caclculator/design_system/molecule/ef_composed_text.dart';
 import 'package:exchange_caclculator/design_system/organism/EFDescription_text.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/bloc/exchange_bloc.dart';

@@ -1,7 +1,7 @@
-import 'package:exchange_caclculator/design_system/atom/EFIcon.dart';
-import 'package:exchange_caclculator/design_system/molecule/EFDescription_icon.dart';
-import 'package:exchange_caclculator/design_system/organism/EFBottom_sheet.dart';
-import 'package:exchange_caclculator/design_system/organism/EFIcon_radio_selector.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_icon.dart';
+import 'package:exchange_caclculator/design_system/molecule/ef_description_icon.dart';
+import 'package:exchange_caclculator/design_system/organism/ef_bottom_sheet.dart';
+import 'package:exchange_caclculator/design_system/organism/ef_icon_radio_selector.dart';
 import 'package:exchange_caclculator/di/injection.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/domain/entity/currency_entity.dart';
@@ -69,7 +69,7 @@ class ExchangeCalculatorScreen extends StatelessWidget {
     required CurrencyEntity? selected,
     required CurrencyType type,
   }) async {
-    await showEFBottomSheet<EFIconRadioSelector>(
+    await showEFBottomSheet<EFIconRadioSelector<CurrencyEntity>>(
       isSearchInputVisible: false,
       title: title,
       context: context,

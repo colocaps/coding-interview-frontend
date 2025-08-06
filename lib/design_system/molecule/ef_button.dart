@@ -1,4 +1,4 @@
-import 'package:exchange_caclculator/design_system/atom/EFText.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_text.dart';
 import 'package:flutter/material.dart';
 
 class EFButton extends StatefulWidget {
@@ -28,7 +28,7 @@ class ButtonState extends State<EFButton> {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       child: ElevatedButton(
         onPressed: widget.onPressed,
         child: body(),
@@ -57,7 +57,7 @@ class ButtonState extends State<EFButton> {
             ),
           ),
           if (widget.isLoading)
-            Positioned(
+            const Positioned(
               left: 0,
               right: 0,
               top: 0,

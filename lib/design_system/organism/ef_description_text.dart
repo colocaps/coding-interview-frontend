@@ -1,12 +1,12 @@
-import 'package:exchange_caclculator/design_system/atom/EFText.dart';
-import 'package:exchange_caclculator/design_system/molecule/EFComposed_text.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_text.dart';
+import 'package:exchange_caclculator/design_system/molecule/ef_composed_text.dart';
 import 'package:flutter/material.dart';
 
 class EFDescriptionText extends StatelessWidget {
   const EFDescriptionText({
-    super.key,
     required this.composedText,
     required this.text,
+    super.key,
   });
 
   final EFComposedText composedText;

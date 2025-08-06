@@ -86,7 +86,5 @@ abstract class BaseDataSource {
     }
   }
 
-  Future<void> handleUnauthorized() async {
-    //TODO manage unauthorized
-  }
+  Future<void> handleUnauthorized() async {}
 }

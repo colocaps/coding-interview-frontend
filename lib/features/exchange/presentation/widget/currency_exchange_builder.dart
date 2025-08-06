@@ -1,7 +1,7 @@
-import 'package:exchange_caclculator/design_system/atom/EFIcon.dart';
-import 'package:exchange_caclculator/design_system/molecule/EFDescription_icon.dart';
-import 'package:exchange_caclculator/design_system/organism/EFCurrency_exchange_selector.dart';
-import 'package:exchange_caclculator/design_system/organism/EFIcon_selector.dart';
+import 'package:exchange_caclculator/design_system/atom/ef_icon.dart';
+import 'package:exchange_caclculator/design_system/molecule/ef_description_icon.dart';
+import 'package:exchange_caclculator/design_system/organism/ef_currency_exchange_selector.dart';
+import 'package:exchange_caclculator/design_system/organism/ef_icon_selector.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/bloc/exchange_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class CurrencyExchangeBuilder extends StatelessWidget {
         if (state.selectedCryptoCurrency != null &&
             state.selectedFiatCurrency != null) {
           return EFCurrencyExchangeSelector(
-            onTap: (isSwapped) {
+            onTap: ({required bool isSwapped}) {
               context.read<ExchangeBloc>().add(
                     SelectExchangeTypeEvent(
                       type: isSwapped ? CurrencyType.fiat : CurrencyType.crypto,
@@ -28,7 +28,8 @@ class CurrencyExchangeBuilder extends StatelessWidget {
               currencyDescriptionIcon: EFCurrencyDescriptionIcon(
                 title: state.selectedCryptoCurrency!.currencyName,
                 currencyImage: Currency.fromString(
-                    state.selectedCryptoCurrency!.currencyName),
+                  state.selectedCryptoCurrency!.currencyName,
+                ),
                 maxFontSize: 18,
               ),
               onTap: () {
@@ -43,7 +44,8 @@ class CurrencyExchangeBuilder extends StatelessWidget {
               currencyDescriptionIcon: EFCurrencyDescriptionIcon(
                 title: state.selectedFiatCurrency!.currencyName,
                 currencyImage: Currency.fromString(
-                    state.selectedFiatCurrency!.currencyName),
+                  state.selectedFiatCurrency!.currencyName,
+                ),
                 maxFontSize: 18,
               ),
               onTap: () {
@@ -56,7 +58,7 @@ class CurrencyExchangeBuilder extends StatelessWidget {
             ),
           );
         }
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       },
     );
   }

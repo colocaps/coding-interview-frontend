@@ -5,21 +5,21 @@ import 'package:go_router/go_router.dart';
 final router = GoRouter(
   initialLocation: ExchangeCalculatorScreen.routePath,
   errorBuilder: (context, state) {
-    return ErrorScreen();
+    return const ErrorScreen();
   },
   routes: [
     GoRoute(
       path: ExchangeCalculatorScreen.routePath,
       name: ExchangeCalculatorScreen.routeName,
       builder: (context, state) {
-        return ExchangeCalculatorScreen();
+        return const ExchangeCalculatorScreen();
       },
     ),
     GoRoute(
       path: ErrorScreen.routePath,
       name: ErrorScreen.routeName,
       builder: (context, state) {
-        return ErrorScreen();
+        return const ErrorScreen();
       },
     ),
   ],

@@ -11,8 +11,9 @@ class GetExchangeRateUsecase {
 
   final ExchangeRepository _repository;
 
-  Future<Either<CustomException, ExchangeEntity>> call(
-      {required ExchangeRequest request}) async {
+  Future<Either<CustomException, ExchangeEntity>> call({
+    required ExchangeRequest request,
+  }) async {
     final result = await _repository.getExchangesRate(request: request);
 
     return result.map((response) => response.toEntity());
