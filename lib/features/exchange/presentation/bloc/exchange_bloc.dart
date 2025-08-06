@@ -67,6 +67,7 @@ class ExchangeBloc extends Bloc<ExchangeEvent, ExchangeState> {
   ) async {
     emit(
       state.copyWith(
+        status: ExchangeStatus.exchangeTypeEvent,
         currencyType: event.type,
         dateTime: DateTime.now(),
       ),

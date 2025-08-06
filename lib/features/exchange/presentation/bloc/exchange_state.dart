@@ -8,6 +8,7 @@ enum ExchangeStatus {
   showCryptoCurrencies,
   showFiatCurrencies,
   currencySelected,
+  exchangeTypeEvent,
 }
 
 @freezed
