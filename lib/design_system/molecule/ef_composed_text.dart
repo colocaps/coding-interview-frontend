@@ -21,7 +21,6 @@ class EFComposedText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
-        spacing: 6,
         children: [
           if (prefixText != null)
             EFText(
@@ -31,7 +30,9 @@ class EFComposedText extends StatelessWidget {
             )
           else
             const SizedBox.shrink(),
+          const SizedBox(width: 6),
           EFText(text: middleText, color: Colors.black),
+          const SizedBox(width: 6),
           EFText(text: suffixText, color: Colors.black, maxFontSize: 14),
         ],
       ).withShimmer(isLoading: isLoading),

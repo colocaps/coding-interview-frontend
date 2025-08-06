@@ -8,7 +8,7 @@ class EFIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return currencyImage?.icon() ?? const SizedBox(width: 30);
+    return currencyImage?.icon() ?? const SizedBox(width: 20);
   }
 }
 
@@ -48,5 +48,5 @@ enum Currency {
     }
   }
 
-  Widget icon({double size = 30}) => asset.image(width: size, height: size);
+  Widget icon({double size = 20}) => asset.image(width: size, height: size);
 }

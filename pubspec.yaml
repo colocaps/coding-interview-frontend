@@ -30,6 +30,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^10.0.0
+  build_runner:
   flutter_gen_runner:
   flutter_test:
     sdk: flutter

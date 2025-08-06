@@ -7,6 +7,7 @@ import 'package:exchange_caclculator/features/exchange/presentation/widget/curre
 import 'package:exchange_caclculator/features/exchange/presentation/widget/currency_estimated_fee_builder.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/widget/currency_exchange_builder.dart';
 import 'package:exchange_caclculator/features/exchange/presentation/widget/currency_exchange_input_builder.dart';
+import 'package:exchange_caclculator/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class ExchangeCalculatorPage extends StatelessWidget {
@@ -35,16 +36,16 @@ class ExchangeCalculatorPage extends StatelessWidget {
                     const SizedBox(height: 10),
                     const CurrencyCalculatedFeeBuilder(),
                     const SizedBox(height: 10),
-                    const EFDescriptionText(
-                      text: 'Tiempo estimado',
+                    EFDescriptionText(
+                      text: context.l10n.estimatedTime,
                       composedText: EFComposedText(
-                        prefixText: '≈',
-                        middleText: '10',
-                        suffixText: 'Min',
+                        prefixText: context.l10n.equalSign,
+                        middleText: context.l10n.ten,
+                        suffixText: context.l10n.min,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    EFButton(onPressed: () {}, title: 'Cambiar'),
+                    EFButton(onPressed: () {}, title: context.l10n.change),
                   ],
                 ),
               ),

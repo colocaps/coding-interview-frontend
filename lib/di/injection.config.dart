@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -67,10 +66,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i851.ExchangeRepository>(() => _i815.ExchangeRepositoryImpl(
         datasource: gh<_i655.ExchangeDatasource>()));
-    gh.factory<_i90.GetExchangeRateUsecase>(
-        () => _i90.GetExchangeRateUsecase(gh<_i851.ExchangeRepository>()));
     gh.factory<_i995.GetCurrenciesUsecase>(
         () => _i995.GetCurrenciesUsecase(gh<_i851.ExchangeRepository>()));
+    gh.factory<_i90.GetExchangeRateUsecase>(
+        () => _i90.GetExchangeRateUsecase(gh<_i851.ExchangeRepository>()));
     gh.singleton<_i129.ExchangeService>(
         () => _i129.ExchangeService(gh<_i361.Dio>()));
     gh.singleton<_i655.ExchangeDatasource>(

@@ -9,5 +9,7 @@
     "change": "Cambio",
     "min": "Min",
     "ten": "10",
-    "wereSorryWeEncounterAnErrorTryingToGetTheFees": "Lo sentimos hubo un error al consultar las tasas"
+    "wereSorryWeEncounterAnErrorTryingToGetTheFees": "Lo sentimos hubo un error al consultar las tasas",
+    "have": "QUIERO",
+    "want": "TENGO"
 }

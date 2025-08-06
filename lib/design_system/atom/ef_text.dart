@@ -34,7 +34,7 @@ class EFText extends StatelessWidget {
       textAlign: textAlign,
       overflow: TextOverflow.ellipsis,
       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontSize: 18,
+                // fontSize: 10,
                 color: color,
                 fontFamily: FontFamily.poppins,
               ) ??

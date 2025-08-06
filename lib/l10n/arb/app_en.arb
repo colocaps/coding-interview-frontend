@@ -9,7 +9,8 @@
     "change": "Change",
     "min": "Min",
     "ten": "10",
-    "wereSorryWeEncounterAnErrorTryingToGetTheFees": "We're sorry, we encounter an error when we try to get the currency fee"
-
+    "wereSorryWeEncounterAnErrorTryingToGetTheFees": "We're sorry, we encounter an error when we try to get the currency fee",
+    "have": "I HAVE",
+    "want": "I WANT"
    
 }

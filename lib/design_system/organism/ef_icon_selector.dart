@@ -18,7 +18,7 @@ class EFIconSelector extends StatelessWidget {
       child: Row(
         children: [
           currencyDescriptionIcon,
-          const Icon(Icons.keyboard_arrow_down_sharp, size: 25),
+          const Icon(Icons.keyboard_arrow_down_sharp, size: 20),
         ],
       ),
     );

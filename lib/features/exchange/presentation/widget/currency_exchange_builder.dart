@@ -30,7 +30,6 @@ class CurrencyExchangeBuilder extends StatelessWidget {
                 currencyImage: Currency.fromString(
                   state.selectedCryptoCurrency!.currencyName,
                 ),
-                maxFontSize: 18,
               ),
               onTap: () {
                 context.read<ExchangeBloc>().add(
@@ -46,7 +45,6 @@ class CurrencyExchangeBuilder extends StatelessWidget {
                 currencyImage: Currency.fromString(
                   state.selectedFiatCurrency!.currencyName,
                 ),
-                maxFontSize: 18,
               ),
               onTap: () {
                 context.read<ExchangeBloc>().add(

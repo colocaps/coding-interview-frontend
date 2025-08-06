@@ -35,7 +35,7 @@ class EFExchangeInput extends StatelessWidget {
                   const TextInputType.numberWithOptions(decimal: true),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontSize: 14,
                 color: Colors.black,
               ),
               decoration: const InputDecoration(
@@ -49,7 +49,7 @@ class EFExchangeInput extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(vertical: 12),
                 hintStyle: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 14,
                   color: Colors.black,
                 ),
                 hintText: '0.00',

@@ -10,8 +10,8 @@ class EFRoundedButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 70,
-        height: 70,
+        width: 60,
+        height: 60,
         decoration: const BoxDecoration(
           color: EFColors.secondary,
           shape: BoxShape.circle,
@@ -23,12 +23,12 @@ class EFRoundedButton extends StatelessWidget {
               Positioned(
                 top: 10,
                 right: 15,
-                child: Icon(Icons.arrow_back, color: Colors.white, size: 30),
+                child: Icon(Icons.arrow_back, color: Colors.white, size: 23),
               ),
               Positioned(
                 bottom: 10,
                 left: 15,
-                child: Icon(Icons.arrow_forward, color: Colors.white, size: 30),
+                child: Icon(Icons.arrow_forward, color: Colors.white, size: 23),
               ),
             ],
           ),
