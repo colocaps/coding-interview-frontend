@@ -13,5 +13,8 @@
     "have": "QUIERO",
     "want": "TENGO",
     "maintenanceTitle": "Estamos en mantenimiento",
-    "maintenanceMessage": "Volvemos enseguida. Gracias por tu paciencia."
+    "maintenanceMessage": "Volvemos enseguida. Gracias por tu paciencia.",
+    "forceUpdateTitle": "Actualización requerida",
+    "forceUpdateMessage": "Hay una nueva versión disponible. Actualizá la app para continuar.",
+    "forceUpdateCta": "Ir a la tienda"
 }

@@ -51,4 +51,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get maintenanceMessage =>
       'The app is under maintenance. Thanks for your patience.';
+
+  @override
+  String get forceUpdateTitle => 'Update required';
+
+  @override
+  String get forceUpdateMessage =>
+      'A new version is available. Please update the app to continue.';
+
+  @override
+  String get forceUpdateCta => 'Go to store';
 }

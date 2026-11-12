@@ -34,6 +34,10 @@ class RemoteConfigMockImpl implements RemoteConfig {
   /// Defaults used when a key is missing from the supplied map/JSON.
   static const Map<String, Object?> defaultValues = {
     RemoteConfigKeys.isMaintenanceMode: false,
+    RemoteConfigKeys.minRequiredVersionAndroid: '0.0.0',
+    RemoteConfigKeys.minRequiredVersionIos: '0.0.0',
+    RemoteConfigKeys.storeUrlAndroid: '',
+    RemoteConfigKeys.storeUrlIos: '',
   };
 
   static Future<RemoteConfigMockImpl> loadFromAsset({
@@ -75,6 +79,22 @@ class RemoteConfigMockImpl implements RemoteConfig {
         values,
         RemoteConfigKeys.isMaintenanceMode,
       ),
+      minRequiredVersionAndroid: _readString(
+        values,
+        RemoteConfigKeys.minRequiredVersionAndroid,
+      ),
+      minRequiredVersionIos: _readString(
+        values,
+        RemoteConfigKeys.minRequiredVersionIos,
+      ),
+      storeUrlAndroid: _readString(
+        values,
+        RemoteConfigKeys.storeUrlAndroid,
+      ),
+      storeUrlIos: _readString(
+        values,
+        RemoteConfigKeys.storeUrlIos,
+      ),
     );
   }
 
@@ -91,6 +111,12 @@ class RemoteConfigMockImpl implements RemoteConfig {
     if (value is bool) return value;
     if (value is String) return value.toLowerCase() == 'true';
     return defaultValues[key] as bool? ?? false;
+  }
+
+  static String _readString(Map<String, Object?> values, String key) {
+    final value = values[key];
+    if (value is String) return value.trim();
+    return defaultValues[key] as String? ?? '';
   }
 
   void dispose() {

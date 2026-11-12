@@ -1,6 +1,7 @@
 import 'package:exchange_caclculator/core/env/env_banner.dart';
 import 'package:exchange_caclculator/core/router/exchange_calculator_router.dart';
 import 'package:exchange_caclculator/design_system/theme/ef_theme.dart';
+import 'package:exchange_caclculator/features/force_update/presentation/view/force_update_widget.dart';
 import 'package:exchange_caclculator/features/maintenance/presentation/view/maintenance_widget.dart';
 import 'package:exchange_caclculator/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,10 @@ class App extends StatelessWidget {
       theme: EFTheme.lightTheme(),
       debugShowCheckedModeBanner: false,
       builder: (context, child) => EnvBanner(
-        child: MaintenanceWidget(
-          child: child ?? const SizedBox.shrink(),
+        child: ForceUpdateWidget(
+          child: MaintenanceWidget(
+            child: child ?? const SizedBox.shrink(),
+          ),
         ),
       ),
       localizationsDelegates: const [

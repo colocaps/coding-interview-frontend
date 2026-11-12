@@ -30,6 +30,9 @@ RemoteConfigMockImpl.fromJson({
 });
 ```
 
+## Priority
+`ForceUpdateWidget` wraps this gate in `App`, so force update wins if both
+flags are on.
+
 ## Known gaps
 - Development/production use `RemoteConfigInactiveImpl` (always off)
-- Force update will share `RemoteConfigState` / `RemoteConfigKeys`

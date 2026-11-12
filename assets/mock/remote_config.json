@@ -1,3 +1,7 @@
 {
-  "is_maintenance_mode": true
+  "is_maintenance_mode": false,
+  "min_required_version_android": "0.0.0",
+  "min_required_version_ios": "2.0.0",
+  "store_url_android": "https://play.google.com/store/apps/details?id=com.exchange.calculator.org.exchange_caclculator",
+  "store_url_ios": "https://apps.apple.com/app/id000000000"
 }

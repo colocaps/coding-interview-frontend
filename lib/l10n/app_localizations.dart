@@ -181,6 +181,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The app is under maintenance. Thanks for your patience.'**
   String get maintenanceMessage;
+
+  /// No description provided for @forceUpdateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Update required'**
+  String get forceUpdateTitle;
+
+  /// No description provided for @forceUpdateMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'A new version is available. Please update the app to continue.'**
+  String get forceUpdateMessage;
+
+  /// No description provided for @forceUpdateCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to store'**
+  String get forceUpdateCta;
 }
 
 class _AppLocalizationsDelegate

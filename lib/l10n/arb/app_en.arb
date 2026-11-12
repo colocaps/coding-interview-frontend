@@ -13,5 +13,8 @@
     "have": "I HAVE",
     "want": "I WANT",
     "maintenanceTitle": "We'll be right back",
-    "maintenanceMessage": "The app is under maintenance. Thanks for your patience."
+    "maintenanceMessage": "The app is under maintenance. Thanks for your patience.",
+    "forceUpdateTitle": "Update required",
+    "forceUpdateMessage": "A new version is available. Please update the app to continue.",
+    "forceUpdateCta": "Go to store"
 }

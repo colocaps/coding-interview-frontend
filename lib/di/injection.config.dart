@@ -15,6 +15,7 @@ import 'package:exchange_caclculator/core/networking/modules/logger_module.dart'
     as _i970;
 import 'package:exchange_caclculator/core/networking/modules/network_module.dart'
     as _i687;
+import 'package:exchange_caclculator/core/app_info/app_info.dart' as _i101;
 import 'package:exchange_caclculator/core/remote_config/remote_config.dart'
     as _i908;
 import 'package:exchange_caclculator/core/remote_config/remote_config_inactive_impl.dart'
@@ -35,6 +36,10 @@ import 'package:exchange_caclculator/features/exchange/domain/usecase/get_curren
     as _i995;
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_rate_usecase.dart'
     as _i90;
+import 'package:exchange_caclculator/features/force_update/data/repository/force_update_repository_impl.dart'
+    as _i412;
+import 'package:exchange_caclculator/features/force_update/domain/repository/force_update_repository.dart'
+    as _i413;
 import 'package:exchange_caclculator/features/maintenance/data/repository/maintenance_repository_impl.dart'
     as _i831;
 import 'package:exchange_caclculator/features/maintenance/domain/repository/maintenance_repository.dart'
@@ -79,6 +84,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i693.MaintenanceRepository>(
       () => _i831.MaintenanceRepositoryImpl(
           remoteConfig: gh<_i908.RemoteConfig>()),
+    );
+    gh.lazySingleton<_i413.ForceUpdateRepository>(
+      () => _i412.ForceUpdateRepositoryImpl(
+        remoteConfig: gh<_i908.RemoteConfig>(),
+        appInfo: gh<_i101.AppInfo>(),
+      ),
     );
     gh.factory<_i851.ExchangeRepository>(() => _i815.ExchangeRepositoryImpl(
         datasource: gh<_i655.ExchangeDatasource>()));

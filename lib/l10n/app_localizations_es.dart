@@ -51,4 +51,14 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get maintenanceMessage =>
       'Volvemos enseguida. Gracias por tu paciencia.';
+
+  @override
+  String get forceUpdateTitle => 'Actualización requerida';
+
+  @override
+  String get forceUpdateMessage =>
+      'Hay una nueva versión disponible. Actualizá la app para continuar.';
+
+  @override
+  String get forceUpdateCta => 'Ir a la tienda';
 }
