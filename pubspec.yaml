@@ -32,6 +32,8 @@ dev_dependencies:
   bloc_test: ^10.0.0
   build_runner: ^2.7.1
   flutter_gen_runner: ^5.14.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.7
   flutter_test:
     sdk: flutter
   freezed: ^3.2.3
@@ -47,6 +49,26 @@ flutter_gen:
     lottie: true
     rive: true
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/splash/app_icon.png
+  adaptive_icon_background: "#FFFD3F"
+  adaptive_icon_foreground: assets/splash/app_icon.png
+  remove_alpha_ios: true
+
+flutter_native_splash:
+  color: "#FFFD3F"
+  image: assets/splash/app_icon.png
+  android: true
+  # iOS launch screen is managed manually (SplashIcon) to avoid VGV cache/name collisions.
+  ios: false
+  web: false
+  android_12:
+    color: "#FFFD3F"
+    image: assets/splash/app_icon.png
+    icon_background_color: "#FFFD3F"
+
 flutter:
   uses-material-design: true
   generate: true
@@ -54,6 +76,7 @@ flutter:
     - assets/
     - assets/fiat_currencies/
     - assets/cripto_currencies/
+    - assets/splash/
    
 
   fonts:
