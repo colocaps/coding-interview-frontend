@@ -44,4 +44,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get want => 'I WANT';
+
+  @override
+  String get maintenanceTitle => 'We\'ll be right back';
+
+  @override
+  String get maintenanceMessage =>
+      'The app is under maintenance. Thanks for your patience.';
 }

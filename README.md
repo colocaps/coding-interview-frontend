@@ -83,7 +83,7 @@ Se utiliza la librería **GetIt** como service locator e inyección de dependenc
 
 ## 🚀 Cómo ejecutar la app
 
-> **Versión recomendada:** Flutter `3.24` (la misma que usa el Dorado)
+> **Versión recomendada:** Flutter `3.35.1`
 
 ### 1. Instalar dependencias
 

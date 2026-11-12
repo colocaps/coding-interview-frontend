@@ -77,6 +77,7 @@ flutter:
     - assets/fiat_currencies/
     - assets/cripto_currencies/
     - assets/splash/
+    - assets/mock/
    
 
   fonts:

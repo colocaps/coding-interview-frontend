@@ -11,5 +11,7 @@
     "ten": "10",
     "wereSorryWeEncounterAnErrorTryingToGetTheFees": "Lo sentimos hubo un error al consultar las tasas",
     "have": "QUIERO",
-    "want": "TENGO"
+    "want": "TENGO",
+    "maintenanceTitle": "Estamos en mantenimiento",
+    "maintenanceMessage": "Volvemos enseguida. Gracias por tu paciencia."
 }

@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:exchange_caclculator/core/env/env.dart';
+import 'package:exchange_caclculator/core/remote_config/remote_config.dart';
+import 'package:exchange_caclculator/core/remote_config/remote_config_mock_impl.dart';
 import 'package:exchange_caclculator/di/injection.config.dart';
 import 'package:exchange_caclculator/di/injection.dart';
 import 'package:flutter/widgets.dart';
@@ -27,6 +29,8 @@ Future<void> bootstrap(
   FutureOr<Widget> Function() builder, {
   required AppEnvironment environment,
 }) async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -35,5 +39,24 @@ Future<void> bootstrap(
 
   Env.current = environment;
   getIt.init(environment: environment.name);
+
+  if (environment.isMock) {
+    await _registerMockRemoteConfig();
+  }
+
   runApp(await builder());
+}
+
+/// Loads `assets/mock/remote_config.json` before any feature resolves
+/// [RemoteConfig], so maintenance (and later force update) read the file.
+Future<void> _registerMockRemoteConfig() async {
+  final remoteConfig = await RemoteConfigMockImpl.loadFromAsset();
+  log(
+    'Mock remote config loaded from ${RemoteConfigMockImpl.assetPath}: '
+    '${remoteConfig.values}',
+  );
+  if (getIt.isRegistered<RemoteConfig>()) {
+    await getIt.unregister<RemoteConfig>();
+  }
+  getIt.registerSingleton<RemoteConfig>(remoteConfig);
 }

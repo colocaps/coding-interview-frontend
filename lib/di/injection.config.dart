@@ -15,6 +15,10 @@ import 'package:exchange_caclculator/core/networking/modules/logger_module.dart'
     as _i970;
 import 'package:exchange_caclculator/core/networking/modules/network_module.dart'
     as _i687;
+import 'package:exchange_caclculator/core/remote_config/remote_config.dart'
+    as _i908;
+import 'package:exchange_caclculator/core/remote_config/remote_config_inactive_impl.dart'
+    as _i214;
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart'
     as _i655;
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource_impl.dart'
@@ -31,6 +35,10 @@ import 'package:exchange_caclculator/features/exchange/domain/usecase/get_curren
     as _i995;
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_rate_usecase.dart'
     as _i90;
+import 'package:exchange_caclculator/features/maintenance/data/repository/maintenance_repository_impl.dart'
+    as _i831;
+import 'package:exchange_caclculator/features/maintenance/domain/repository/maintenance_repository.dart'
+    as _i693;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
@@ -60,10 +68,18 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i579.ExchangeDatasourceMockImpl(),
       registerFor: {_mock},
     );
+    gh.lazySingleton<_i908.RemoteConfig>(
+      () => _i214.RemoteConfigInactiveImpl(),
+      registerFor: {_development, _production},
+    );
     gh.lazySingleton<_i361.Dio>(() => networkModule.efDio(
           gh<_i870.EFInterceptor>(),
           gh<_i528.PrettyDioLogger>(),
         ));
+    gh.lazySingleton<_i693.MaintenanceRepository>(
+      () => _i831.MaintenanceRepositoryImpl(
+          remoteConfig: gh<_i908.RemoteConfig>()),
+    );
     gh.factory<_i851.ExchangeRepository>(() => _i815.ExchangeRepositoryImpl(
         datasource: gh<_i655.ExchangeDatasource>()));
     gh.factory<_i995.GetCurrenciesUsecase>(

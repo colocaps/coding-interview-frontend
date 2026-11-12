@@ -11,6 +11,7 @@
     "ten": "10",
     "wereSorryWeEncounterAnErrorTryingToGetTheFees": "We're sorry, we encounter an error when we try to get the currency fee",
     "have": "I HAVE",
-    "want": "I WANT"
-   
+    "want": "I WANT",
+    "maintenanceTitle": "We'll be right back",
+    "maintenanceMessage": "The app is under maintenance. Thanks for your patience."
 }

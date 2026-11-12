@@ -44,4 +44,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get want => 'TENGO';
+
+  @override
+  String get maintenanceTitle => 'Estamos en mantenimiento';
+
+  @override
+  String get maintenanceMessage =>
+      'Volvemos enseguida. Gracias por tu paciencia.';
 }
