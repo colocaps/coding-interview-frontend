@@ -23,15 +23,17 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(
+  FutureOr<Widget> Function() builder, {
+  required AppEnvironment environment,
+}) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
   Bloc.observer = const AppBlocObserver();
 
-  getIt.init(
-    environment: Env.environment,
-  );
+  Env.current = environment;
+  getIt.init(environment: environment.name);
   runApp(await builder());
 }

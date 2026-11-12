@@ -1,3 +1,4 @@
+import 'package:exchange_caclculator/core/env/env_banner.dart';
 import 'package:exchange_caclculator/core/router/exchange_calculator_router.dart';
 import 'package:exchange_caclculator/design_system/theme/ef_theme.dart';
 import 'package:exchange_caclculator/l10n/app_localizations.dart';
@@ -13,6 +14,10 @@ class App extends StatelessWidget {
       title: 'Exchange Caclculator',
       locale: const Locale('es', 'ES'),
       theme: EFTheme.lightTheme(),
+      debugShowCheckedModeBanner: false,
+      builder: (context, child) => EnvBanner(
+        child: child ?? const SizedBox.shrink(),
+      ),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

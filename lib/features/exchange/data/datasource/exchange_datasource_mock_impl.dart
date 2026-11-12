@@ -1,12 +1,13 @@
 import 'package:exchange_caclculator/core/api/api_result.dart';
 import 'package:exchange_caclculator/core/base/base_datasource.dart';
+import 'package:exchange_caclculator/core/env/env.dart';
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart';
 import 'package:exchange_caclculator/features/exchange/data/model/request/exchange_request.dart';
 import 'package:exchange_caclculator/features/exchange/data/model/response/currency_response.dart';
 import 'package:exchange_caclculator/features/exchange/data/model/response/exchange_response.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: ExchangeDatasource, env: ['mock'])
+@Singleton(as: ExchangeDatasource, env: [AppEnv.mock])
 class ExchangeDatasourceMockImpl extends BaseDataSource
     implements ExchangeDatasource {
   @override

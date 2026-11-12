@@ -36,7 +36,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ten => '10';
 
   @override
-  String get wereSorryWeEncounterAnErrorTryingToGetTheFees => 'We\'re sorry, we encounter an error when we try to get the currency fee';
+  String get wereSorryWeEncounterAnErrorTryingToGetTheFees =>
+      'We\'re sorry, we encounter an error when we try to get the currency fee';
 
   @override
   String get have => 'I HAVE';

@@ -36,7 +36,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ten => '10';
 
   @override
-  String get wereSorryWeEncounterAnErrorTryingToGetTheFees => 'Lo sentimos hubo un error al consultar las tasas';
+  String get wereSorryWeEncounterAnErrorTryingToGetTheFees =>
+      'Lo sentimos hubo un error al consultar las tasas';
 
   @override
   String get have => 'QUIERO';

@@ -30,7 +30,7 @@ abstract class EFTheme {
       bottomAppBarTheme: _lightBottomAppBarTheme(),
       bottomNavigationBarTheme: _lightBottomNavigationBarThemeData(),
       navigationBarTheme: _lightNavigationBarThemeData(),
-      cardTheme: const CardTheme(surfaceTintColor: Color(0xffF7FCF7)),
+      cardTheme: const CardThemeData(color: Color(0xffF7FCF7)),
       dropdownMenuTheme: _lighDropdownMenuThemeData(),
     );
   }
@@ -71,8 +71,8 @@ abstract class EFTheme {
     );
   }
 
-  static BottomAppBarTheme _lightBottomAppBarTheme() {
-    return const BottomAppBarTheme(
+  static BottomAppBarThemeData _lightBottomAppBarTheme() {
+    return const BottomAppBarThemeData(
       color: Color(0xff003c69),
     );
   }
