@@ -3,12 +3,24 @@ import 'package:exchange_caclculator/core/app_info/app_info.dart';
 import 'package:exchange_caclculator/core/remote_config/remote_config_keys.dart';
 import 'package:exchange_caclculator/core/remote_config/remote_config_mock_impl.dart';
 import 'package:exchange_caclculator/features/force_update/data/repository/force_update_repository_impl.dart';
+import 'package:exchange_caclculator/core/url_launcher/url_launcher.dart';
 import 'package:exchange_caclculator/features/force_update/presentation/bloc/force_update_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+class _FakeUrlLauncher implements UrlLauncher {
+  final openedUrls = <String>[];
+
+  @override
+  Future<bool> open(String url) async {
+    openedUrls.add(url);
+    return true;
+  }
+}
 
 void main() {
   late RemoteConfigMockImpl remoteConfig;
   late ForceUpdateRepositoryImpl repository;
+  late _FakeUrlLauncher urlLauncher;
 
   const appInfo = AppInfo(
     version: '1.0.0',
@@ -21,6 +33,7 @@ void main() {
       remoteConfig: remoteConfig,
       appInfo: appInfo,
     );
+    urlLauncher = _FakeUrlLauncher();
   });
 
   tearDown(() {
@@ -28,9 +41,14 @@ void main() {
     remoteConfig.dispose();
   });
 
+  ForceUpdateBloc buildBloc() => ForceUpdateBloc(
+    repository: repository,
+    urlLauncher: urlLauncher,
+  );
+
   blocTest<ForceUpdateBloc, ForceUpdateState>(
     'emits active then inactive when min android version crosses current',
-    build: () => ForceUpdateBloc(repository: repository),
+    build: buildBloc,
     act: (bloc) async {
       bloc.add(ForceUpdateStarted());
       await Future<void>.delayed(Duration.zero);
@@ -70,6 +88,7 @@ void main() {
             platform: AppStorePlatform.ios,
           ),
         ),
+        urlLauncher: urlLauncher,
       );
     },
     act: (bloc) => bloc.add(ForceUpdateStarted()),
@@ -96,9 +115,40 @@ void main() {
             platform: AppStorePlatform.ios,
           ),
         ),
+        urlLauncher: urlLauncher,
       );
     },
     act: (bloc) => bloc.add(ForceUpdateStarted()),
     expect: () => const [ForceUpdateState()],
+  );
+
+  blocTest<ForceUpdateBloc, ForceUpdateState>(
+    'opens the store url through UrlLauncher',
+    build: () {
+      remoteConfig = RemoteConfigMockImpl.fromJson({
+        RemoteConfigKeys.minRequiredVersionAndroid: '2.0.0',
+        RemoteConfigKeys.storeUrlAndroid: 'https://play.google.com/store',
+      });
+      repository = ForceUpdateRepositoryImpl(
+        remoteConfig: remoteConfig,
+        appInfo: appInfo,
+      );
+      return buildBloc();
+    },
+    act: (bloc) async {
+      bloc.add(ForceUpdateStarted());
+      await Future<void>.delayed(Duration.zero);
+      bloc.add(ForceUpdateOpenStorePressed());
+    },
+    wait: const Duration(milliseconds: 10),
+    expect: () => const [
+      ForceUpdateState(
+        status: ForceUpdateStatus.active,
+        storeUrl: 'https://play.google.com/store',
+      ),
+    ],
+    verify: (_) {
+      expect(urlLauncher.openedUrls, ['https://play.google.com/store']);
+    },
   );
 }

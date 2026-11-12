@@ -8,7 +8,6 @@ import 'package:exchange_caclculator/features/force_update/presentation/bloc/for
 import 'package:exchange_caclculator/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ForceUpdatePage extends StatelessWidget {
   const ForceUpdatePage({super.key});
@@ -60,7 +59,9 @@ class ForceUpdatePage extends StatelessWidget {
                       const SizedBox(height: 20),
                       EFButton(
                         title: l10n.forceUpdateCta,
-                        onPressed: () => _openStore(storeUrl),
+                        onPressed: () => context.read<ForceUpdateBloc>().add(
+                          ForceUpdateOpenStorePressed(),
+                        ),
                       ),
                     ],
                   ],
@@ -71,11 +72,5 @@ class ForceUpdatePage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _openStore(String storeUrl) async {
-    final uri = Uri.tryParse(storeUrl);
-    if (uri == null) return;
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 }

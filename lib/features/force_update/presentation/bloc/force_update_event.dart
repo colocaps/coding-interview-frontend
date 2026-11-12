@@ -9,3 +9,5 @@ class ForceUpdateStatusChanged extends ForceUpdateEvent {
   ForceUpdateStatusChanged({required this.isRequired});
   final bool isRequired;
 }
+
+class ForceUpdateOpenStorePressed extends ForceUpdateEvent {}

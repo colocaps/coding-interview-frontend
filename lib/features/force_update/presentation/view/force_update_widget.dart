@@ -1,3 +1,4 @@
+import 'package:exchange_caclculator/core/url_launcher/url_launcher.dart';
 import 'package:exchange_caclculator/di/injection.dart';
 import 'package:exchange_caclculator/features/force_update/domain/repository/force_update_repository.dart';
 import 'package:exchange_caclculator/features/force_update/presentation/bloc/force_update_bloc.dart';
@@ -15,6 +16,7 @@ class ForceUpdateWidget extends StatelessWidget {
     return BlocProvider(
       create: (_) => ForceUpdateBloc(
         repository: getIt<ForceUpdateRepository>(),
+        urlLauncher: getIt<UrlLauncher>(),
       )..add(ForceUpdateStarted()),
       child: BlocBuilder<ForceUpdateBloc, ForceUpdateState>(
         builder: (context, state) {

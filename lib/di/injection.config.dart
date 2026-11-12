@@ -38,6 +38,10 @@ import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchan
     as _i90;
 import 'package:exchange_caclculator/features/force_update/data/repository/force_update_repository_impl.dart'
     as _i412;
+import 'package:exchange_caclculator/core/url_launcher/url_launcher.dart'
+    as _i415;
+import 'package:exchange_caclculator/core/url_launcher/url_launcher_impl.dart'
+    as _i414;
 import 'package:exchange_caclculator/features/force_update/domain/repository/force_update_repository.dart'
     as _i413;
 import 'package:exchange_caclculator/features/maintenance/data/repository/maintenance_repository_impl.dart'
@@ -85,6 +89,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i831.MaintenanceRepositoryImpl(
           remoteConfig: gh<_i908.RemoteConfig>()),
     );
+    gh.lazySingleton<_i415.UrlLauncher>(() => _i414.UrlLauncherImpl());
     gh.lazySingleton<_i413.ForceUpdateRepository>(
       () => _i412.ForceUpdateRepositoryImpl(
         remoteConfig: gh<_i908.RemoteConfig>(),
