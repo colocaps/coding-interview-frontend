@@ -1,4 +1,4 @@
-import 'package:exchange_caclculator/core/url_launcher/url_launcher.dart';
+import 'package:exchange_caclculator/core/commons/url_launcher/url_launcher.dart';
 import 'package:exchange_caclculator/features/force_update/domain/repository/force_update_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

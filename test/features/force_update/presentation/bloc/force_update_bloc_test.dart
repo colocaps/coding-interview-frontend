@@ -1,9 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:exchange_caclculator/core/app_info/app_info.dart';
+import 'package:exchange_caclculator/core/commons/app_info/app_info.dart';
+import 'package:exchange_caclculator/core/commons/app_info/app_info_impl.dart';
+import 'package:exchange_caclculator/core/commons/url_launcher/url_launcher.dart';
 import 'package:exchange_caclculator/core/remote_config/remote_config_keys.dart';
 import 'package:exchange_caclculator/core/remote_config/remote_config_mock_impl.dart';
 import 'package:exchange_caclculator/features/force_update/data/repository/force_update_repository_impl.dart';
-import 'package:exchange_caclculator/core/url_launcher/url_launcher.dart';
 import 'package:exchange_caclculator/features/force_update/presentation/bloc/force_update_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -22,7 +23,7 @@ void main() {
   late ForceUpdateRepositoryImpl repository;
   late _FakeUrlLauncher urlLauncher;
 
-  const appInfo = AppInfo(
+  const appInfo = AppInfoImpl(
     version: '1.0.0',
     platform: AppStorePlatform.android,
   );
@@ -41,10 +42,8 @@ void main() {
     remoteConfig.dispose();
   });
 
-  ForceUpdateBloc buildBloc() => ForceUpdateBloc(
-    repository: repository,
-    urlLauncher: urlLauncher,
-  );
+  ForceUpdateBloc buildBloc() =>
+      ForceUpdateBloc(repository: repository, urlLauncher: urlLauncher);
 
   blocTest<ForceUpdateBloc, ForceUpdateState>(
     'emits active then inactive when min android version crosses current',
@@ -83,7 +82,7 @@ void main() {
       return ForceUpdateBloc(
         repository: ForceUpdateRepositoryImpl(
           remoteConfig: remoteConfig,
-          appInfo: const AppInfo(
+          appInfo: const AppInfoImpl(
             version: '1.0.0',
             platform: AppStorePlatform.ios,
           ),
@@ -110,7 +109,7 @@ void main() {
       return ForceUpdateBloc(
         repository: ForceUpdateRepositoryImpl(
           remoteConfig: remoteConfig,
-          appInfo: const AppInfo(
+          appInfo: const AppInfoImpl(
             version: '1.0.0',
             platform: AppStorePlatform.ios,
           ),

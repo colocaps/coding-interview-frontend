@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -9,17 +10,26 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:exchange_caclculator/core/commons/app_info/app_info.dart'
+    as _i867;
+import 'package:exchange_caclculator/core/commons/app_info/app_info_impl.dart'
+    as _i105;
+import 'package:exchange_caclculator/core/commons/url_launcher/url_launcher.dart'
+    as _i276;
+import 'package:exchange_caclculator/core/commons/url_launcher/url_launcher_impl.dart'
+    as _i50;
 import 'package:exchange_caclculator/core/networking/interceptors/ef_interceptor.dart'
     as _i870;
 import 'package:exchange_caclculator/core/networking/modules/logger_module.dart'
     as _i970;
 import 'package:exchange_caclculator/core/networking/modules/network_module.dart'
     as _i687;
-import 'package:exchange_caclculator/core/app_info/app_info.dart' as _i101;
 import 'package:exchange_caclculator/core/remote_config/remote_config.dart'
     as _i908;
 import 'package:exchange_caclculator/core/remote_config/remote_config_inactive_impl.dart'
-    as _i214;
+    as _i90;
+import 'package:exchange_caclculator/core/remote_config/remote_config_mock_impl.dart'
+    as _i369;
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource.dart'
     as _i655;
 import 'package:exchange_caclculator/features/exchange/data/datasource/exchange_datasource_impl.dart'
@@ -37,13 +47,9 @@ import 'package:exchange_caclculator/features/exchange/domain/usecase/get_curren
 import 'package:exchange_caclculator/features/exchange/domain/usecase/get_exchange_rate_usecase.dart'
     as _i90;
 import 'package:exchange_caclculator/features/force_update/data/repository/force_update_repository_impl.dart'
-    as _i412;
-import 'package:exchange_caclculator/core/url_launcher/url_launcher.dart'
-    as _i415;
-import 'package:exchange_caclculator/core/url_launcher/url_launcher_impl.dart'
-    as _i414;
+    as _i923;
 import 'package:exchange_caclculator/features/force_update/domain/repository/force_update_repository.dart'
-    as _i413;
+    as _i884;
 import 'package:exchange_caclculator/features/maintenance/data/repository/maintenance_repository_impl.dart'
     as _i831;
 import 'package:exchange_caclculator/features/maintenance/domain/repository/maintenance_repository.dart'
@@ -53,63 +59,74 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
-const String _mock = 'mock';
 const String _development = 'development';
 const String _production = 'production';
+const String _mock = 'mock';
 
 extension GetItInjectableX on _i174.GetIt {
-// initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  // initializes the registration of main-scope dependencies inside of GetIt
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
-    final gh = _i526.GetItHelper(
-      this,
-      environment,
-      environmentFilter,
-    );
+  }) async {
+    final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final loggerModule = _$LoggerModule();
     final networkModule = _$NetworkModule();
     gh.factory<_i870.EFInterceptor>(() => _i870.EFInterceptor());
     gh.factory<_i528.PrettyDioLogger>(() => loggerModule.prettyDioLogger);
     gh.lazySingleton<_i974.Logger>(() => loggerModule.logger);
+    gh.lazySingleton<_i908.RemoteConfig>(
+      () => _i90.RemoteConfigInactiveImpl(),
+      registerFor: {_development, _production},
+    );
     gh.singleton<_i655.ExchangeDatasource>(
       () => _i579.ExchangeDatasourceMockImpl(),
       registerFor: {_mock},
     );
+    gh.lazySingleton<_i276.UrlLauncher>(() => _i50.UrlLauncherImpl());
     gh.lazySingleton<_i908.RemoteConfig>(
-      () => _i214.RemoteConfigInactiveImpl(),
-      registerFor: {_development, _production},
+      () => _i369.RemoteConfigMockImpl(),
+      registerFor: {_mock},
     );
-    gh.lazySingleton<_i361.Dio>(() => networkModule.efDio(
-          gh<_i870.EFInterceptor>(),
-          gh<_i528.PrettyDioLogger>(),
-        ));
-    gh.lazySingleton<_i693.MaintenanceRepository>(
-      () => _i831.MaintenanceRepositoryImpl(
-          remoteConfig: gh<_i908.RemoteConfig>()),
+    await gh.singletonAsync<_i867.AppInfo>(
+      () => _i105.AppInfoImpl.create(),
+      registerFor: {_development, _production, _mock},
+      preResolve: true,
     );
-    gh.lazySingleton<_i415.UrlLauncher>(() => _i414.UrlLauncherImpl());
-    gh.lazySingleton<_i413.ForceUpdateRepository>(
-      () => _i412.ForceUpdateRepositoryImpl(
-        remoteConfig: gh<_i908.RemoteConfig>(),
-        appInfo: gh<_i101.AppInfo>(),
+    gh.lazySingleton<_i361.Dio>(
+      () => networkModule.efDio(
+        gh<_i870.EFInterceptor>(),
+        gh<_i528.PrettyDioLogger>(),
       ),
     );
-    gh.factory<_i851.ExchangeRepository>(() => _i815.ExchangeRepositoryImpl(
-        datasource: gh<_i655.ExchangeDatasource>()));
-    gh.factory<_i995.GetCurrenciesUsecase>(
-        () => _i995.GetCurrenciesUsecase(gh<_i851.ExchangeRepository>()));
-    gh.factory<_i90.GetExchangeRateUsecase>(
-        () => _i90.GetExchangeRateUsecase(gh<_i851.ExchangeRepository>()));
+    gh.lazySingleton<_i693.MaintenanceRepository>(
+      () => _i831.MaintenanceRepositoryImpl(
+        remoteConfig: gh<_i908.RemoteConfig>(),
+      ),
+    );
+    gh.lazySingleton<_i884.ForceUpdateRepository>(
+      () => _i923.ForceUpdateRepositoryImpl(
+        remoteConfig: gh<_i908.RemoteConfig>(),
+        appInfo: gh<_i867.AppInfo>(),
+      ),
+    );
     gh.singleton<_i129.ExchangeService>(
-        () => _i129.ExchangeService(gh<_i361.Dio>()));
+      () => _i129.ExchangeService.new(gh<_i361.Dio>()),
+    );
     gh.singleton<_i655.ExchangeDatasource>(
       () => _i578.ExchangeDatasourceImpl(service: gh<_i129.ExchangeService>()),
-      registerFor: {
-        _development,
-        _production,
-      },
+      registerFor: {_development, _production},
+    );
+    gh.factory<_i851.ExchangeRepository>(
+      () => _i815.ExchangeRepositoryImpl(
+        datasource: gh<_i655.ExchangeDatasource>(),
+      ),
+    );
+    gh.factory<_i995.GetCurrenciesUsecase>(
+      () => _i995.GetCurrenciesUsecase(gh<_i851.ExchangeRepository>()),
+    );
+    gh.factory<_i90.GetExchangeRateUsecase>(
+      () => _i90.GetExchangeRateUsecase(gh<_i851.ExchangeRepository>()),
     );
     return this;
   }

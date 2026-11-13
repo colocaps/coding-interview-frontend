@@ -2,6 +2,9 @@ abstract final class AppEnv {
   static const development = 'development';
   static const production = 'production';
   static const mock = 'mock';
+
+  /// Constante usable en anotaciones de injectable (`env:`).
+  static const all = [development, production, mock];
 }
 
 enum AppEnvironment {

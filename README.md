@@ -45,59 +45,75 @@ Del response, simplemente obtener el `data.byPrice.fiatToCryptoExchangeRate` y m
 
 ### Cualquier duda contactarme a https://www.linkedin.com/in/carlosfontest/
 
-## 🛠 Descripción del trabajo realizado
+---
 
-### 🔧 Arquitectura
+## Descripción del trabajo realizado
 
-Se utilizó **arquitectura limpia** por su gran escalabilidad, especialmente útil en proyectos grandes.
+### Features
 
-### ⚙️ State Management
+| Feature          | Qué hace                                                               |
+| ---------------- | ---------------------------------------------------------------------- |
+| **Exchange**     | Calculadora FIAT ↔ CRYPTO contra el API (o mock).                      |
+| **Maintenance**  | Gate top-level reactivo vía remote config (`is_maintenance_mode`).     |
+| **Force update** | Gate top-level por versión mínima **por plataforma** + CTA a la store. |
 
-Se utilizó **BLoC**, también por su escalabilidad y su buen manejo y separación de la lógica de negocio respecto de la UI.
+Prioridad de gates en `App`: force update → maintenance → app.
 
-### 🎨 Design System
+### Arquitectura (por qué)
 
-Se atomizaron los elementos lo más posible e intentó **reutilizar componentes** para mantener consistencia y orden.
+- **Clean Architecture + features**: dominio sin frameworks; data adapta remote/API; presentation solo UI/BLoC. Escala sin mezclar capas.
+- **BLoC**: estado explícito, testeable, desacoplado de la UI. Los blocs de gates **no** van en GetIt (viven con el widget).
+- **GetIt + injectable**: DI por ambiente (`mock` / `development` / `production`) sin acoplar constructores.
+- **Core**: cross-cutting (`remote_config`, `app_info`, `url_launcher`, networking, env).
+- **Remote config**: puerto abstracto; mock lee `assets/mock/remote_config.json`; dev/prod usan stub inactivo hasta un proveedor real.
+- **Design system (`EF*`)**: tokens + átomos/moléculas/organismos para UI consistente.
+- **l10n**: es/en vía ARB.
+- **ReactHandler**: fan-out reactivo interno sin exponer `StreamController` a callers.
 
-### 🧱 Core
+### Ambientes
 
-Esta capa se encarga de todo lo que es **cross a la app** (configuraciones, helpers, constantes, etc.).
+| Flavor        | Entry                       | Datos                                      |
+| ------------- | --------------------------- | ------------------------------------------ |
+| `mock`        | `lib/main_mock.dart`        | Datasource mock + remote config desde JSON |
+| `development` | `lib/main_development.dart` | API real; remote config inactivo           |
+| `production`  | `lib/main_production.dart`  | API real; remote config inactivo           |
 
-### 🌐 l10n
+Banner `MOCK` / `DEV` en no-producción.
 
-Se implementó **internacionalización** para soportar múltiples idiomas.
+### Mock remote config
 
-### 🧪 Env
+Archivo: `assets/mock/remote_config.json`
 
-Se utilizan **tres ambientes**:
+```json
+{
+  "is_maintenance_mode": false,
+  "min_required_version_android": "0.0.0",
+  "min_required_version_ios": "0.0.0",
+  "store_url_android": "https://play.google.com/store/apps/details?id=...",
+  "store_url_ios": "https://apps.apple.com/app/id..."
+}
+```
 
-- `Mock`: Representa solo el **camino feliz**.
-- `Dev`: Igual que producción pero usada para desarrollo.
-- `Prod`: Ambiente real de producción.
-
-### 🔌 Inyección de dependencias
-
-Se utiliza la librería **GetIt** como service locator e inyección de dependencias, lo que **facilita la creación de tests**.
+Force update se activa si la versión de la app (`pubspec` → `package_info_plus`) es **menor** que el mínimo de la plataforma. Tras editar el JSON: **full restart** (no hot reload).
 
 ---
 
-## 🚀 Cómo ejecutar la app
+## Cómo ejecutar la app
 
-> **Versión recomendada:** Flutter `3.35.1`
+> **Flutter:** `3.35.1` (FVM o SDK alineado)
 
-### 1. Instalar dependencias
+### 1. Dependencias
 
 ```bash
 flutter pub get
 flutter gen-l10n
-dart run build_runner build --delete-conflicting-outputs
 ```
 
-### 2. Crear una carpeta en la raiz del proyecto llamada .env con el siguiente contenido:
+> `build_runner` puede fallar por incompatibilidad `retrofit_generator` / `retrofit`; los freezed/DI usados ya están generados en el repo.
 
-![Imagen](image.png)
+### 2. Carpeta `.env` en la raíz
 
-appMock.json
+`appMock.json` / `appDev.json` / `appProd.json`:
 
 ```json
 {
@@ -106,74 +122,22 @@ appMock.json
 }
 ```
 
-appDev.json
+(Ajustá `ENV` a `development` o `production` en los otros archivos.)
 
-```json
-{
-  "ENV": "development",
-  "BASE_URL": "https://74j6q7lg6a.execute-api.eu-west-1.amazonaws.com/"
-}
+### 3. VS Code / Cursor — `.vscode/launch.json`
+
+Usá las configs **Launch mock**, **Launch development**, **Launch production** (flavor + target + `--dart-define-from-file`).
+
+CLI equivalente:
+
+```bash
+flutter run --flavor mock -t lib/main_mock.dart --dart-define-from-file=.env/appMock.json
+flutter run --flavor development -t lib/main_development.dart --dart-define-from-file=.env/appDev.json
+flutter run --flavor production -t lib/main_production.dart --dart-define-from-file=.env/appProd.json
 ```
 
-appProd.json
+### 4. Tests
 
-```json
-{
-  "ENV": "production",
-  "BASE_URL": "https://74j6q7lg6a.execute-api.eu-west-1.amazonaws.com/"
-}
+```bash
+flutter test
 ```
-
-### 3. Copiar lo siguiente en el launch.json :
-
-```json
-{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Launch development",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_development.dart",
-      "args": [
-        "--flavor",
-        "development",
-        "--target",
-        "lib/main_development.dart",
-        "--dart-define-from-file=.env/appDev.json"
-      ]
-    },
-    {
-      "name": "Launch mock",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_mock.dart",
-      "args": [
-        "--flavor",
-        "mock",
-        "--target",
-        "lib/main_mock.dart",
-        "--dart-define-from-file=.env/appMock.json"
-      ]
-    },
-    {
-      "name": "Launch production",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_production.dart",
-      "args": [
-        "--flavor",
-        "production",
-        "--target",
-        "lib/main_production.dart",
-        "--dart-define-from-file=.env/appProd.json"
-      ]
-    }
-  ]
-}
-```
-
-### 4. Elegi el ambiente y dale play.

@@ -12,9 +12,7 @@ _ErrorResponseModel _$ErrorResponseModelFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ErrorResponseModelToJson(_ErrorResponseModel instance) =>
-    <String, dynamic>{
-      'error': instance.error,
-    };
+    <String, dynamic>{'error': instance.error};
 
 _ErrorContent _$ErrorContentFromJson(Map<String, dynamic> json) =>
     _ErrorContent(

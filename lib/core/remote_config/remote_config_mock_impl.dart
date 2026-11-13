@@ -1,22 +1,23 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:exchange_caclculator/core/env/env.dart';
 import 'package:exchange_caclculator/core/remote_config/remote_config.dart';
-import 'package:exchange_caclculator/core/remote_config/remote_config_keys.dart';
-import 'package:exchange_caclculator/core/remote_config/remote_config_state.dart';
+import 'package:exchange_caclculator/core/remote_config/remote_config_defaults.dart';
+import 'package:exchange_caclculator/gen/assets.gen.dart';
 import 'package:flutter/services.dart';
+import 'package:injectable/injectable.dart';
 
-/// In-memory remote config for the mock flavor.
-///
-/// Seeded from [assetPath] in bootstrap (defaults fill any missing key).
+@LazySingleton(as: RemoteConfig, env: [AppEnv.mock])
 class RemoteConfigMockImpl implements RemoteConfig {
-  RemoteConfigMockImpl({Map<String, Object?>? values})
-    : _values = _merge(defaultValues, values) {
-    _current = stateFromValues(_values);
-  }
+  RemoteConfigMockImpl() : _configs = Map<String, dynamic>.from(RemoteConfigDefaults.values);
+
+  /// Seeds configs without going through [init] (tests / tooling).
+  RemoteConfigMockImpl.seeded(Map<String, dynamic> values)
+    : _configs = _merge(RemoteConfigDefaults.values, values);
 
   factory RemoteConfigMockImpl.fromJson(Map<String, dynamic> json) {
-    return RemoteConfigMockImpl(values: Map<String, Object?>.from(json));
+    return RemoteConfigMockImpl.seeded(json);
   }
 
   factory RemoteConfigMockImpl.fromJsonString(String source) {
@@ -29,95 +30,44 @@ class RemoteConfigMockImpl implements RemoteConfig {
     return RemoteConfigMockImpl.fromJson(decoded);
   }
 
-  static const assetPath = 'assets/mock/remote_config.json';
+  Map<String, dynamic> _configs;
+  final _controller = StreamController<Map<String, dynamic>>.broadcast();
+  final List<StreamSubscription<Map<String, dynamic>>> _subscriptions = [];
 
-  /// Defaults used when a key is missing from the supplied map/JSON.
-  static const Map<String, Object?> defaultValues = {
-    RemoteConfigKeys.isMaintenanceMode: false,
-    RemoteConfigKeys.minRequiredVersionAndroid: '0.0.0',
-    RemoteConfigKeys.minRequiredVersionIos: '0.0.0',
-    RemoteConfigKeys.storeUrlAndroid: '',
-    RemoteConfigKeys.storeUrlIos: '',
-  };
+  @override
+  Map<String, dynamic> get configs => Map.unmodifiable(_configs);
 
-  static Future<RemoteConfigMockImpl> loadFromAsset({
-    String path = assetPath,
-  }) async {
-    final source = await rootBundle.loadString(path);
-    return RemoteConfigMockImpl.fromJsonString(source);
+  @override
+  Future<void> init() async {
+    try {
+      final source = await rootBundle.loadString(Assets.mock.remoteConfig);
+      final decoded = jsonDecode(source);
+      if (decoded is! Map<String, dynamic>) {
+        throw FormatException(
+          'Remote config JSON must be an object, got ${decoded.runtimeType}',
+        );
+      }
+      _configs = _merge(RemoteConfigDefaults.values, decoded);
+    } on Object {
+      _configs = Map<String, dynamic>.from(RemoteConfigDefaults.values);
+    }
   }
 
-  Map<String, Object?> _values;
-  late RemoteConfigState _current;
-  final _controller = StreamController<RemoteConfigState>.broadcast();
-  final List<StreamSubscription<RemoteConfigState>> _subscriptions = [];
-
-  Map<String, Object?> get values => Map.unmodifiable(_values);
-
   @override
-  RemoteConfigState get current => _current;
-
-  @override
-  Future<void> listen(void Function(RemoteConfigState state) onChange) async {
-    _subscriptions.add(_controller.stream.listen(onChange));
+  void listen(void Function(Map<String, dynamic> configs) callback) {
+    _subscriptions.add(_controller.stream.listen(callback));
   }
 
   /// Merges [values] on top of the current map and notifies listeners.
-  void updateValues(Map<String, Object?> values) {
-    _values = _merge(_values, values);
-    update(stateFromValues(_values));
+  void updateValues(Map<String, dynamic> values) {
+    _configs = _merge(_configs, values);
+    _controller.add(configs);
   }
 
-  void update(RemoteConfigState state) {
-    _current = state;
-    _controller.add(state);
-  }
-
-  static RemoteConfigState stateFromValues(Map<String, Object?> values) {
-    return RemoteConfigState(
-      isMaintenanceMode: _readBool(
-        values,
-        RemoteConfigKeys.isMaintenanceMode,
-      ),
-      minRequiredVersionAndroid: _readString(
-        values,
-        RemoteConfigKeys.minRequiredVersionAndroid,
-      ),
-      minRequiredVersionIos: _readString(
-        values,
-        RemoteConfigKeys.minRequiredVersionIos,
-      ),
-      storeUrlAndroid: _readString(
-        values,
-        RemoteConfigKeys.storeUrlAndroid,
-      ),
-      storeUrlIos: _readString(
-        values,
-        RemoteConfigKeys.storeUrlIos,
-      ),
-    );
-  }
-
-  static Map<String, Object?> _merge(
-    Map<String, Object?> base,
-    Map<String, Object?>? overrides,
-  ) => {
-    ...base,
-    ...?overrides,
-  };
-
-  static bool _readBool(Map<String, Object?> values, String key) {
-    final value = values[key];
-    if (value is bool) return value;
-    if (value is String) return value.toLowerCase() == 'true';
-    return defaultValues[key] as bool? ?? false;
-  }
-
-  static String _readString(Map<String, Object?> values, String key) {
-    final value = values[key];
-    if (value is String) return value.trim();
-    return defaultValues[key] as String? ?? '';
-  }
+  static Map<String, dynamic> _merge(
+    Map<String, dynamic> base,
+    Map<String, dynamic>? overrides,
+  ) => {...base, ...?overrides};
 
   void dispose() {
     for (final subscription in _subscriptions) {

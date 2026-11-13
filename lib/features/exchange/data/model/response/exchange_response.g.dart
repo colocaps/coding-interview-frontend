@@ -12,9 +12,7 @@ _ExchangeResponse _$ExchangeResponseFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ExchangeResponseToJson(_ExchangeResponse instance) =>
-    <String, dynamic>{
-      'data': instance.data,
-    };
+    <String, dynamic>{'data': instance.data};
 
 _ExchangeData _$ExchangeDataFromJson(Map<String, dynamic> json) =>
     _ExchangeData(
@@ -22,9 +20,7 @@ _ExchangeData _$ExchangeDataFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ExchangeDataToJson(_ExchangeData instance) =>
-    <String, dynamic>{
-      'byPrice': instance.byPrice,
-    };
+    <String, dynamic>{'byPrice': instance.byPrice};
 
 _CurrencyPrice _$CurrencyPriceFromJson(Map<String, dynamic> json) =>
     _CurrencyPrice(

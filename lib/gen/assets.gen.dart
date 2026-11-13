@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/widgets.dart';
 
@@ -43,6 +45,31 @@ class $AssetsFiatCurrenciesGen {
   List<AssetGenImage> get values => [brl, cop, pen, ves];
 }
 
+class $AssetsMockGen {
+  const $AssetsMockGen();
+
+  /// File path: assets/mock/remote_config.json
+  String get remoteConfig => 'assets/mock/remote_config.json';
+
+  /// List of all assets
+  List<String> get values => [remoteConfig];
+}
+
+class $AssetsSplashGen {
+  const $AssetsSplashGen();
+
+  /// File path: assets/splash/app_icon.png
+  AssetGenImage get appIcon =>
+      const AssetGenImage('assets/splash/app_icon.png');
+
+  /// File path: assets/splash/splash_logo.png
+  AssetGenImage get splashLogo =>
+      const AssetGenImage('assets/splash/splash_logo.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [appIcon, splashLogo];
+}
+
 class Assets {
   const Assets._();
 
@@ -50,9 +77,11 @@ class Assets {
       $AssetsCriptoCurrenciesGen();
   static const $AssetsFiatCurrenciesGen fiatCurrencies =
       $AssetsFiatCurrenciesGen();
+  static const $AssetsMockGen mock = $AssetsMockGen();
   static const AssetGenImage screen1 = AssetGenImage('assets/screen_1.jpg');
   static const AssetGenImage sheet1 = AssetGenImage('assets/sheet_1.jpg');
   static const AssetGenImage sheet2 = AssetGenImage('assets/sheet_2.jpg');
+  static const $AssetsSplashGen splash = $AssetsSplashGen();
 
   /// List of all assets
   static List<AssetGenImage> get values => [screen1, sheet1, sheet2];
@@ -63,12 +92,14 @@ class AssetGenImage {
     this._assetName, {
     this.size,
     this.flavors = const {},
+    this.animation,
   });
 
   final String _assetName;
 
   final Size? size;
   final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -123,18 +154,23 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
 
   String get keyName => _assetName;
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }
