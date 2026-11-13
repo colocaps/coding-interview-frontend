@@ -24,6 +24,14 @@ import 'package:exchange_caclculator/core/networking/modules/logger_module.dart'
     as _i970;
 import 'package:exchange_caclculator/core/networking/modules/network_module.dart'
     as _i687;
+import 'package:exchange_caclculator/core/observability/observability.dart'
+    as _i144;
+import 'package:exchange_caclculator/core/observability/observability_logger_impl.dart'
+    as _i822;
+import 'package:exchange_caclculator/core/observability/observability_navigator_observer.dart'
+    as _i1032;
+import 'package:exchange_caclculator/core/observability/observability_noop_impl.dart'
+    as _i239;
 import 'package:exchange_caclculator/core/remote_config/remote_config.dart'
     as _i908;
 import 'package:exchange_caclculator/core/remote_config/remote_config_inactive_impl.dart'
@@ -84,9 +92,17 @@ extension GetItInjectableX on _i174.GetIt {
       registerFor: {_mock},
     );
     gh.lazySingleton<_i276.UrlLauncher>(() => _i50.UrlLauncherImpl());
+    gh.lazySingleton<_i144.Observability>(
+      () => _i822.ObservabilityLoggerImpl(gh<_i974.Logger>()),
+      registerFor: {_mock},
+    );
     gh.lazySingleton<_i908.RemoteConfig>(
       () => _i369.RemoteConfigMockImpl(),
       registerFor: {_mock},
+    );
+    gh.lazySingleton<_i144.Observability>(
+      () => _i239.ObservabilityNoopImpl(),
+      registerFor: {_development, _production},
     );
     await gh.singletonAsync<_i867.AppInfo>(
       () => _i105.AppInfoImpl.create(),
@@ -109,6 +125,9 @@ extension GetItInjectableX on _i174.GetIt {
         remoteConfig: gh<_i908.RemoteConfig>(),
         appInfo: gh<_i867.AppInfo>(),
       ),
+    );
+    gh.lazySingleton<_i1032.ObservabilityNavigatorObserver>(
+      () => _i1032.ObservabilityNavigatorObserver(gh<_i144.Observability>()),
     );
     gh.singleton<_i129.ExchangeService>(
       () => _i129.ExchangeService.new(gh<_i361.Dio>()),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:exchange_caclculator/core/env/env.dart';
+import 'package:exchange_caclculator/core/observability/observability.dart';
 import 'package:exchange_caclculator/core/remote_config/remote_config.dart';
 import 'package:exchange_caclculator/di/injection.config.dart';
 import 'package:exchange_caclculator/di/injection.dart';
@@ -30,15 +31,21 @@ Future<void> bootstrap(
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
-  };
-
   Bloc.observer = const AppBlocObserver();
 
   Env.current = environment;
   await getIt.init(environment: environment.name);
   await getIt.get<RemoteConfig>().init();
+
+  final observability = getIt.get<Observability>();
+  FlutterError.onError = (details) {
+    FlutterError.presentError(details);
+    observability.trackError(
+      details.exception,
+      stackTrace: details.stack,
+      reason: details.context?.toString(),
+    );
+  };
 
   runApp(await builder());
 }

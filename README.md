@@ -64,19 +64,20 @@ Prioridad de gates en `App`: force update → maintenance → app.
 - **Clean Architecture + features**: dominio sin frameworks; data adapta remote/API; presentation solo UI/BLoC. Escala sin mezclar capas.
 - **BLoC**: estado explícito, testeable, desacoplado de la UI. Los blocs de gates **no** van en GetIt (viven con el widget).
 - **GetIt + injectable**: DI por ambiente (`mock` / `development` / `production`) sin acoplar constructores.
-- **Core**: cross-cutting (`remote_config`, `app_info`, `url_launcher`, networking, env).
-- **Remote config**: puerto abstracto; mock lee `assets/mock/remote_config.json`; dev/prod usan stub inactivo hasta un proveedor real.
+- **Core**: cross-cutting (`remote_config`, `app_info`, `url_launcher`, `observability`, networking, env).
+- **Remote config**: puerto abstracto con `init` / `configs` / `listen`; mock carga `assets/mock/remote_config.json` (o defaults); dev/prod usan stub inactivo hasta un proveedor real.
+- **Observability**: puerto abstracto (`track` / `trackError`); mock loguea; dev/prod son noop. Cableado: `FlutterError.onError` + `NavigatorObserver` de breadcrumbs en el router. El contrato queda abierto para otra impl (Sentry, etc.).
 - **Design system (`EF*`)**: tokens + átomos/moléculas/organismos para UI consistente.
 - **l10n**: es/en vía ARB.
 - **ReactHandler**: fan-out reactivo interno sin exponer `StreamController` a callers.
 
 ### Ambientes
 
-| Flavor        | Entry                       | Datos                                      |
-| ------------- | --------------------------- | ------------------------------------------ |
-| `mock`        | `lib/main_mock.dart`        | Datasource mock + remote config desde JSON |
-| `development` | `lib/main_development.dart` | API real; remote config inactivo           |
-| `production`  | `lib/main_production.dart`  | API real; remote config inactivo           |
+| Flavor        | Entry                       | Datos                                                         |
+| ------------- | --------------------------- | ------------------------------------------------------------- |
+| `mock`        | `lib/main_mock.dart`        | Datasource mock + remote config JSON + observability logger   |
+| `development` | `lib/main_development.dart` | API real; remote config inactivo; observability noop          |
+| `production`  | `lib/main_production.dart`  | API real; remote config inactivo; observability noop          |
 
 Banner `MOCK` / `DEV` en no-producción.
 
@@ -95,6 +96,22 @@ Archivo: `assets/mock/remote_config.json`
 ```
 
 Force update se activa si la versión de la app (`pubspec` → `package_info_plus`) es **menor** que el mínimo de la plataforma. Tras editar el JSON: **full restart** (no hot reload).
+
+### Observability
+
+Puerto en `lib/core/observability/`:
+
+| Método        | Uso                                                              |
+| ------------- | ---------------------------------------------------------------- |
+| `track`       | Eventos / breadcrumbs (p. ej. navegación del router)             |
+| `trackError`  | Errores con stack (`FlutterError.onError` en `bootstrap`)        |
+
+| Ambiente              | Impl                         |
+| --------------------- | ---------------------------- |
+| `mock`                | `ObservabilityLoggerImpl`    |
+| `development` / `production` | `ObservabilityNoopImpl` |
+
+Navegación: `ObservabilityNavigatorObserver` registra breadcrumbs `type: navigation` en push/pop/replace/remove.
 
 ---
 
